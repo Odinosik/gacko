@@ -2,7 +2,7 @@
 
 namespace GACKO.DB.Migrations
 {
-    [Migration(0003)]
+    [Migration(0002)]
     class AddExpenseCategoryTable : Migration
     {
         private const string TableName = "ExpenseCategory";
@@ -10,7 +10,7 @@ namespace GACKO.DB.Migrations
         {
             Create.Table(TableName)
                 .WithColumn("Id").AsInt32().NotNullable().PrimaryKey()
-                .WithColumn("").AsString().NotNullable();
+                .WithColumn("Name").AsString().NotNullable();
         }
 
         public override void Down()

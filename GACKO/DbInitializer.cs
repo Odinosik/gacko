@@ -13,7 +13,7 @@ namespace GACKO
 
         private List<UserRegisterForm> Users = new List<UserRegisterForm>()
         {
-            new UserRegisterForm(){ FirstName = "admin", LastName = "Administrator", UserName= "Administrator", Password = "Admin123$" }
+            new UserRegisterForm(){ FirstName = "admin", LastName = "admin", UserName= "admin", Password = "Admin123$" }
         };
 
         public async Task Initialize(

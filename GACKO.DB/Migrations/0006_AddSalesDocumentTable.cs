@@ -10,7 +10,14 @@ namespace GACKO.DB.Migrations
         {
             Create.Table(TableName)
                 .WithColumn("Id").AsInt32().NotNullable().PrimaryKey()
-                .WithColumn("").AsString().NotNullable();
+                .WithColumn("Name").AsString().NotNullable()
+                .WithColumn("ExpenseId").AsString().NotNullable()
+                .WithColumn("ExpenseId").AsInt32().NotNullable();
+
+            Create.ForeignKey().FromTable(TableName)
+                .ForeignColumn("ExpenseId")
+                .ToTable("Expense").PrimaryColumn("Id")
+                .OnDelete(System.Data.Rule.Cascade);
         }
 
         public override void Down()
