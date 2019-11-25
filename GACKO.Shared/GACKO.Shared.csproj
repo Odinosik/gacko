@@ -17,4 +17,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GACKO.DB\GACKO.DB.csproj" />
+  </ItemGroup>
+
 </Project>

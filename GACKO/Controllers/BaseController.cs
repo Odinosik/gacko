@@ -6,8 +6,8 @@ using System.Diagnostics;
 
 namespace GACKO.Controllers
 {
-    [AllowAnonymous]
-    //[Authorize]
+    //[AllowAnonymous]
+    [Authorize]
     public class BaseController : Controller
     {      
         public BaseController()

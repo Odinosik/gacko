@@ -3,17 +3,10 @@ using GACKO;
 using GACKO.DB;
 using GACKO.DB.DaoModels;
 using GACKO.DIModules;
-using GACKO.Shared.Models.User;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,13 +32,11 @@ namespace GACKO_MVC
         {
             services.AddDbContext<GackoDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentityCore<DaoUser>(options => options.SignIn.RequireConfirmedAccount = false);
-            new IdentityBuilder(typeof(DaoUser), typeof(DaoRole), services)
+            services.AddDefaultIdentity<DaoUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<DaoRole>()
                 .AddRoleManager<RoleManager<DaoRole>>()
                 .AddSignInManager<SignInManager<DaoUser>>()
-                .AddEntityFrameworkStores<GackoDbContext>()
-                .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<GackoDbContext>();
 
             services.AddControllersWithViews();
 
@@ -82,26 +73,14 @@ namespace GACKO_MVC
                 options.SlidingExpiration = true;
             });
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-               .AddCookie(options =>
-               {
-                   options.Cookie.Name = "GACKO.AuthCookieAspNetCore";
-                   options.LoginPath = "/User/Login";
-                   options.Cookie.HttpOnly = true;
-                   options.Cookie.SecurePolicy = _environment.IsDevelopment()
-                     ? CookieSecurePolicy.None : CookieSecurePolicy.Always;
-                   options.Cookie.SameSite = SameSiteMode.Lax;
-               })
-               .AddIdentityCookies();
-
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.MinimumSameSitePolicy = SameSiteMode.Strict;
-                options.HttpOnly = HttpOnlyPolicy.None;
-                options.Secure = _environment.IsDevelopment()
-                  ? CookieSecurePolicy.None : CookieSecurePolicy.Always;
-            });
-
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //   .AddCookie(options =>
+            //   {
+            //       options.Cookie.Name = "GACKO.AuthCookieAspNetCore";
+            //       options.LoginPath = "/User/Login";
+            //       options.Cookie.HttpOnly = true;
+            //   })
+            //   .AddIdentityCookies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -119,12 +98,10 @@ namespace GACKO_MVC
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
-
             app.UseRouting();
 
-            app.UseCookiePolicy();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseMvc(routes =>
             {
