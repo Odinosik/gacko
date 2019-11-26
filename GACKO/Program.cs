@@ -55,7 +55,6 @@ namespace GACKO_MVC
         public static IWebHostBuilder CreateHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseKestrel()
-                .UseUrls(config["http://localhost:5000"])
                 .UseStartup<Startup>()
                 .ConfigureServices(services => services.AddAutofac())
                 .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
