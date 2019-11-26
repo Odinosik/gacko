@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using GACKO.DB.DaoModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -8,7 +10,6 @@ namespace GACKO.Controllers
     {
         public HomeController(ILogger<HomeController> logger)
         {
-
         }
 
         [AllowAnonymous]

@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using GACKO.DB;
 using GACKO.DB.DaoModels;
+using GACKO.Shared;
 using GACKO.Shared.Models.BankAccount;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GACKO.Repositories.BankAccount
@@ -14,10 +13,10 @@ namespace GACKO.Repositories.BankAccount
     {
         private GackoDbContext _context;
         private IMapper _mapper { get; }
-        public BankAccountRepository(IMapper mapper)
+        public BankAccountRepository(IMapper mapper, IDbContextOptionsFactory optionsFactory)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<GackoDbContext>();
-            _context = new GackoDbContext(optionsBuilder.Options);
+            _context = new GackoDbContext(optionsFactory.Get());
+            _mapper = mapper;
         }
 
         public async Task<int> Create(BankAccountForm form)
