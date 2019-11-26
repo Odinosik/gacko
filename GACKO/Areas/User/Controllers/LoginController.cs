@@ -63,19 +63,11 @@ namespace GACKO.Areas.User.Controllers
             }
         }
 
-        /// <summary>
-        /// Logout
-        /// </summary>
-        /// <param name="returnUrl"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Authorize]
-        [ProducesResponseType(typeof(void), 200)]
-        [ProducesResponseType(typeof(void), 401)]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return View("Login");
+            return RedirectToAction("Privacy", "Home", new { area = "" });
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Autofac;
-using AutoMapper;
+using GACKO.Repositories.BankAccount;
 using GACKO.Repositories.User;
+using GACKO.Services.BankAccount;
 using GACKO.Services.User;
 
 namespace GACKO.DIModules
@@ -11,6 +12,10 @@ namespace GACKO.DIModules
         {
             builder.Register(c => new UserService(c.Resolve<IUserRepository>()))
                 .As<IUserService>()
+                .InstancePerLifetimeScope();
+
+            builder.Register(c => new BankAccountService(c.Resolve<IBankAccountRepository>()))
+                .As<IBankAccountService>()
                 .InstancePerLifetimeScope();
         }
     }

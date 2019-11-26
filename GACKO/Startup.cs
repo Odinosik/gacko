@@ -3,7 +3,6 @@ using GACKO;
 using GACKO.DB;
 using GACKO.DB.DaoModels;
 using GACKO.DIModules;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -120,6 +119,9 @@ namespace GACKO_MVC
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
+            builder.RegisterType<DbContextOptionsFactory>()
+                    .AsImplementedInterfaces();
+
             builder.RegisterModule(new MapperModule());
             builder.RegisterModule(new RepositoriesModule());
             builder.RegisterModule(new ServicesModule());

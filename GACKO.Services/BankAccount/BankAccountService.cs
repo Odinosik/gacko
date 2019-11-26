@@ -26,9 +26,9 @@ namespace GACKO.Services.BankAccount
             return _bankAccountRepository.Get(id);
         }
 
-        public Task<int> Update()
+        public Task<int> Update(BankAccountForm form)
         {
-            return _bankAccountRepository.Update();
+            return _bankAccountRepository.Update(form);
         }
 
         public Task<int> Delete(int id)
