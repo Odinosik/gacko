@@ -27,11 +27,21 @@ namespace GACKO.DB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<DaoUser>().ToTable("AspNetUsers");
-
+           
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<DaoBankAccount>().ToTable("BankAccount");
+            modelBuilder.Entity<DaoVirtualAccount>().ToTable("VirtualAccount");
+            modelBuilder.Entity<DaoExpense>().ToTable("Expense");
+            modelBuilder.Entity<DaoExpenseCategory>().ToTable("ExpenseCategory");
+            modelBuilder.Entity<DaoSalesDocument>().ToTable("SalesDocument");
         }
 
-        //public virtual DbSet<DaoUser> Users { get; set; }
+        public virtual DbSet<DaoBankAccount> BankAccounts { get; set; }
+        public virtual DbSet<DaoVirtualAccount> VirtualAccounts { get; set; }
+        public virtual DbSet<DaoExpense> Expenses { get; set; }
+        public virtual DbSet<DaoExpenseCategory> ExpenseCategories { get; set; }
+        public virtual DbSet<DaoSalesDocument> SalesDocuments { get; set; }
+
     }
 }
