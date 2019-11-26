@@ -35,6 +35,6 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    path: $(System.DefaultWorkingDirectory)/bin/WebApp
-    artifact: WebApp  
+    path: $(build.artifactStagingDirectory)\WebApp.zip
+    artifact: WebApp
 # - task: PublishBuildArtifacts@1
