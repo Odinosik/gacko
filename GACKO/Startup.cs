@@ -108,7 +108,7 @@ namespace GACKO
                 app.UseExceptionHandler("/Web/Error");
                 app.UseHsts();
             }
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
