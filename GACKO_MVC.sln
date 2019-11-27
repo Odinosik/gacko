@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GACKO.DB", "GACKO.DB\GACKO.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GACKO.Shared", "GACKO.Shared\GACKO.Shared.csproj", "{AD1894E0-4CD5-4D30-A20A-4C978AA25470}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GACKO.Test", "GACKO.Test\GACKO.Test.csproj", "{C077C1EC-4AF0-4E24-89CC-AE8A28C6D8B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GACKO.Tests", "GACKO.Tests\GACKO.Tests.csproj", "{B901C6CE-9705-4BB1-8DA4-CBFCFF745CC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{AD1894E0-4CD5-4D30-A20A-4C978AA25470}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD1894E0-4CD5-4D30-A20A-4C978AA25470}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD1894E0-4CD5-4D30-A20A-4C978AA25470}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C077C1EC-4AF0-4E24-89CC-AE8A28C6D8B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C077C1EC-4AF0-4E24-89CC-AE8A28C6D8B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C077C1EC-4AF0-4E24-89CC-AE8A28C6D8B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C077C1EC-4AF0-4E24-89CC-AE8A28C6D8B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B901C6CE-9705-4BB1-8DA4-CBFCFF745CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B901C6CE-9705-4BB1-8DA4-CBFCFF745CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B901C6CE-9705-4BB1-8DA4-CBFCFF745CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B901C6CE-9705-4BB1-8DA4-CBFCFF745CC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.IO;
 
 namespace GACKO_MVC
 {
@@ -30,13 +29,8 @@ namespace GACKO_MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            IConfiguration config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile(path: "appsettings.json", optional: false, reloadOnChange: false)
-                .AddEnvironmentVariables()
-                .Build();
-
             services.AddDbContext<GackoDbContext>(options =>
-                options.UseNpgsql(config.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<DaoUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<DaoRole>()
                 .AddRoleManager<RoleManager<DaoRole>>()
