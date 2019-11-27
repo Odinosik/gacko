@@ -1,5 +1,7 @@
 ﻿using GACKO.DB;
 using GACKO.Shared;
+using GACKO_MVC;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -16,6 +18,7 @@ namespace GACKO
         {
             var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile(path: "appsettings.json", optional: false, reloadOnChange: false)
+                .AddJsonFile(path: $"appsettings.{Startup.GetEnvironmentVariable()}.json", optional: false, reloadOnChange: false)
                 .AddEnvironmentVariables()
                 .Build();
 

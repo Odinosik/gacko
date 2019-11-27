@@ -15,15 +15,8 @@ namespace GACKO_MVC
 {
     public class Program
     {
-        protected static IConfigurationRoot config;
         public static void Main(string[] args)
         {
-            config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile(path: "appsettings.json", optional: false, reloadOnChange: false)
-                .AddEnvironmentVariables()
-                .AddCommandLine(args)
-                .Build();
-
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
@@ -34,11 +27,6 @@ namespace GACKO_MVC
             try
             {
                 Log.Information("Starting web host");
-                var serviceProvider = CreateServices();
-                using (var scope = serviceProvider.CreateScope())
-                {
-                    UpdateDatabase(scope.ServiceProvider);
-                }
 
                 CreateHostBuilder(args).Build().Run();
             }
@@ -61,25 +49,5 @@ namespace GACKO_MVC
                     .ReadFrom.Configuration(hostingContext.Configuration)
                     .Enrich.FromLogContext()
                     .WriteTo.Console());
-
-        #region Private
-        private static IServiceProvider CreateServices()
-        {
-            return new ServiceCollection()
-                .AddFluentMigratorCore()
-                .ConfigureRunner(rb => rb
-                    .AddPostgres()
-                    .WithGlobalConnectionString(config.GetConnectionString("DefaultConnection"))
-                    .ScanIn(typeof(AddIdentityTable).Assembly).For.Migrations())
-                .AddLogging(lb => lb.AddFluentMigratorConsole())
-                .BuildServiceProvider(false);
-        }
-
-        private static void UpdateDatabase(IServiceProvider serviceProvider)
-        {
-            var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
-            runner.MigrateUp();
-        }
-        #endregion
     }
 }

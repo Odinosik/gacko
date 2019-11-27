@@ -1,7 +1,9 @@
 using Autofac;
+using FluentMigrator.Runner;
 using GACKO;
 using GACKO.DB;
 using GACKO.DB.DaoModels;
+using GACKO.DB.Migrations;
 using GACKO.DIModules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 using System;
 
 namespace GACKO_MVC
@@ -18,17 +21,31 @@ namespace GACKO_MVC
     {
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            Configuration = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile(path: "appsettings.json", optional: false, reloadOnChange: false)
+                .AddJsonFile(path: $"appsettings.{env.EnvironmentName}.json", optional: false, reloadOnChange: false)
+                .AddEnvironmentVariables()
+                .Build();
+
             _environment = env;
+            Startup.ENVIRONMENT_VARIABLE = env.EnvironmentName;
         }
 
         public IConfiguration Configuration { get; }
 
         private IWebHostEnvironment _environment { get; }
 
+        private static string ENVIRONMENT_VARIABLE { get; set; }
+
+        public static string GetEnvironmentVariable() => Startup.ENVIRONMENT_VARIABLE;
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Log.Information(Configuration.GetConnectionString("DefaultConnection"));
+            Log.Information(GetEnvironmentVariable());
+
             services.AddDbContext<GackoDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<DaoUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -72,14 +89,11 @@ namespace GACKO_MVC
                 options.SlidingExpiration = true;
             });
 
-            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            //   .AddCookie(options =>
-            //   {
-            //       options.Cookie.Name = "GACKO.AuthCookieAspNetCore";
-            //       options.LoginPath = "/User/Login";
-            //       options.Cookie.HttpOnly = true;
-            //   })
-            //   .AddIdentityCookies();
+            var serviceProvider = CreateServices();
+            using (var scope = serviceProvider.CreateScope())
+            {
+                UpdateDatabase(scope.ServiceProvider);
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -137,5 +151,25 @@ namespace GACKO_MVC
                 dbInitializer.Initialize(userManager, roleManager).Wait();
             }
         }
+
+        #region Private
+        private IServiceProvider CreateServices()
+        {
+            return new ServiceCollection()
+                .AddFluentMigratorCore()
+                .ConfigureRunner(rb => rb
+                    .AddPostgres()
+                    .WithGlobalConnectionString(Configuration.GetConnectionString("DefaultConnection"))
+                    .ScanIn(typeof(AddIdentityTable).Assembly).For.Migrations())
+                .AddLogging(lb => lb.AddFluentMigratorConsole())
+                .BuildServiceProvider(false);
+        }
+
+        private void UpdateDatabase(IServiceProvider serviceProvider)
+        {
+            var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
+            runner.MigrateUp();
+        }
+        #endregion
     }
 }
