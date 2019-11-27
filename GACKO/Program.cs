@@ -1,17 +1,12 @@
 using Autofac.Extensions.DependencyInjection;
-using FluentMigrator.Runner;
-using GACKO.DB.Migrations;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 using System;
-using System.IO;
 
-namespace GACKO_MVC
+namespace GACKO
 {
     public class Program
     {

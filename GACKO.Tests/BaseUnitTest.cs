@@ -1,15 +1,13 @@
-﻿using GACKO_MVC;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Xunit;
+﻿using Xunit;
 
-namespace GACKO.Test
+namespace GACKO.Tests
 {
     //[assembly: CollectionBehavior(DisableTestParallelization = true)]
-    public class BaseUnitTest : IClassFixture<GackoWebApplicationFactory<Startup>>
+    public class BaseUnitTest : IClassFixture<GackoWebApplicationFactory<TestStartup>>
     {
-        protected readonly GackoWebApplicationFactory<Startup> _factory;
+        protected readonly GackoWebApplicationFactory<TestStartup> _factory;
 
-        public BaseUnitTest(GackoWebApplicationFactory<Startup> factory)
+        public BaseUnitTest(GackoWebApplicationFactory<TestStartup> factory)
         {
             _factory = factory;
         }

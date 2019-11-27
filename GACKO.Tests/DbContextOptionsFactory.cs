@@ -2,7 +2,7 @@
 using GACKO.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace GACKO.Test
+namespace GACKO.Tests
 {
     public class DbContextOptionsFactory : IDbContextOptionsFactory
     {
