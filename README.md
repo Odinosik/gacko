@@ -1,3 +1,5 @@
-[![Build Status](https://dev.azure.com/filipglowacki/filipglowacki/_apis/build/status/fglo.gacko?branchName=master)](https://dev.azure.com/filipglowacki/filipglowacki/_build/latest?definitionId=1&branchName=master)
+[![Build status](https://dev.azure.com/filipglowacki/filipglowacki/_apis/build/status/gacko%20-%20CI)](https://dev.azure.com/filipglowacki/filipglowacki/_build/latest?definitionId=3)
+
+[![Build status](https://dev.azure.com/filipglowacki/filipglowacki/_apis/build/status/gacko.develop%20-%20CI)](https://dev.azure.com/filipglowacki/filipglowacki/_build/latest?definitionId=4)
 
 # gacko
