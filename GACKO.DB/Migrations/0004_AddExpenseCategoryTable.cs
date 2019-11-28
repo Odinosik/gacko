@@ -2,8 +2,8 @@
 
 namespace GACKO.DB.Migrations
 {
-    [Migration(0002)]
-    class AddExpenseCategoryTable : Migration
+    [Migration(0004)]
+    public class AddExpenseCategoryTable : Migration
     {
         private const string TableName = "ExpenseCategory";
         public override void Up()

@@ -35,6 +35,7 @@ namespace GACKO.DB
             modelBuilder.Entity<DaoExpense>().ToTable("Expense");
             modelBuilder.Entity<DaoExpenseCategory>().ToTable("ExpenseCategory");
             modelBuilder.Entity<DaoSalesDocument>().ToTable("SalesDocument");
+            modelBuilder.Entity<DaoSubscription>().ToTable("Subscription");
         }
 
         public virtual DbSet<DaoBankAccount> BankAccounts { get; set; }
@@ -42,6 +43,6 @@ namespace GACKO.DB
         public virtual DbSet<DaoExpense> Expenses { get; set; }
         public virtual DbSet<DaoExpenseCategory> ExpenseCategories { get; set; }
         public virtual DbSet<DaoSalesDocument> SalesDocuments { get; set; }
-
+        public virtual DbSet<DaoSubscription> Subscriptions { get; set; }
     }
 }

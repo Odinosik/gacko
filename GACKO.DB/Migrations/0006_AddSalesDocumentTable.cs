@@ -2,8 +2,8 @@
 
 namespace GACKO.DB.Migrations
 {
-    [Migration(0002)]
-    class AddSalesDocumentTable : Migration
+    [Migration(0006)]
+    public class AddSalesDocumentTable : Migration
     {
         private const string TableName = "SalesDocument";
         public override void Up()
@@ -11,7 +11,7 @@ namespace GACKO.DB.Migrations
             Create.Table(TableName)
                 .WithColumn("Id").AsInt32().NotNullable().PrimaryKey()
                 .WithColumn("Name").AsString().NotNullable()
-                .WithColumn("ExpenseId").AsString().NotNullable()
+                .WithColumn("FilePath").AsString().NotNullable()
                 .WithColumn("ExpenseId").AsInt32().NotNullable();
 
             Create.ForeignKey().FromTable(TableName)

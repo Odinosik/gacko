@@ -2,8 +2,8 @@
 
 namespace GACKO.DB.Migrations
 {
-    [Migration(0005)]
-    class AddVirtualAccountTable : Migration
+    [Migration(0003)]
+    public class AddVirtualAccountTable : Migration
     {
         private const string TableName = "VirtualAccount";
         public override void Up()
@@ -20,6 +20,8 @@ namespace GACKO.DB.Migrations
                 .ForeignColumn("BankAccountId")
                 .ToTable("BankAccount").PrimaryColumn("Id")
                 .OnDelete(System.Data.Rule.Cascade);
+
+            //Execute.Sql($"INSERT INTO public.\"VirtualAccount\" (\"Id\", \"Name\", \"Balance\", \"Limit\", \"NotificationBalance\", \"BankAccountId\") VALUES(1, 'Konto Wirtualne', '500', '300', '200', '1');");
         }
 
         public override void Down()
