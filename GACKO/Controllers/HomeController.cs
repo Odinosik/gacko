@@ -1,6 +1,4 @@
-﻿using GACKO.DB.DaoModels;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -15,12 +13,12 @@ namespace GACKO.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
         public IActionResult Privacy()
         {
-            return View();
+            return View("Privacy");
         }
     }
 }

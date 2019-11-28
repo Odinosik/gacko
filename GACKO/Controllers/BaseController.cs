@@ -19,5 +19,10 @@ namespace GACKO.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        protected RedirectToActionResult RedirectToHome(string action = "Index")
+        {
+            return RedirectToAction(action, "Home", new { area = "" });
+        }
     }
 }

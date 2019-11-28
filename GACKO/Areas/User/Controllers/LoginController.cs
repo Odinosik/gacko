@@ -2,13 +2,10 @@
 using GACKO.Controllers;
 using GACKO.DB.DaoModels;
 using GACKO.Services.User;
-using GACKO.Shared.Models.Authorization;
 using GACKO.Shared.Models.User;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 
 namespace GACKO.Areas.User.Controllers
@@ -49,7 +46,7 @@ namespace GACKO.Areas.User.Controllers
                            userModel.Password, false, false);
             if (result.Succeeded)
             {
-                return RedirectToAction("Privacy", "Home", new { area = "" });
+                return RedirectToHome("Privacy");
             }
             if (result.IsLockedOut)
             {
@@ -67,7 +64,7 @@ namespace GACKO.Areas.User.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Privacy", "Home", new { area = "" });
+            return View("Login");
         }
     }
 }
