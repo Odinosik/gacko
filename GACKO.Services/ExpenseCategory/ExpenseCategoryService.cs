@@ -9,9 +9,9 @@ namespace GACKO.Services.ExpenseCategory
     {
         private readonly IExpenseCategoryRepository _expensecategoryRepository;
 
-        public ExpenseCategoryService(IExpenseCategoryRepository bankAccountRepository)
+        public ExpenseCategoryService(IExpenseCategoryRepository expenseCategoryRepository)
         {
-            _expensecategoryRepository = bankAccountRepository;
+            _expensecategoryRepository = expenseCategoryRepository;
         }
 
         public Task<int> Create(ExpenseCategoryForm form)

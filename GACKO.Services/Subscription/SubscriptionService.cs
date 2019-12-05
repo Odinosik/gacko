@@ -8,9 +8,9 @@ namespace GACKO.Services.Subscription
     {
         private readonly ISubscriptionRepository _subscriptionRepository;
 
-        public SubscriptionService(ISubscriptionRepository bankAccountRepository)
+        public SubscriptionService(ISubscriptionRepository subscriptionRepository)
         {
-            _subscriptionRepository = bankAccountRepository;
+            _subscriptionRepository = subscriptionRepository;
         }
 
         public Task<int> Create(SubscriptionForm form)
