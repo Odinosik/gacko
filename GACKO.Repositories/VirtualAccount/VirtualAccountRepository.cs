@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GACKO.DB;
 using GACKO.DB.DaoModels;
+using GACKO.Shared;
 using GACKO.Shared.Models.VirtualAccount;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,10 +15,10 @@ namespace GACKO.Repositories.VirtualAccount
     {
         private GackoDbContext _context;
         private IMapper _mapper { get; }
-        public VirtualAccountRepository(IMapper mapper)
+        public VirtualAccountRepository(IMapper mapper, IDbContextOptionsFactory optionsFactory)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<GackoDbContext>();
-            _context = new GackoDbContext(optionsBuilder.Options);
+            _context = new GackoDbContext(optionsFactory.Get());
+            _mapper = mapper;
         }
 
         public async Task<int> Create(VirtualAccountForm form)

@@ -11,9 +11,9 @@ namespace GACKO.DB.Migrations
             Create.Table(TableName)
                 .WithColumn("Id").AsInt32().NotNullable().PrimaryKey()
                 .WithColumn("Name").AsString().NotNullable()
-                .WithColumn("Balance").AsFloat().NotNullable()
-                .WithColumn("Limit").AsFloat().NotNullable()
-                .WithColumn("NotificationBalance").AsFloat().NotNullable()
+                .WithColumn("Balance").AsDouble().NotNullable()
+                .WithColumn("Limit").AsDouble().NotNullable()
+                .WithColumn("NotificationBalance").AsDouble().NotNullable()
                 .WithColumn("BankAccountId").AsInt32().NotNullable();
 
             Create.ForeignKey().FromTable(TableName)

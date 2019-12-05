@@ -10,7 +10,7 @@ namespace GACKO.DB.Migrations
         {
             Create.Table(TableName)
                 .WithColumn("Id").AsInt32().NotNullable().PrimaryKey()
-                .WithColumn("Amount").AsFloat().NotNullable()
+                .WithColumn("Amount").AsDouble().NotNullable()
                 .WithColumn("Name").AsString().NotNullable()
                 .WithColumn("VirtualAccountId").AsInt32().NotNullable()
                 .WithColumn("ExpenseCategoryId").AsInt32().NotNullable();
