@@ -2,29 +2,27 @@
 using GACKO.DB;
 using GACKO.DB.DaoModels;
 using GACKO.Shared;
-using GACKO.Shared.Models.ExpenseCategory;
+using GACKO.Shared.Models.Expense;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace GACKO.Repositories.ExpenseCategory
+namespace GACKO.Repositories.Expense
 {
-    public class ExpenseCategoryRepository : IExpenseCategoryRepository
+    public class ExpenseRepository : IExpenseRepository
     {
         private GackoDbContext _context;
         private IMapper _mapper { get; }
-        public ExpenseCategoryRepository(IMapper mapper, IDbContextOptionsFactory optionsFactory)
+        public ExpenseRepository(IMapper mapper, IDbContextOptionsFactory optionsFactory)
         {
             _context = new GackoDbContext(optionsFactory.Get());
             _mapper = mapper;
         }
 
-        public async Task<int> Create(ExpenseCategoryForm form)
+        public async Task<int> Create(ExpenseForm form)
         {
-            var newEntity = _mapper.Map<DaoExpenseCategory>(form);
-            var createdEntry = _context.ExpenseCategories.Add(newEntity);
+            var newEntity = _mapper.Map<DaoExpense>(form);
+            var createdEntry = _context.Expenses.Add(newEntity);
             await _context.SaveChangesAsync();
             return createdEntry.Entity.Id;
         }
@@ -33,10 +31,10 @@ namespace GACKO.Repositories.ExpenseCategory
         {
             try
             {
-                var deletedEntity = await _context.ExpenseCategories.FirstOrDefaultAsync(_ => _.Id == id);
+                var deletedEntity = await _context.Expenses.FirstOrDefaultAsync(_ => _.Id == id);
                 if (deletedEntity == null)
                     throw new Exception();
-                var deletedEntry = _context.ExpenseCategories.Remove(deletedEntity);
+                var deletedEntry = _context.Expenses.Remove(deletedEntity);
                 await _context.SaveChangesAsync();
                 return deletedEntry.Entity.Id;
             }
@@ -47,18 +45,18 @@ namespace GACKO.Repositories.ExpenseCategory
             }
         }
 
-        public async Task<ExpenseCategoryModel> Get(int id)
+        public async Task<ExpenseModel> Get(int id)
         {
-            return _mapper.Map<ExpenseCategoryModel>(await _context.ExpenseCategories.FirstOrDefaultAsync(_ => _.Id == id));
+            return _mapper.Map<ExpenseModel>(await _context.Expenses.FirstOrDefaultAsync(_ => _.Id == id));
         }
 
-        public async Task<int> Update(ExpenseCategoryForm form)
+        public async Task<int> Update(ExpenseForm form)
         {
             try
             {
                 var updateEntity = this._mapper.Map<DaoExpenseCategory>(form);
 
-                var updated = await _context.ExpenseCategories.FirstOrDefaultAsync(_ => _.Id == updateEntity.Id);
+                var updated = await _context.Expenses.FirstOrDefaultAsync(_ => _.Id == updateEntity.Id);
                 _context.Entry(updated).CurrentValues.SetValues(updateEntity);
 
                 await _context.SaveChangesAsync();

@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using AutoMapper;
 using GACKO.Repositories.BankAccount;
+using GACKO.Repositories.Expense;
 using GACKO.Repositories.ExpenseCategory;
 using GACKO.Repositories.Subscription;
 using GACKO.Repositories.User;
@@ -28,7 +29,9 @@ namespace GACKO.DIModules
                .As<IExpenseCategoryRepository>()
                .InstancePerLifetimeScope();
 
-
+            builder.Register(c => new ExpenseRepository(c.Resolve<IMapper>(), c.Resolve<IDbContextOptionsFactory>()))
+               .As<IExpenseRepository>()
+               .InstancePerLifetimeScope();
         }
     }
 }

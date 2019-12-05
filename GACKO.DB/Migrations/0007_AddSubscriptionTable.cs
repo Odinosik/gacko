@@ -11,9 +11,13 @@ namespace GACKO.DB.Migrations
             Create.Table(TableName)
                 .WithColumn("Id").AsInt32().NotNullable().PrimaryKey()
                 .WithColumn("Name").AsString().NotNullable()
-                .WithColumn("Amount").AsFloat().NotNullable()
-                .WithColumn("Date").AsDateTime().NotNullable()
+                .WithColumn("Amount").AsDouble().NotNullable()
+                .WithColumn("AddedDate").AsDateTime().NotNullable()
+                .WithColumn("ExpirationDate").AsDateTime().NotNullable()
+                .WithColumn("FrequncyMonth").AsInt32().NotNullable()
                 .WithColumn("VirtualAccountId").AsInt32().NotNullable();
+
+
 
             Create.ForeignKey().FromTable(TableName)
                 .ForeignColumn("VirtualAccountId")

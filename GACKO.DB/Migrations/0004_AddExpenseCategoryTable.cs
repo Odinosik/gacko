@@ -11,6 +11,9 @@ namespace GACKO.DB.Migrations
             Create.Table(TableName)
                 .WithColumn("Id").AsInt32().NotNullable().PrimaryKey()
                 .WithColumn("Name").AsString().NotNullable();
+
+            Execute.Sql($"INSERT INTO public.\"ExpenseCategory\" (\"Id\", \"Name\") VALUES(1, 'Obiad');");
+
         }
 
         public override void Down()

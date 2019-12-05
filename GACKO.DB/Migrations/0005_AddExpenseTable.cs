@@ -24,6 +24,9 @@ namespace GACKO.DB.Migrations
                 .ForeignColumn("ExpenseCategoryId")
                 .ToTable("ExpenseCategory").PrimaryColumn("Id")
                 .OnDelete(System.Data.Rule.Cascade);
+
+            Execute.Sql($"INSERT INTO public.\"Expense\" (\"Id\", \"Amount\",\"Name\",\"VirtualAccountId\",\"ExpenseCategoryId\") VALUES(1,50,'Bulka',1,1);");
+
         }
 
         public override void Down()

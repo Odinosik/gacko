@@ -19,7 +19,7 @@ namespace GACKO.DB.Migrations
                 .ToTable("AspNetUsers").PrimaryColumn("Id")
                 .OnDelete(System.Data.Rule.Cascade);
 
-            //Execute.Sql($"INSERT INTO public.\"BankAccount\" (\"Id\", \"Iban\", \"Balance\", \"UserId\") VALUES(1, '27 1140 2004 0000 3002 0135 5387 ', '1000', '1');");
+            Execute.Sql($"INSERT INTO public.\"BankAccount\" (\"Id\", \"Iban\", \"Balance\", \"UserId\") VALUES(1, '27 1140 2004 0000 3002 0135 5387 ', '1000', '1');");
         }
 
         public override void Down()
