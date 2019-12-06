@@ -5,6 +5,8 @@ using GACKO.DB;
 using GACKO.DB.DaoModels;
 using GACKO.DB.Migrations;
 using GACKO.DIModules;
+using GACKO.Services.Mail;
+using GACKO.Shared.Models.Email;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -60,6 +62,9 @@ namespace GACKO
             {
                 options.EnableEndpointRouting = false;
             });
+
+            services.AddTransient<IEmailService, EmailService>();
+            services.Configure<EmailServiceOptions>(Configuration.GetSection("SMTP"));
 
             services.Configure<IdentityOptions>(options =>
             {
