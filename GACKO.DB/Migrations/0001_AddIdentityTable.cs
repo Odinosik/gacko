@@ -79,6 +79,7 @@ namespace GACKO.DB.Migrations
                 .WithColumn("UserId").AsInt32().PrimaryKey("PK_AspNetUserRoles").Indexed("IX_AspNetUserRoles_UserId").ForeignKey("FK_AspNetUserRoles_AspNetUsers_UserId", "AspNetUsers", "Id")
                 .WithColumn("RoleId").AsInt32().PrimaryKey("PK_AspNetUserRoles").Indexed("IX_AspNetUserRoles_RoleId").ForeignKey("FK_AspNetUserRoles_AspNetRoles_RoleId", "AspNetRoles", "Id").OnDelete(System.Data.Rule.Cascade);
 
+            Execute.Sql($"INSERT INTO public.\"AspNetUsers\" (\"Id\",\"AccessFailedCount\", \"EmailConfirmed\", \"LockoutEnabled\",\"PhoneNumberConfirmed\",\"TwoFactorEnabled\" ) VALUES(1,0,'false','false','false','false');");
             Execute.Sql($"INSERT INTO public.\"AspNetRoles\" (\"Id\", \"ConcurrencyStamp\", \"Name\", \"NormalizedName\") VALUES(1, '27c7b0f9-ff4f-4f93-8d77-2984fb970285', 'Administrator', 'ADMINISTRATOR');");
 
         }

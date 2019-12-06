@@ -1,18 +1,15 @@
-using GACKO.DB;
 using GACKO.Services.BankAccount;
 using GACKO.Shared.Models.BankAccount;
-using GACKO_MVC;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace GACKO.Test.BankAccount
+namespace GACKO.Tests.BankAccount
 {
     public class BankAccountServiceTest : BaseUnitTest
     {
         private readonly IBankAccountService _bankAccountService;
 
-        public BankAccountServiceTest(GackoWebApplicationFactory<Startup> factory) : base(factory)
+        public BankAccountServiceTest(GackoWebApplicationFactory<TestStartup> factory) : base(factory)
         {
             using (var scope = _factory.Server.Host.Services.CreateScope())
             {

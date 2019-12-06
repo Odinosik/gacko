@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 
-namespace GACKO.Test
+namespace GACKO.Tests
 {
     public class GackoWebApplicationFactory<TStartup>
     : WebApplicationFactory<TStartup> where TStartup : class

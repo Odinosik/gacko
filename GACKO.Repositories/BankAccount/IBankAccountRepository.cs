@@ -1,7 +1,4 @@
 ﻿using GACKO.Shared.Models.BankAccount;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GACKO.Repositories.BankAccount

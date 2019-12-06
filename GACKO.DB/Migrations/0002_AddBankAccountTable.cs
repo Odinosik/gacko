@@ -2,8 +2,8 @@
 
 namespace GACKO.DB.Migrations
 {
-    [Migration(0003)]
-    class AddBankAccountTable : Migration
+    [Migration(0002)]
+    public class AddBankAccountTable : Migration
     {
         private const string TableName = "BankAccount";
         public override void Up()
@@ -18,6 +18,8 @@ namespace GACKO.DB.Migrations
                 .ForeignColumn("UserId")
                 .ToTable("AspNetUsers").PrimaryColumn("Id")
                 .OnDelete(System.Data.Rule.Cascade);
+
+            Execute.Sql($"INSERT INTO public.\"BankAccount\" (\"Id\", \"Iban\", \"Balance\", \"UserId\") VALUES(1, '27 1140 2004 0000 3002 0135 5387 ', '1000', '1');");
         }
 
         public override void Down()

@@ -1,8 +1,16 @@
 ﻿using Autofac;
 using GACKO.Repositories.BankAccount;
+using GACKO.Repositories.Expense;
+using GACKO.Repositories.ExpenseCategory;
+using GACKO.Repositories.Subscription;
 using GACKO.Repositories.User;
+using GACKO.Repositories.VirtualAccount;
 using GACKO.Services.BankAccount;
+using GACKO.Services.Expense;
+using GACKO.Services.ExpenseCategory;
+using GACKO.Services.Subscription;
 using GACKO.Services.User;
+using GACKO.Services.VirtualAccount;
 
 namespace GACKO.DIModules
 {
@@ -17,6 +25,22 @@ namespace GACKO.DIModules
             builder.Register(c => new BankAccountService(c.Resolve<IBankAccountRepository>()))
                 .As<IBankAccountService>()
                 .InstancePerLifetimeScope();
+
+            builder.Register(c => new VirtualAccountService(c.Resolve<IVirtualAccountRepository>()))
+                .As<IVirtualAccountService>()
+                .InstancePerLifetimeScope();
+
+            builder.Register(c => new SubscriptionService(c.Resolve<ISubscriptionRepository>()))
+               .As<ISubscriptionService>()
+               .InstancePerLifetimeScope();
+
+            builder.Register(c => new ExpenseCategoryService(c.Resolve<IExpenseCategoryRepository>()))
+               .As<IExpenseCategoryService>()
+               .InstancePerLifetimeScope();
+
+            builder.Register(c => new ExpenseService(c.Resolve<IExpenseRepository>()))
+               .As<IExpenseService>()
+               .InstancePerLifetimeScope();
         }
     }
 }
