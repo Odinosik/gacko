@@ -6,6 +6,7 @@ using GACKO.Shared.Models.VirtualAccount;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,6 +51,11 @@ namespace GACKO.Repositories.VirtualAccount
         public async Task<VirtualAccountModel> Get(int id)
         {
             return _mapper.Map<VirtualAccountModel>(await _context.VirtualAccounts.FirstOrDefaultAsync(_ => _.Id == id));
+        }
+
+        public async Task<IList<VirtualAccountModel>> GetAll(int bankAccountId)
+        {
+            return _mapper.Map<List<VirtualAccountModel>>(await _context.VirtualAccounts.Where(_ => _.BankAccountId == bankAccountId).ToListAsync());
         }
 
         public async Task<int> Update(VirtualAccountForm form)

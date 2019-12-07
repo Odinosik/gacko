@@ -19,9 +19,10 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(int bankAccId)
+        public IActionResult Index(int bankAccountId)
         {
-            //var virtualAccs = _virtualAccountService.GetAll(bankAccId);
+
+            var virtualAccs = _virtualAccountService.GetAll(bankAccountId);
             return View("Index");
         }
     }

@@ -10,3 +10,5 @@
         @Html.Partial("_BankAccountCard", bankAcc)
     }
 </div>
+
+@Html.ActionLink("Dodaj konto", "CreateBankAccount", "BankAccount", new { area = "BankAccount" }, new { @class = "navbar-brand" })

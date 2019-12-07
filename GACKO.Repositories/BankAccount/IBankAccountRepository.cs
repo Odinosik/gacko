@@ -8,7 +8,7 @@ namespace GACKO.Repositories.BankAccount
     {
         Task<int> Create(BankAccountForm form);
         Task<BankAccountModel> Get(int id);
-        Task<IList<BankAccountModel>> GetAll();
+        Task<IList<BankAccountModel>> GetAll(int id);
         Task<int> Update(BankAccountForm form);
         Task<int> Delete(int id);
     }

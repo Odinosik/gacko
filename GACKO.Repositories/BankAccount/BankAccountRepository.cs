@@ -52,9 +52,9 @@ namespace GACKO.Repositories.BankAccount
             return _mapper.Map<BankAccountModel>(await _context.BankAccounts.FirstOrDefaultAsync(_ => _.Id == id));
         }
 
-        public async Task<IList<BankAccountModel>> GetAll()
+        public async Task<IList<BankAccountModel>> GetAll(int id)
         {
-            return _mapper.Map<List<BankAccountModel>>(await _context.BankAccounts.ToListAsync());
+            return _mapper.Map<List<BankAccountModel>>(await _context.BankAccounts.Where(_ => _.UserId == id).ToListAsync());
         }
 
 

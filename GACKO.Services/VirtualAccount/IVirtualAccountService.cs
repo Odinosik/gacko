@@ -10,6 +10,7 @@ namespace GACKO.Services.VirtualAccount
     {
         Task<int> Create(VirtualAccountForm form);
         Task<VirtualAccountModel> Get(int id);
+        Task<IList<VirtualAccountModel>> GetAll(int bankAccountId);
         Task<int> Update(VirtualAccountForm form);
         Task<int> Delete(int id);
     }
