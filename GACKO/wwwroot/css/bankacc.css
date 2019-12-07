@@ -11,62 +11,6 @@
         margin: 0 10px;
     }
 
-        .horizontal-container.active .bankacc-card.alt {
-            top: 20px;
-            right: 0;
-            width: 100%;
-            min-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            padding: 60px 0 40px;
-            overflow: hidden;
-        }
-
-            .horizontal-container.active .bankacc-card.alt .toggle {
-                position: absolute;
-                top: 40px;
-                right: -70px;
-                box-shadow: none;
-                -webkit-transform: scale(10);
-                transform: scale(10);
-                transition: -webkit-transform .3s ease;
-                transition: transform .3s ease;
-                transition: transform .3s ease, -webkit-transform .3s ease;
-            }
-
-                .horizontal-container.active .bankacc-card.alt .toggle:before {
-                    content: '';
-                }
-
-            .horizontal-container.active .bankacc-card.alt .title_bank_acc,
-            .horizontal-container.active .bankacc-card.alt .input-container,
-            .horizontal-container.active .bankacc-card.alt .button-container {
-                left: 0;
-                opacity: 1;
-                visibility: visible;
-                transition: .3s ease;
-            }
-
-            .horizontal-container.active .bankacc-card.alt .title_bank_acc {
-                transition-delay: .3s;
-            }
-
-            .horizontal-container.active .bankacc-card.alt .input-container {
-                transition-delay: .4s;
-            }
-
-                .horizontal-container.active .bankacc-card.alt .input-container:nth-child(2) {
-                    transition-delay: .5s;
-                }
-
-                .horizontal-container.active .bankacc-card.alt .input-container:nth-child(3) {
-                    transition-delay: .6s;
-                }
-
-            .horizontal-container.active .bankacc-card.alt .button-container {
-                transition-delay: .7s;
-            }
-
 /* bankacc-card */
 .bankacc-card {
     /*position: relative;*/
@@ -85,14 +29,6 @@
     /* Alt bankacc-card */
 }
 
-    /*.bankacc-card:first-child {
-        background: #fafafa;
-        height: 10px;
-        border-radius: 5px 5px 0 0;
-        margin: 0 10px;
-        padding: 0;
-    }*/
-
     .bankacc-card .title_bank_acc {
         position: relative;
         z-index: 1;
@@ -110,7 +46,7 @@
         z-index: 1;
         font-size: 14px;
         font-weight: 500;
-        text-transform: uppercase; 
+        text-transform: uppercase;
     }
 
     .bankacc-card .balance_bank_account {
@@ -122,79 +58,8 @@
         padding: 10px;
     }
 
-    .bankacc-card .input-container {
-        position: relative;
-        margin: 0 60px 50px;
-    }
-
-        .bankacc-card .input-container input {
-            outline: none;
-            z-index: 1;
-            position: relative;
-            background: none;
-            width: 100%;
-            height: 60px;
-            border: 0;
-            color: #212121;
-            font-size: 24px;
-            font-weight: 400;
-        }
-
-            .bankacc-card .input-container input:focus ~ label {
-                color: #9d9d9d;
-                -webkit-transform: translate(-12%, -50%) scale(0.75);
-                transform: translate(-12%, -50%) scale(0.75);
-            }
-
-            .bankacc-card .input-container input:focus ~ .bar:before, .bankacc-card .input-container input:focus ~ .bar:after {
-                width: 50%;
-            }
-
-            .bankacc-card .input-container input:valid ~ label {
-                color: #9d9d9d;
-                -webkit-transform: translate(-12%, -50%) scale(0.75);
-                transform: translate(-12%, -50%) scale(0.75);
-            }
-
-        .bankacc-card .input-container label {
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: #757575;
-            font-size: 24px;
-            font-weight: 300;
-            line-height: 60px;
-            transition: 0.2s ease;
-        }
-
-        .bankacc-card .input-container .bar {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            background: #757575;
-            width: 100%;
-            height: 1px;
-        }
-
-            .bankacc-card .input-container .bar:before, .bankacc-card .input-container .bar:after {
-                content: '';
-                position: absolute;
-                background: #ed2553;
-                width: 0;
-                height: 2px;
-                transition: .2s ease;
-            }
-
-            .bankacc-card .input-container .bar:before {
-                left: 50%;
-            }
-
-            .bankacc-card .input-container .bar:after {
-                right: 50%;
-            }
-
     .bankacc-card .button-container {
-        margin: 0 60px;
+        margin: 0 30px;
         text-align: center;
     }
 
@@ -206,8 +71,7 @@
             background: 0;
             width: 100px;
             border: 2px solid #e3e3e3;
-            margin-top: 8px;
-            padding: 8px 0;
+            padding: 5px 0;
             font-size: 12px;
             font-weight: 600;
             line-height: 1;
@@ -230,8 +94,8 @@
                 left: 50%;
                 display: block;
                 background: #ed2553;
-                width: 30px;
-                height: 30px;
+                width: 15px;
+                height: 15px;
                 border-radius: 100%;
                 margin: -15px 0 0 -15px;
                 opacity: 0;
@@ -255,21 +119,3 @@
                     -webkit-transform: scale(10);
                     transform: scale(10);
                 }
-
-    .bankacc-card .footer {
-        margin: 40px 0 0;
-        color: #d3d3d3;
-        font-size: 24px;
-        font-weight: 300;
-        text-align: center;
-    }
-
-        .bankacc-card .footer a {
-            color: inherit;
-            text-decoration: none;
-            transition: .3s ease;
-        }
-
-            .bankacc-card .footer a:hover {
-                color: #bababa;
-            }
