@@ -7,8 +7,9 @@ namespace GACKO.Shared.Models.BankAccount
         public int Id { get; set; }
         public string Iban { get; set; }
         public double Balance { get; set; }
+        public double Name { get; set; }
         public int UserId { get; set; }
-        public bool isActivate { get; set; } = true;
+        public bool IsActive { get; set; } = true;
         public UserProfile User { get; set; }
     }
 }

@@ -5,6 +5,8 @@ using GACKO.Shared;
 using GACKO.Shared.Models.Subscription;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GACKO.Repositories.Subscription
@@ -48,7 +50,10 @@ namespace GACKO.Repositories.Subscription
         {
             return _mapper.Map<SubscriptionModel>(await _context.Subscriptions.FirstOrDefaultAsync(_ => _.Id == id));
         }
-
+        public async Task<IList<SubscriptionModel>> GetAll(int virtualAccountId)
+        {
+            return _mapper.Map<List<SubscriptionModel>>(await _context.Subscriptions.Where(_ => _.VirtualAccountId == virtualAccountId).ToListAsync());
+        }
         public async Task<int> Update(SubscriptionForm form)
         {
             try

@@ -24,25 +24,11 @@ namespace GACKO.Areas.BankAccount.Controllers
         public async Task<IActionResult> Index()
         {
             var bankAccs = await _bankAccountService.GetAll();
-            /*
-            bankAccs.Add(new BankAccountModel()
-            {
-                Id = 5,
-                Iban = "23 2222 2222 2222 2222 2222 2222",
-                Balance = 2137.00,
-            });
-
-            bankAccs.Add(new BankAccountModel()
-            {
-                Id = 6,
-                Iban = "12 1111 1111 1111 1111 1111 2222",
-                Balance = 1517.00,
-            });
-            */
             return View("Index", bankAccs);
         }
 
         [HttpPost]
+
         public async Task<IActionResult> CreateBankAccount(BankAccountForm bankAcc)
         {
             await _bankAccountService.Create(bankAcc);
@@ -61,6 +47,15 @@ namespace GACKO.Areas.BankAccount.Controllers
         {
             await _bankAccountService.Update(bankAcc);
             return View("Index");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(BankAccountForm bankAccount)
+        {
+            bankAccount.UserId = UserContext.UserId;
+            await _bankAccountService.Create(bankAccount);
+            var bankAccs = await _bankAccountService.GetAll();
+            return View("Index", bankAccs);
+
         }
     }
 }

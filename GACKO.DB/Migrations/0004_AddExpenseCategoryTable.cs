@@ -12,7 +12,7 @@ namespace GACKO.DB.Migrations
                 .WithColumn("Id").AsInt32().NotNullable().PrimaryKey()
                 .WithColumn("Name").AsString().NotNullable();
 
-            Execute.Sql($"INSERT INTO public.\"ExpenseCategory\" (\"Id\", \"Name\") VALUES(1, 'Obiad');");
+            Execute.Sql($"INSERT INTO public.\"ExpenseCategory\" (\"Id\", \"Name\") VALUES(10000, 'Obiad');");
 
         }
 

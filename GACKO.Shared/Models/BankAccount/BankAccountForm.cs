@@ -6,6 +6,6 @@
         public string Iban { get; set; }
         public double Balance { get; set; }
         public int UserId { get; set; }
-        public bool isActivate { get; set; } = true;
+        public bool IsActive { get; set; } = true;
     }
 }

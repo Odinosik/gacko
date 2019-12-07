@@ -25,7 +25,7 @@ namespace GACKO.DB.Migrations
                 .ToTable("ExpenseCategory").PrimaryColumn("Id")
                 .OnDelete(System.Data.Rule.Cascade);
 
-            Execute.Sql($"INSERT INTO public.\"Expense\" (\"Id\", \"Amount\",\"Name\",\"VirtualAccountId\",\"ExpenseCategoryId\") VALUES(1,50,'Bulka',1,1);");
+            Execute.Sql($"INSERT INTO public.\"Expense\" (\"Id\", \"Amount\",\"Name\",\"VirtualAccountId\",\"ExpenseCategoryId\") VALUES(10000,50,'Bulka',10000,10000);");
 
         }
 

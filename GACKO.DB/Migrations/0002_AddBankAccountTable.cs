@@ -9,17 +9,18 @@ namespace GACKO.DB.Migrations
         public override void Up()
         {
             Create.Table(TableName)
-                .WithColumn("Id").AsInt32().NotNullable().PrimaryKey()
+                .WithColumn("Id").AsInt32().Identity().PrimaryKey()
                 .WithColumn("Iban").AsString().NotNullable()
                 .WithColumn("Balance").AsDouble().NotNullable()
-                .WithColumn("UserId").AsInt32().NotNullable();
+                .WithColumn("UserId").AsInt32().NotNullable()
+                .WithColumn("IsActive").AsBoolean().Nullable();
 
             Create.ForeignKey().FromTable(TableName)
                 .ForeignColumn("UserId")
                 .ToTable("AspNetUsers").PrimaryColumn("Id")
                 .OnDelete(System.Data.Rule.Cascade);
 
-            Execute.Sql($"INSERT INTO public.\"BankAccount\" (\"Id\", \"Iban\", \"Balance\", \"UserId\") VALUES(1, '27 1140 2004 0000 3002 0135 5387 ', '1000', '100');");
+            Execute.Sql($"INSERT INTO public.\"BankAccount\" (\"Id\", \"Iban\", \"Balance\", \"UserId\") VALUES(10000, '27 1140 2004 0000 3002 0135 5387 ', '1000', '1');");
         }
 
         public override void Down()
