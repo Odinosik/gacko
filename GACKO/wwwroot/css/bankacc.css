@@ -1,17 +1,17 @@
-﻿/* container_horizontal */
-.container_horizontal {
+﻿/* horizontal-container */
+.horizontal-container {
     position: relative;
     width: 80%;
-    margin: 0 auto 100px;
+    margin: 0 auto 0;
     display: inline-block;
 }
 
-    .container_horizontal.active .card_bank_acc {
+    .horizontal-container.active .bankacc-card {
         background: #fafafa;
         margin: 0 10px;
     }
 
-        .container_horizontal.active .card_bank_acc.alt {
+        .horizontal-container.active .bankacc-card.alt {
             top: 20px;
             right: 0;
             width: 100%;
@@ -22,7 +22,7 @@
             overflow: hidden;
         }
 
-            .container_horizontal.active .card_bank_acc.alt .toggle {
+            .horizontal-container.active .bankacc-card.alt .toggle {
                 position: absolute;
                 top: 40px;
                 right: -70px;
@@ -34,41 +34,41 @@
                 transition: transform .3s ease, -webkit-transform .3s ease;
             }
 
-                .container_horizontal.active .card_bank_acc.alt .toggle:before {
+                .horizontal-container.active .bankacc-card.alt .toggle:before {
                     content: '';
                 }
 
-            .container_horizontal.active .card_bank_acc.alt .title_bank_acc,
-            .container_horizontal.active .card_bank_acc.alt .input-container_horizontal,
-            .container_horizontal.active .card_bank_acc.alt .button-container_horizontal {
+            .horizontal-container.active .bankacc-card.alt .title_bank_acc,
+            .horizontal-container.active .bankacc-card.alt .input-horizontal-container,
+            .horizontal-container.active .bankacc-card.alt .button-horizontal-container {
                 left: 0;
                 opacity: 1;
                 visibility: visible;
                 transition: .3s ease;
             }
 
-            .container_horizontal.active .card_bank_acc.alt .title_bank_acc {
+            .horizontal-container.active .bankacc-card.alt .title_bank_acc {
                 transition-delay: .3s;
             }
 
-            .container_horizontal.active .card_bank_acc.alt .input-container_horizontal {
+            .horizontal-container.active .bankacc-card.alt .input-horizontal-container {
                 transition-delay: .4s;
             }
 
-                .container_horizontal.active .card_bank_acc.alt .input-container_horizontal:nth-child(2) {
+                .horizontal-container.active .bankacc-card.alt .input-horizontal-container:nth-child(2) {
                     transition-delay: .5s;
                 }
 
-                .container_horizontal.active .card_bank_acc.alt .input-container_horizontal:nth-child(3) {
+                .horizontal-container.active .bankacc-card.alt .input-horizontal-container:nth-child(3) {
                     transition-delay: .6s;
                 }
 
-            .container_horizontal.active .card_bank_acc.alt .button-container_horizontal {
+            .horizontal-container.active .bankacc-card.alt .button-horizontal-container {
                 transition-delay: .7s;
             }
 
-/* card_bank_acc */
-.card_bank_acc {
+/* bankacc-card */
+.bankacc-card {
     /*position: relative;*/
     background: #ffffff;
     border-radius: 5px;
@@ -82,10 +82,10 @@
     /* Inputs */
     /* Button */
     /* Footer */
-    /* Alt card_bank_acc */
+    /* Alt bankacc-card */
 }
 
-    /*.card_bank_acc:first-child {
+    /*.bankacc-card:first-child {
         background: #fafafa;
         height: 10px;
         border-radius: 5px 5px 0 0;
@@ -93,7 +93,7 @@
         padding: 0;
     }*/
 
-    .card_bank_acc .title_bank_acc {
+    .bankacc-card .title_bank_acc {
         position: relative;
         z-index: 1;
         border-left: 5px solid #ed2553;
@@ -105,7 +105,7 @@
         text-transform: uppercase;
     }
 
-    .card_bank_acc .iban_bank_account {
+    .bankacc-card .iban_bank_account {
         position: relative;
         z-index: 1;
         font-size: 14px;
@@ -113,12 +113,12 @@
         text-transform: uppercase;
     }
 
-    .card_bank_acc .input-container_horizontal {
+    .bankacc-card .input-horizontal-container {
         position: relative;
         margin: 0 60px 50px;
     }
 
-        .card_bank_acc .input-container_horizontal input {
+        .bankacc-card .input-horizontal-container input {
             outline: none;
             z-index: 1;
             position: relative;
@@ -131,23 +131,23 @@
             font-weight: 400;
         }
 
-            .card_bank_acc .input-container_horizontal input:focus ~ label {
+            .bankacc-card .input-horizontal-container input:focus ~ label {
                 color: #9d9d9d;
                 -webkit-transform: translate(-12%, -50%) scale(0.75);
                 transform: translate(-12%, -50%) scale(0.75);
             }
 
-            .card_bank_acc .input-container_horizontal input:focus ~ .bar:before, .card_bank_acc .input-container_horizontal input:focus ~ .bar:after {
+            .bankacc-card .input-horizontal-container input:focus ~ .bar:before, .bankacc-card .input-horizontal-container input:focus ~ .bar:after {
                 width: 50%;
             }
 
-            .card_bank_acc .input-container_horizontal input:valid ~ label {
+            .bankacc-card .input-horizontal-container input:valid ~ label {
                 color: #9d9d9d;
                 -webkit-transform: translate(-12%, -50%) scale(0.75);
                 transform: translate(-12%, -50%) scale(0.75);
             }
 
-        .card_bank_acc .input-container_horizontal label {
+        .bankacc-card .input-horizontal-container label {
             position: absolute;
             top: 0;
             left: 0;
@@ -158,7 +158,7 @@
             transition: 0.2s ease;
         }
 
-        .card_bank_acc .input-container_horizontal .bar {
+        .bankacc-card .input-horizontal-container .bar {
             position: absolute;
             left: 0;
             bottom: 0;
@@ -167,7 +167,7 @@
             height: 1px;
         }
 
-            .card_bank_acc .input-container_horizontal .bar:before, .card_bank_acc .input-container_horizontal .bar:after {
+            .bankacc-card .input-horizontal-container .bar:before, .bankacc-card .input-horizontal-container .bar:after {
                 content: '';
                 position: absolute;
                 background: #ed2553;
@@ -176,20 +176,20 @@
                 transition: .2s ease;
             }
 
-            .card_bank_acc .input-container_horizontal .bar:before {
+            .bankacc-card .input-horizontal-container .bar:before {
                 left: 50%;
             }
 
-            .card_bank_acc .input-container_horizontal .bar:after {
+            .bankacc-card .input-horizontal-container .bar:after {
                 right: 50%;
             }
 
-    .card_bank_acc .button-container_horizontal {
+    .bankacc-card .button-horizontal-container {
         margin: 0 60px;
         text-align: center;
     }
 
-        .card_bank_acc .button-container_horizontal button {
+        .bankacc-card .button-horizontal-container button {
             outline: 0;
             cursor: pointer;
             position: relative;
@@ -206,14 +206,14 @@
             transition: .3s ease;
         }
 
-            .card_bank_acc .button-container_horizontal button span {
+            .bankacc-card .button-horizontal-container button span {
                 position: relative;
                 z-index: 1;
                 color: #ddd;
                 transition: .3s ease;
             }
 
-            .card_bank_acc .button-container_horizontal button:before {
+            .bankacc-card .button-horizontal-container button:before {
                 content: '';
                 position: absolute;
                 top: 50%;
@@ -228,25 +228,25 @@
                 transition: .3s ease;
             }
 
-            .card_bank_acc .button-container_horizontal button:hover, .card_bank_acc .button-container_horizontal button:active, .card_bank_acc .button-container_horizontal button:focus {
+            .bankacc-card .button-horizontal-container button:hover, .bankacc-card .button-horizontal-container button:active, .bankacc-card .button-horizontal-container button:focus {
                 border-color: #ed2553;
             }
 
-                .card_bank_acc .button-container_horizontal button:hover span, .card_bank_acc .button-container_horizontal button:active span, .card_bank_acc .button-container_horizontal button:focus span {
+                .bankacc-card .button-horizontal-container button:hover span, .bankacc-card .button-horizontal-container button:active span, .bankacc-card .button-horizontal-container button:focus span {
                     color: #ed2553;
                 }
 
-                .card_bank_acc .button-container_horizontal button:active span, .card_bank_acc .button-container_horizontal button:focus span {
+                .bankacc-card .button-horizontal-container button:active span, .bankacc-card .button-horizontal-container button:focus span {
                     color: #ffffff;
                 }
 
-                .card_bank_acc .button-container_horizontal button:active:before, .card_bank_acc .button-container_horizontal button:focus:before {
+                .bankacc-card .button-horizontal-container button:active:before, .bankacc-card .button-horizontal-container button:focus:before {
                     opacity: 1;
                     -webkit-transform: scale(10);
                     transform: scale(10);
                 }
 
-    .card_bank_acc .footer {
+    .bankacc-card .footer {
         margin: 40px 0 0;
         color: #d3d3d3;
         font-size: 24px;
@@ -254,12 +254,12 @@
         text-align: center;
     }
 
-        .card_bank_acc .footer a {
+        .bankacc-card .footer a {
             color: inherit;
             text-decoration: none;
             transition: .3s ease;
         }
 
-            .card_bank_acc .footer a:hover {
+            .bankacc-card .footer a:hover {
                 color: #bababa;
             }

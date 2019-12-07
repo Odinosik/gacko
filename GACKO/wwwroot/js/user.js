@@ -1,11 +1,11 @@
 ﻿$(".toggle").on("click", function () {
-    $(".container")
+    $(".login-container")
         .stop()
         .addClass("active");
 });
 
 $(".close").on("click", function () {
-    $(".container")
+    $(".login-container")
         .stop()
         .removeClass("active");
 });

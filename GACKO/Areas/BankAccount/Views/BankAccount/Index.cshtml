@@ -4,9 +4,7 @@
     Layout = "_Layout";
 }
 
-    <link rel="stylesheet" href="~/css/bankacc.css" />
-
-<div class="container_horizontal">
+<div class="horizontal-container">
     @foreach (var bankAcc in Model)
     {
         @Html.Partial("_BankAccountCard", bankAcc)

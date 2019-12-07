@@ -1,22 +1,31 @@
-﻿/* Container */
-.container_form {
+﻿body {
+    background: #e9e9e9;
+    color: #666666;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.login-container {
     position: relative;
-    max-width: 400px;
+    max-width: 460px;
     width: 100%;
     margin: 0 auto 100px;
 }
 
-    .container_form.active .card:first-child {
+    .login-container.active .card:first-child {
         background: #f2f2f2;
         margin: 0 15px;
     }
 
-    .container_form.active .card:nth-child(2) {
+    .login-container.active .card:nth-child(2) {
         background: #fafafa;
         margin: 0 10px;
     }
 
-    .container_form.active .card.alt {
+    .login-container.active .card.alt {
         top: 20px;
         right: 0;
         width: 100%;
@@ -27,7 +36,7 @@
         overflow: hidden;
     }
 
-        .container_form.active .card.alt .toggle {
+        .login-container.active .card.alt .toggle {
             position: absolute;
             top: 40px;
             right: -70px;
@@ -39,36 +48,36 @@
             transition: transform .3s ease, -webkit-transform .3s ease;
         }
 
-            .container_form.active .card.alt .toggle:before {
+            .login-container.active .card.alt .toggle:before {
                 content: '';
             }
 
-        .container_form.active .card.alt .title,
-        .container_form.active .card.alt .input-container_form,
-        .container_form.active .card.alt .button-container_form {
+        .login-container.active .card.alt .title,
+        .login-container.active .card.alt .input-container,
+        .login-container.active .card.alt .button-container {
             left: 0;
             opacity: 1;
             visibility: visible;
             transition: .3s ease;
         }
 
-        .container_form.active .card.alt .title {
+        .login-container.active .card.alt .title {
             transition-delay: .3s;
         }
 
-        .container_form.active .card.alt .input-container_form {
+        .login-container.active .card.alt .input-container {
             transition-delay: .4s;
         }
 
-            .container_form.active .card.alt .input-container_form:nth-child(2) {
+            .login-container.active .card.alt .input-container:nth-child(2) {
                 transition-delay: .5s;
             }
 
-            .container_form.active .card.alt .input-container_form:nth-child(3) {
+            .login-container.active .card.alt .input-container:nth-child(3) {
                 transition-delay: .6s;
             }
 
-        .container_form.active .card.alt .button-container_form {
+        .login-container.active .card.alt .button-container {
             transition-delay: .7s;
         }
 
@@ -108,12 +117,12 @@
         text-transform: uppercase;
     }
 
-    .card .input-container_form {
+    .card .input-container {
         position: relative;
         margin: 0 60px 50px;
     }
 
-        .card .input-container_form input {
+        .card .input-container input {
             outline: none;
             z-index: 1;
             position: relative;
@@ -126,23 +135,23 @@
             font-weight: 400;
         }
 
-            .card .input-container_form input:focus ~ label {
+            .card .input-container input:focus ~ label {
                 color: #9d9d9d;
                 -webkit-transform: translate(-12%, -50%) scale(0.75);
                 transform: translate(-12%, -50%) scale(0.75);
             }
 
-            .card .input-container_form input:focus ~ .bar:before, .card .input-container_form input:focus ~ .bar:after {
+            .card .input-container input:focus ~ .bar:before, .card .input-container input:focus ~ .bar:after {
                 width: 50%;
             }
 
-            .card .input-container_form input:valid ~ label {
+            .card .input-container input:valid ~ label {
                 color: #9d9d9d;
                 -webkit-transform: translate(-12%, -50%) scale(0.75);
                 transform: translate(-12%, -50%) scale(0.75);
             }
 
-        .card .input-container_form label {
+        .card .input-container label {
             position: absolute;
             top: 0;
             left: 0;
@@ -153,7 +162,7 @@
             transition: 0.2s ease;
         }
 
-        .card .input-container_form .bar {
+        .card .input-container .bar {
             position: absolute;
             left: 0;
             bottom: 0;
@@ -162,7 +171,7 @@
             height: 1px;
         }
 
-            .card .input-container_form .bar:before, .card .input-container_form .bar:after {
+            .card .input-container .bar:before, .card .input-container .bar:after {
                 content: '';
                 position: absolute;
                 background: #ed2553;
@@ -171,20 +180,20 @@
                 transition: .2s ease;
             }
 
-            .card .input-container_form .bar:before {
+            .card .input-container .bar:before {
                 left: 50%;
             }
 
-            .card .input-container_form .bar:after {
+            .card .input-container .bar:after {
                 right: 50%;
             }
 
-    .card .button-container_form {
+    .card .button-container {
         margin: 0 60px;
         text-align: center;
     }
 
-        .card .button-container_form button {
+        .card .button-container button {
             outline: 0;
             cursor: pointer;
             position: relative;
@@ -201,14 +210,14 @@
             transition: .3s ease;
         }
 
-            .card .button-container_form button span {
+            .card .button-container button span {
                 position: relative;
                 z-index: 1;
                 color: #ddd;
                 transition: .3s ease;
             }
 
-            .card .button-container_form button:before {
+            .card .button-container button:before {
                 content: '';
                 position: absolute;
                 top: 50%;
@@ -223,19 +232,19 @@
                 transition: .3s ease;
             }
 
-            .card .button-container_form button:hover, .card .button-container_form button:active, .card .button-container_form button:focus {
+            .card .button-container button:hover, .card .button-container button:active, .card .button-container button:focus {
                 border-color: #ed2553;
             }
 
-                .card .button-container_form button:hover span, .card .button-container_form button:active span, .card .button-container_form button:focus span {
+                .card .button-container button:hover span, .card .button-container button:active span, .card .button-container button:focus span {
                     color: #ed2553;
                 }
 
-                .card .button-container_form button:active span, .card .button-container_form button:focus span {
+                .card .button-container button:active span, .card .button-container button:focus span {
                     color: #ffffff;
                 }
 
-                .card .button-container_form button:active:before, .card .button-container_form button:focus:before {
+                .card .button-container button:active:before, .card .button-container button:focus:before {
                     opacity: 1;
                     -webkit-transform: scale(10);
                     transform: scale(10);
@@ -304,8 +313,8 @@
             }
 
         .card.alt .title,
-        .card.alt .input-container_form,
-        .card.alt .button-container_form {
+        .card.alt .input-container,
+        .card.alt .button-container {
             left: 100px;
             opacity: 0;
             visibility: hidden;
@@ -332,45 +341,45 @@
                     content: '\00d7';
                 }
 
-        .card.alt .input-container_form input {
+        .card.alt .input-container input {
             color: #ffffff;
         }
 
-            .card.alt .input-container_form input:focus ~ label {
+            .card.alt .input-container input:focus ~ label {
                 color: #ffffff;
             }
 
-            .card.alt .input-container_form input:focus ~ .bar:before, .card.alt .input-container_form input:focus ~ .bar:after {
+            .card.alt .input-container input:focus ~ .bar:before, .card.alt .input-container input:focus ~ .bar:after {
                 background: #ffffff;
             }
 
-            .card.alt .input-container_form input:valid ~ label {
+            .card.alt .input-container input:valid ~ label {
                 color: #ffffff;
             }
 
-        .card.alt .input-container_form label {
+        .card.alt .input-container label {
             color: rgba(255, 255, 255, 0.8);
         }
 
-        .card.alt .input-container_form .bar {
+        .card.alt .input-container .bar {
             background: rgba(255, 255, 255, 0.8);
         }
 
-        .card.alt .button-container_form button {
+        .card.alt .button-container button {
             width: 100%;
             background: #ffffff;
             border-color: #ffffff;
         }
 
-            .card.alt .button-container_form button span {
+            .card.alt .button-container button span {
                 color: #ed2553;
             }
 
-            .card.alt .button-container_form button:hover {
+            .card.alt .button-container button:hover {
                 background: rgba(255, 255, 255, 0.9);
             }
 
-            .card.alt .button-container_form button:active:before, .card.alt .button-container_form button:focus:before {
+            .card.alt .button-container button:active:before, .card.alt .button-container button:focus:before {
                 display: none;
             }
 

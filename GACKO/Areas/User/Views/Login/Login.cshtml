@@ -1,13 +1,14 @@
 ﻿@model GACKO.Shared.Models.User.UserLoginForm
 @{
-    Layout = "_Layout"; ;
+    Layout = "_Layout";
 }
 
-<link rel="stylesheet" href="~/css/user.css" />
 @section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="~/js/user.js"></script>
 }
-<div class="container_form">
+
+<div class="login-container">
     <div class="card"></div>
     <div class="card">
         <h1 class="title">Login</h1>
@@ -21,15 +22,13 @@
         @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
         {
             <div class="input-container">
-                @Html.EditorFor(model => model.Username)
-                @Html.LabelFor(model => model.Username)
-                @*@Html.ValidationMessageFor(model => model.Username)*@
+                <input type="#{type}" id="#{label}" required="required" name="Username" />
+                <label for="#{label}">Username</label>
                 <div class="bar"></div>
             </div>
             <div class="input-container">
-                @Html.EditorFor(model => model.Password)
-                @Html.LabelFor(model => model.Password)
-                @*@Html.ValidationMessageFor(model => model.Password)*@
+                <input type="password" id="#{label}" required="required" name="Password" />
+                <label for="#{label}">Password</label>
                 <div class="bar"></div>
             </div>
             <div class="button-container">
@@ -47,17 +46,17 @@
         @using (Html.BeginForm("Signup", "Login", FormMethod.Post))
         {
             <div class="input-container">
-                @Html.EditorFor(model => model.Username)
-                @Html.LabelFor(model => model.Username)
+                <input type="#{type}" id="#{label}" required="required" name="Username" />
+                <label for="#{label}">Username</label>
                 <div class="bar"></div>
             </div>
             <div class="input-container">
-                @Html.EditorFor(model => model.Password)
-                @Html.LabelFor(model => model.Password)
+                <input type="password" id="#{label}" required="required" name="Password" />
+                <label for="#{label}">Password</label>
                 <div class="bar"></div>
             </div>
             <div class="input-container">
-                <input type="#{type}" id="#{label}" required="required" />
+                <input type="password" id="#{label}" required="required" />
                 <label for="#{label}">Repeat Password</label>
                 <div class="bar"></div>
             </div>
