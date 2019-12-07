@@ -1,0 +1,36 @@
+﻿@using GACKO.Shared.Models.Expense
+@model ExpenseModel
+
+<tr>
+    <td data-title="Name">@Model.Name</td>
+    <td data-title="Amount">@Model.Amount</td>
+    <td data-title="Expense Category">@Model.ExpenseCategory.Name</td>
+
+</tr>
+
+<tr class="expand">
+    <td colspan="5">
+        <div class="expand">
+            <p>
+                Imię
+                <br />Drugie imię
+                <br />Nazwisko
+                <br />Nazwisko Rodowe
+                <br />Miasto
+                <br />Kod pocztowy
+                <br />Ulica
+                <br />Numer domu
+            </p>
+            <p>
+
+                Adam
+                <br />-
+                <br />Nowak
+                <br />Nowak
+                <br />Gdańsk
+                <br />80-402
+                <br />ul. Grunwaldzka
+            </p>
+        </div>
+    </td>
+</tr>

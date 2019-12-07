@@ -4,7 +4,10 @@
     Layout = "_Layout";
 }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.css" />
+@section scripts {
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="~/js/expenses.js"></script>
+}
 
 <div class="section">
     <div class="columns">
@@ -14,13 +17,19 @@
                     Virtual Accounts
                 </p>
                 <ul class="menu-list">
-                    <li><a class="is-active">Virtual Account 1</a></li>
-                    <li><a class="is-active">Virtual Account 2</a></li>
-                    <li><a class="is-active">Virtual Account 3</a></li>
-                    <li><a class="is-active">Virtual Account 4</a></li>
-                    <li><a class="is-active">Virtual Account 5</a></li>
-                    <li><a class="is-active">Virtual Account 6</a></li>
-                    <li><a class="is-active">Virtual Account 7</a></li>
+                    @foreach (var virtualAccount in Model)
+                    {
+                        <li>
+                            <a @*class="is-active"*@
+                               asp-area="VirtualAccount"
+                               asp-controller="VirtualAccount"
+                               asp-action="ChangeVirtualAccActive"
+                               asp-route-bankAccId="@virtualAccount.BankAccountId"
+                               asp-route-virtualAccId="@virtualAccount.Id">
+                                @virtualAccount.Name
+                            </a>
+                        </li>
+                    }
                 </ul>
             </nav>
         </aside>
@@ -29,7 +38,7 @@
             <div class="level">
                 <div class="level-left">
                     <div class="level-item">
-                        <div class="title">Dashboard</div>
+                        <div class="title">@Model.FirstOrDefault().Name  - @Model.FirstOrDefault().Balance.ToString("C0")</div>
                     </div>
                 </div>
                 <div class="level-right">
@@ -41,112 +50,112 @@
                 </div>
             </div>
 
-            <div class="columns is-multiline">
-                <div class="column">
-                    <div class="box">
-                        <div class="heading">Top Seller Total</div>
-                        <div class="title">56,950</div>
-                        <div class="level">
-                            <div class="level-item">
-                                <div class="">
-                                    <div class="heading">Sales $</div>
-                                    <div class="title is-5">250,000</div>
+            @*<div class="columns is-multiline">
+                    <div class="column">
+                        <div class="box">
+                            <div class="heading">Top Seller Total</div>
+                            <div class="title">56,950</div>
+                            <div class="level">
+                                <div class="level-item">
+                                    <div class="">
+                                        <div class="heading">Sales $</div>
+                                        <div class="title is-5">250,000</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="level-item">
-                                <div class="">
-                                    <div class="heading">Overall $</div>
-                                    <div class="title is-5">750,000</div>
+                                <div class="level-item">
+                                    <div class="">
+                                        <div class="heading">Overall $</div>
+                                        <div class="title is-5">750,000</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="level-item">
-                                <div class="">
-                                    <div class="heading">Sales %</div>
-                                    <div class="title is-5">25%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="box">
-                        <div class="heading">Revenue / Expenses</div>
-                        <div class="title">55% / 45%</div>
-                        <div class="level">
-                            <div class="level-item">
-                                <div class="">
-                                    <div class="heading">Rev Prod $</div>
-                                    <div class="title is-5">30%</div>
-                                </div>
-                            </div>
-                            <div class="level-item">
-                                <div class="">
-                                    <div class="heading">Rev Serv $</div>
-                                    <div class="title is-5">25%</div>
-                                </div>
-                            </div>
-                            <div class="level-item">
-                                <div class="">
-                                    <div class="heading">Exp %</div>
-                                    <div class="title is-5">45%</div>
+                                <div class="level-item">
+                                    <div class="">
+                                        <div class="heading">Sales %</div>
+                                        <div class="title is-5">25%</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="column">
-                    <div class="box">
-                        <div class="heading">Feedback Activity</div>
-                        <div class="title">78% &uarr;</div>
-                        <div class="level">
-                            <div class="level-item">
-                                <div class="">
-                                    <div class="heading">Positive</div>
-                                    <div class="title is-5">1560</div>
+                    <div class="column">
+                        <div class="box">
+                            <div class="heading">Revenue / Expenses</div>
+                            <div class="title">55% / 45%</div>
+                            <div class="level">
+                                <div class="level-item">
+                                    <div class="">
+                                        <div class="heading">Rev Prod $</div>
+                                        <div class="title is-5">30%</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="level-item">
-                                <div class="">
-                                    <div class="heading">Negative</div>
-                                    <div class="title is-5">368</div>
+                                <div class="level-item">
+                                    <div class="">
+                                        <div class="heading">Rev Serv $</div>
+                                        <div class="title is-5">25%</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="level-item">
-                                <div class="">
-                                    <div class="heading">Pos/Neg %</div>
-                                    <div class="title is-5">77% / 23%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="box">
-                        <div class="heading">Orders / Returns</div>
-                        <div class="title">75% / 25%</div>
-                        <div class="level">
-                            <div class="level-item">
-                                <div class="">
-                                    <div class="heading">Orders $</div>
-                                    <div class="title is-5">425,000</div>
-                                </div>
-                            </div>
-                            <div class="level-item">
-                                <div class="">
-                                    <div class="heading">Returns $</div>
-                                    <div class="title is-5">106,250</div>
-                                </div>
-                            </div>
-                            <div class="level-item">
-                                <div class="">
-                                    <div class="heading">Success %</div>
-                                    <div class="title is-5">+ 28,5%</div>
+                                <div class="level-item">
+                                    <div class="">
+                                        <div class="heading">Exp %</div>
+                                        <div class="title is-5">45%</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div class="column">
+                        <div class="box">
+                            <div class="heading">Feedback Activity</div>
+                            <div class="title">78% &uarr;</div>
+                            <div class="level">
+                                <div class="level-item">
+                                    <div class="">
+                                        <div class="heading">Positive</div>
+                                        <div class="title is-5">1560</div>
+                                    </div>
+                                </div>
+                                <div class="level-item">
+                                    <div class="">
+                                        <div class="heading">Negative</div>
+                                        <div class="title is-5">368</div>
+                                    </div>
+                                </div>
+                                <div class="level-item">
+                                    <div class="">
+                                        <div class="heading">Pos/Neg %</div>
+                                        <div class="title is-5">77% / 23%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="box">
+                            <div class="heading">Orders / Returns</div>
+                            <div class="title">75% / 25%</div>
+                            <div class="level">
+                                <div class="level-item">
+                                    <div class="">
+                                        <div class="heading">Orders $</div>
+                                        <div class="title is-5">425,000</div>
+                                    </div>
+                                </div>
+                                <div class="level-item">
+                                    <div class="">
+                                        <div class="heading">Returns $</div>
+                                        <div class="title is-5">106,250</div>
+                                    </div>
+                                </div>
+                                <div class="level-item">
+                                    <div class="">
+                                        <div class="heading">Success %</div>
+                                        <div class="title is-5">+ 28,5%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
 
             <div class="columns is-multiline">
                 <div class="column is-6">
@@ -155,9 +164,7 @@
                             Expenses: Daily - $700
                         </p>
                         <div class="panel-block">
-                            <figure class="image is-16x9">
-                                <img src="https://placehold.it/1280x720">
-                            </figure>
+                            @Html.Partial("_ExpenseList", @Model.FirstOrDefault().Expenses)
                         </div>
                     </div>
                 </div>
@@ -167,9 +174,7 @@
                             Subscriptions: Daily - $200
                         </p>
                         <div class="panel-block">
-                            <figure class="image is-16x9">
-                                <img src="https://placehold.it/1280x720">
-                            </figure>
+                            @Html.Partial("_ExpenseList", @Model.FirstOrDefault().Expenses)
                         </div>
                     </div>
                 </div>
