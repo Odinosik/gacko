@@ -1,0 +1,12 @@
+﻿@using GACKO.Shared.Models.BankAccount
+@model List<BankAccountModel>
+@{
+    Layout = "_Layout";
+}
+
+<div class="horizontal-container">
+    @foreach (var bankAcc in Model)
+    {
+        @Html.Partial("_BankAccountCard", bankAcc)
+    }
+</div>

@@ -3060,7 +3060,7 @@ input[type="button"].btn-block {
   left: 0;
   z-index: 1000;
   display: none;
-  float: left;
+  double: left;
   min-width: 10rem;
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
@@ -4200,7 +4200,7 @@ input[type="button"].btn-block {
 
 .navbar-nav .dropdown-menu {
   position: static;
-  float: none;
+  double: none;
 }
 
 .navbar-text {
@@ -5638,7 +5638,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .close {
-  float: right;
+  double: right;
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1;
@@ -6237,7 +6237,7 @@ a.close.disabled {
 .carousel-item {
   position: relative;
   display: none;
-  float: left;
+  double: left;
   width: 100%;
   margin-right: -100%;
   -webkit-backface-visibility: hidden;
@@ -7688,63 +7688,63 @@ button.bg-dark:focus {
   }
 }
 
-.float-left {
-  float: left !important;
+.double-left {
+  double: left !important;
 }
 
-.float-right {
-  float: right !important;
+.double-right {
+  double: right !important;
 }
 
-.float-none {
-  float: none !important;
+.double-none {
+  double: none !important;
 }
 
 @media (min-width: 576px) {
-  .float-sm-left {
-    float: left !important;
+  .double-sm-left {
+    double: left !important;
   }
-  .float-sm-right {
-    float: right !important;
+  .double-sm-right {
+    double: right !important;
   }
-  .float-sm-none {
-    float: none !important;
+  .double-sm-none {
+    double: none !important;
   }
 }
 
 @media (min-width: 768px) {
-  .float-md-left {
-    float: left !important;
+  .double-md-left {
+    double: left !important;
   }
-  .float-md-right {
-    float: right !important;
+  .double-md-right {
+    double: right !important;
   }
-  .float-md-none {
-    float: none !important;
+  .double-md-none {
+    double: none !important;
   }
 }
 
 @media (min-width: 992px) {
-  .float-lg-left {
-    float: left !important;
+  .double-lg-left {
+    double: left !important;
   }
-  .float-lg-right {
-    float: right !important;
+  .double-lg-right {
+    double: right !important;
   }
-  .float-lg-none {
-    float: none !important;
+  .double-lg-none {
+    double: none !important;
   }
 }
 
 @media (min-width: 1200px) {
-  .float-xl-left {
-    float: left !important;
+  .double-xl-left {
+    double: left !important;
   }
-  .float-xl-right {
-    float: right !important;
+  .double-xl-right {
+    double: right !important;
   }
-  .float-xl-none {
-    float: none !important;
+  .double-xl-none {
+    double: none !important;
   }
 }
 

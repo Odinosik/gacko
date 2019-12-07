@@ -11,7 +11,7 @@ namespace GACKO.DB.Migrations
             Create.Table(TableName)
                 .WithColumn("Id").AsInt32().NotNullable().PrimaryKey()
                 .WithColumn("Iban").AsString().NotNullable()
-                .WithColumn("Balance").AsFloat().NotNullable()
+                .WithColumn("Balance").AsDouble().NotNullable()
                 .WithColumn("UserId").AsInt32().NotNullable();
 
             Create.ForeignKey().FromTable(TableName)
@@ -19,7 +19,7 @@ namespace GACKO.DB.Migrations
                 .ToTable("AspNetUsers").PrimaryColumn("Id")
                 .OnDelete(System.Data.Rule.Cascade);
 
-            Execute.Sql($"INSERT INTO public.\"BankAccount\" (\"Id\", \"Iban\", \"Balance\", \"UserId\") VALUES(1, '27 1140 2004 0000 3002 0135 5387 ', '1000', '1');");
+            Execute.Sql($"INSERT INTO public.\"BankAccount\" (\"Id\", \"Iban\", \"Balance\", \"UserId\") VALUES(1, '27 1140 2004 0000 3002 0135 5387 ', '1000', '100');");
         }
 
         public override void Down()

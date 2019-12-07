@@ -5,6 +5,8 @@ using GACKO.Shared;
 using GACKO.Shared.Models.BankAccount;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GACKO.Repositories.BankAccount
@@ -49,6 +51,12 @@ namespace GACKO.Repositories.BankAccount
         {
             return _mapper.Map<BankAccountModel>(await _context.BankAccounts.FirstOrDefaultAsync(_ => _.Id == id));
         }
+
+        public async Task<IList<BankAccountModel>> GetAll()
+        {
+            return _mapper.Map<List<BankAccountModel>>(await _context.BankAccounts.ToListAsync());
+        }
+
 
         public async Task<int> Update(BankAccountForm form)
         {
