@@ -33,14 +33,24 @@ namespace GACKO.Areas.BankAccount.Controllers
                 Balance = 2137.00,
             });
 
-            bankAccs.Add(new BankAccountModel()
-            {
-                Id = 6,
-                Iban = "12 1111 1111 1111 1111 1111 2222",
-                Balance = 1517.00,
-            });
+            //bankAccs.Add(new BankAccountModel()
+            //{
+            //    Id = 6,
+            //    Iban = "12 1111 1111 1111 1111 1111 2222",
+            //    Balance = 1517.00,
+            //});
 
             return View("Index", bankAccs);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(BankAccountForm bankAccount)
+        {
+            System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            var user = await _userManager.GetUserAsync(User);
+            bankAccount.UserId = user.Id;
+            await _bankAccountService.Create(bankAccount);
+            return View();
         }
     }
 }

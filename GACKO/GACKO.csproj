@@ -42,6 +42,9 @@
 
 
   <ItemGroup>
+    <Content Update="wwwroot\css\newbankacc.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\css\bankacc.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

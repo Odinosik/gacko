@@ -1,12 +1,11 @@
-﻿$(document).ready(function () {
+﻿$(".toggle").on("click", function () {
+    $(".newbankacc-container")
+        .stop()
+        .addClass("active");
+});
 
-    $('#notification').popover({
-        html: true,
-        content: function () {
-            return $('.not').html();
-        },
-        title: $('#notification').attr("popover-title")
-    })
-
-
-})
+$(".close").on("click", function () {
+    $(".newbankacc-container")
+        .stop()
+        .removeClass("active");
+});
