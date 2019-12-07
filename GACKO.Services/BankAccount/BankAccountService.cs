@@ -1,5 +1,6 @@
 ﻿using GACKO.Repositories.BankAccount;
 using GACKO.Shared.Models.BankAccount;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GACKO.Services.BankAccount
@@ -21,6 +22,11 @@ namespace GACKO.Services.BankAccount
         public Task<BankAccountModel> Get(int id)
         {
             return _bankAccountRepository.Get(id);
+        }
+
+        public Task<IList<BankAccountModel>> GetAll()
+        {
+            return _bankAccountRepository.GetAll();
         }
 
         public Task<int> Update(BankAccountForm form)

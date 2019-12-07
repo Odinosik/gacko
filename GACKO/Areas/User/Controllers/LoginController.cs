@@ -46,7 +46,7 @@ namespace GACKO.Areas.User.Controllers
                            userModel.Password, false, false);
             if (result.Succeeded)
             {
-                return RedirectToHome("Privacy");
+                return RedirectToAction("Index", "BankAccount", new { area = "BankAccount" });
             }
             if (result.IsLockedOut)
             {
@@ -58,6 +58,14 @@ namespace GACKO.Areas.User.Controllers
                 userModel.LoginErrorMessage = "Wrong username or password.";
                 return View("Login", userModel);
             }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Register(UserLoginForm userModel)
+        {
+            //var result = _userManager.CreateAsync();
+            return null;
         }
 
         [HttpGet]
