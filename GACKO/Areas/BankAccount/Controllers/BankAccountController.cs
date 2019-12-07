@@ -21,18 +21,21 @@ namespace GACKO.Areas.BankAccount.Controllers
             _bankAccountService = bankAccountService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var bankAccs = await _bankAccountService.GetAll();
 
             bankAccs.Add(new BankAccountModel()
             {
+                Id = 5,
                 Iban = "23 2222 2222 2222 2222 2222 2222",
                 Balance = 2137.00,
             });
 
             bankAccs.Add(new BankAccountModel()
             {
+                Id = 6,
                 Iban = "12 1111 1111 1111 1111 1111 2222",
                 Balance = 1517.00,
             });

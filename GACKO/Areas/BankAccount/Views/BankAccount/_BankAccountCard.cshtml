@@ -1,12 +1,22 @@
 ﻿@model GACKO.Shared.Models.BankAccount.BankAccountModel
-<div class="bankacc-card">
-    <h1 class="title_bank_acc">Bank account</h1>
-    <div class="iban_bank_account">
-        @Model.Iban
-        <div class="bar"></div>
+
+    <div class="bankacc-card">
+        <h1 class="title_bank_acc">Bank account</h1>
+        <div class="iban_bank_account">
+            @Model.Iban
+            <div class="bar"></div>
+        </div>
+        <div class="balance_bank_account">
+            @Model.Balance.ToString("C0")
+            <div class="bar"></div>
+        </div>
+        @using (Html.BeginForm("Index", "VirtualAccount", new { area = "VirtualAccount" }, FormMethod.Get))
+        {
+            <div class="input-container" style="display: none;">
+                <input type="password" id="#{label}" required="required" name="bankAccId" value="@Model.Id"/>
+            </div>
+            <div class="button-container">
+                <button><span>Go</span></button>
+            </div>
+        }
     </div>
-    <div class="input-container">
-        @Model.Balance
-        <div class="bar"></div>
-    </div>
-</div>
