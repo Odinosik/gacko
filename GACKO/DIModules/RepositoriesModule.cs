@@ -3,6 +3,7 @@ using AutoMapper;
 using GACKO.Repositories.BankAccount;
 using GACKO.Repositories.Expense;
 using GACKO.Repositories.ExpenseCategory;
+using GACKO.Repositories.SalesDocument;
 using GACKO.Repositories.Subscription;
 using GACKO.Repositories.User;
 using GACKO.Repositories.VirtualAccount;
@@ -36,6 +37,10 @@ namespace GACKO.DIModules
 
             builder.Register(c => new ExpenseRepository(c.Resolve<IMapper>(), c.Resolve<IDbContextOptionsFactory>()))
                .As<IExpenseRepository>()
+               .InstancePerLifetimeScope();
+
+            builder.Register(c => new SalesDocumentRepository(c.Resolve<IMapper>(), c.Resolve<IDbContextOptionsFactory>()))
+               .As<ISalesDocumentRepository>()
                .InstancePerLifetimeScope();
         }
     }

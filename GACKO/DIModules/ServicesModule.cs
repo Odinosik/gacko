@@ -2,12 +2,14 @@
 using GACKO.Repositories.BankAccount;
 using GACKO.Repositories.Expense;
 using GACKO.Repositories.ExpenseCategory;
+using GACKO.Repositories.SalesDocument;
 using GACKO.Repositories.Subscription;
 using GACKO.Repositories.User;
 using GACKO.Repositories.VirtualAccount;
 using GACKO.Services.BankAccount;
 using GACKO.Services.Expense;
 using GACKO.Services.ExpenseCategory;
+using GACKO.Services.SalesDocument;
 using GACKO.Services.Subscription;
 using GACKO.Services.User;
 using GACKO.Services.VirtualAccount;
@@ -40,6 +42,10 @@ namespace GACKO.DIModules
 
             builder.Register(c => new ExpenseService(c.Resolve<IExpenseRepository>()))
                .As<IExpenseService>()
+               .InstancePerLifetimeScope();
+
+            builder.Register(c => new SalesDocumentService(c.Resolve<ISalesDocumentRepository>()))
+               .As<ISalesDocumentService>()
                .InstancePerLifetimeScope();
         }
     }
