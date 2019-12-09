@@ -184,13 +184,23 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             };
             if (viewModel.SelectedVirtualAccount == null )
             {
-                var bankAccountViewModel = new BankAccountIdViewModel()
+                var bankAccountViewModel = new VirtualAccountForm()
                 {
                     BankAccountId = bankAccountId
                 };
                 return View("Create", bankAccountViewModel);
             }
             return View("Index", viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Create(int bankAccountId)
+        {
+            var bankAccountViewModel = new VirtualAccountForm()
+            {
+                BankAccountId = bankAccountId
+            };
+            return View("Create", bankAccountViewModel);
         }
 
         [HttpPost]
