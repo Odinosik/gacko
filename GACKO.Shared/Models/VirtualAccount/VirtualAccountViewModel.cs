@@ -1,8 +1,4 @@
-﻿using GACKO.Shared.Models.BankAccount;
-using GACKO.Shared.Models.Expense;
-using System.Collections.Generic;
-using GACKO.Shared.Models.Subscription;
-
+﻿using System.Collections.Generic;
 namespace GACKO.Shared.Models.VirtualAccount
 {
     public class VirtualAccountViewModel

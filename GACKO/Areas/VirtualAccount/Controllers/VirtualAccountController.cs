@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using GACKO.Shared.Models.Subscription;
+using GACKO.Services.BankAccount;
+using GACKO.Services.Subscription;
+using GACKO.Services.Expense;
+using System.Threading.Tasks;
 
 namespace GACKO.Areas.VirtualAccount.Controllers
 {
@@ -17,17 +21,25 @@ namespace GACKO.Areas.VirtualAccount.Controllers
     {
         private readonly UserManager<DaoUser> _userManager;
         private readonly IVirtualAccountService _virtualAccountService;
+        private readonly ISubscriptionService _subscriptionService;
+        private readonly IExpenseService _expenseService;
+        public static int _bankAccountId;
 
-        public VirtualAccountController(UserManager<DaoUser> userManager, IVirtualAccountService virtualAccountService)
+        public VirtualAccountController(UserManager<DaoUser> userManager, IVirtualAccountService virtualAccountService, ISubscriptionService subscriptionService, IExpenseService expenseService)
         {
             _userManager = userManager;
             _virtualAccountService = virtualAccountService;
+            _subscriptionService = subscriptionService;
+            _expenseService = expenseService;
         }
 
         [HttpGet]
-        public IActionResult Index(int bankAccId)
+        public IActionResult Index(int bankAccountId)
         {
+            _bankAccountId = bankAccountId;
+            /*
             var virtualAccs = new Dictionary<int, VirtualAccountModel>();
+            
             virtualAccs.Add(0, new VirtualAccountModel()
             {
                 Id = 0,
@@ -162,19 +174,55 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                     }
                 }
             });
+            */
+
+            var a = _virtualAccountService.GetAll(bankAccountId).Result.FirstOrDefault();
 
             var viewModel = new VirtualAccountViewModel()
             {
-                SelectedVirtualAccount = virtualAccs[0],
-                VirtualAccounts = virtualAccs.Select(_ => _.Value)
+                SelectedVirtualAccount = _virtualAccountService.GetAll(bankAccountId).Result.FirstOrDefault(),
+                VirtualAccounts = _virtualAccountService.GetAll(bankAccountId).Result
+            };
+            if (viewModel.SelectedVirtualAccount == null )
+            {
+                var bankAccountViewModel = new VirtualAccountForm()
+                {
+                    BankAccountId = bankAccountId
+                };
+                return View("Create", bankAccountViewModel);
+            }
+            return View("Index", viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Create(int bankAccountId)
+        {
+            var bankAccountViewModel = new VirtualAccountForm()
+            {
+                BankAccountId = bankAccountId
             };
 
+            return View("Create", bankAccountViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(VirtualAccountForm virtualAccount)
+        {
+             await _virtualAccountService.Create(virtualAccount);
+
+            var viewModel = new VirtualAccountViewModel()
+            {
+                SelectedVirtualAccount = _virtualAccountService.GetAll(virtualAccount.BankAccountId).Result.FirstOrDefault(),
+                VirtualAccounts = _virtualAccountService.GetAll(virtualAccount.BankAccountId).Result
+            };
             return View("Index", viewModel);
         }
 
         [HttpGet]
         public IActionResult ChangeVirtualAccActive(int bankAccId, int virtualAccId)
         {
+
+            /*
             var virtualAccs = new Dictionary<int, VirtualAccountModel>();
             virtualAccs.Add(0, new VirtualAccountModel()
             {
@@ -310,11 +358,11 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                     }
                 }
             });
-
+            */
             var viewModel = new VirtualAccountViewModel()
             {
-                SelectedVirtualAccount = virtualAccs[virtualAccId],
-                VirtualAccounts = virtualAccs.Select(_ => _.Value)
+                SelectedVirtualAccount = _virtualAccountService.Get(virtualAccId).Result,
+                VirtualAccounts = _virtualAccountService.GetAll(bankAccId).Result
             };
 
             return View("Index", viewModel);

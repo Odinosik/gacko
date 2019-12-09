@@ -2,7 +2,6 @@
 using GACKO.DB.DaoModels;
 using GACKO.Services.BankAccount;
 using GACKO.Shared.Models.BankAccount;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

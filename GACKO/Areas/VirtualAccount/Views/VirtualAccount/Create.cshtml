@@ -1,0 +1,37 @@
+﻿@model GACKO.Shared.Models.VirtualAccount.VirtualAccountForm
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>VirtualAccountForm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Create", "VirtualAccount", new { area = "VirtualAccount" }, FormMethod.Post))
+        {
+            <div class="form-group">
+                Name: <input type="text" required="required" name="Name" />
+            </div>
+            <div class="form-group">
+                Balance: <input type="text" required="required" name="Balance" />
+            </div>
+            <div class="form-group">
+                Limit: <input type="text" required="required" name="Limit" />
+            </div>
+            <div class="form-group">
+                NotificationBalance: <input type="text" required="required" name="NotificationBalance" />
+            </div>
+            <div class="form-group">
+               <input type="hidden" value="@Model.BankAccountId" required="required" name="BankAccountId"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+</div>
+
