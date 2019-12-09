@@ -16,48 +16,5 @@
         @Html.Partial("_BankAccountCard", bankAcc)
     }
 
-    <div class="newbankacc-container" id="newbankacc">
-        <div class="newbankacc-card"></div>
-        <div class="newbankacc-card">
-            <h1 class="title_bank_acc">
-                Add new account
-            </h1>
-            <div class="iban_bank_account">
-
-                <div class="bar"></div>
-            </div>
-            <div class="balance_bank_account">
-
-                <div class="bar"></div>
-            </div>
-        </div>
-        <div class="newbankacc-card newbankacc-alt">
-            <div class="toggle" id="newbankacc"></div>
-            <h1 class="title_bank_acc">
-                Add new account
-                <div class="close" id="newbankacc"></div>
-            </h1>
-            @using (Html.BeginForm("Create", "BankAccount", new { area = "BankAccount" }, FormMethod.Post))
-            {
-                <div class="input-container">
-                    <input type="text" id="#{label}" required="required" name="Name" />
-                    <label for="#{label}">Name</label>
-                    <div class="bar"></div>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="#{label}" required="required" name="Iban" />
-                    <label for="#{label}">IBAN</label>
-                    <div class="bar"></div>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="#{label}" required="required" name="Balance" />
-                    <label for="#{label}">Balance</label>
-                    <div class="bar"></div>
-                </div>
-                <div class="button-container">
-                    <button><span>Go</span></button>
-                </div>
-            }
-        </div>
-    </div>
+    @Html.Partial("_NewBankAccountCard")
 </div>

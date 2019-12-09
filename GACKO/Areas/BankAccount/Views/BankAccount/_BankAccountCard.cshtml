@@ -51,7 +51,7 @@
             @using (Html.BeginForm("Delete", "BankAccount", new { area = "BankAccount" }, FormMethod.Get))
             {
                 <div class="input-container" style="display: none;">
-                    <input id="#{label}" required="required" name="bankAccountId" value="@Model.Id" />
+                    <input id="#{label}" required="required" name="id" value="@Model.Id" />
                 </div>
                 <button class="bankacc-delete">
                 </button>
