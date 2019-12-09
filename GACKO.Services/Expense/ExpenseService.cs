@@ -1,5 +1,6 @@
 ﻿using GACKO.Repositories.Expense;
 using GACKO.Shared.Models.Expense;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GACKO.Services.Expense
@@ -22,7 +23,10 @@ namespace GACKO.Services.Expense
         {
             return _expenseRepository.Get(id);
         }
-
+        public Task<IList<ExpenseModel>> GetAll(int virtualAccountId)
+        {
+            return _expenseRepository.GetAll(virtualAccountId);
+        }
         public Task<int> Update(ExpenseForm form)
         {
             return _expenseRepository.Update(form);

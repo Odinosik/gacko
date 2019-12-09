@@ -5,6 +5,8 @@ using GACKO.Shared;
 using GACKO.Shared.Models.Expense;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GACKO.Repositories.Expense
@@ -48,6 +50,11 @@ namespace GACKO.Repositories.Expense
         public async Task<ExpenseModel> Get(int id)
         {
             return _mapper.Map<ExpenseModel>(await _context.Expenses.FirstOrDefaultAsync(_ => _.Id == id));
+        }
+
+        public async Task<IList<ExpenseModel>> GetAll(int virtualAccountId)
+        {
+            return _mapper.Map<List<ExpenseModel>>(await _context.Expenses.Where(_ => _.VirtualAccountId == virtualAccountId).ToListAsync());
         }
 
         public async Task<int> Update(ExpenseForm form)

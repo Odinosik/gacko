@@ -63,7 +63,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             return View("Index", new VirtualAccountViewModel()
             {
                 SelectedVirtualAccount = virtualAcc,
-                VirtualAccounts = _virtualAccountService.Get();
+                VirtualAccounts = await _virtualAccountService.GetAll(virtualAcc.BankAccountId);
             });
         }
     }

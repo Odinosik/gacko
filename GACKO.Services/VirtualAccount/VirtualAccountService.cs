@@ -1,5 +1,6 @@
 ﻿using GACKO.Repositories.VirtualAccount;
 using GACKO.Shared.Models.VirtualAccount;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GACKO.Services.VirtualAccount
@@ -21,6 +22,10 @@ namespace GACKO.Services.VirtualAccount
         public Task<VirtualAccountModel> Get(int id)
         {
             return _virtualAccountRepository.Get(id);
+        }
+        public Task<IList<VirtualAccountModel>> GetAll(int bankAccountId)
+        {
+            return _virtualAccountRepository.GetAll(bankAccountId);
         }
 
         public Task<int> Update(VirtualAccountForm form)
