@@ -12,10 +12,11 @@
 <tr class="expand">
     <td colspan="5">
         <div class="expand">
-            @foreach (var byteArray in Model.Documents)
+            @foreach (var doc in Model.SalesDocuments)
             {
-                var base64 = Convert.ToBase64String(Model.byteArray);
+                var base64 = Convert.ToBase64String(doc.FileRawData);
                 var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                @doc.Name <br/>
                 <img src="@imgSrc" /> <br />
             }
             @using (Html.BeginForm("Upload", "SalesDocument", new { area = "VirtualAccount" }, FormMethod.Post))

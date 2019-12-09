@@ -2,39 +2,47 @@
 using GACKO.Shared.Models.Expense;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GACKO.Repositories.SalesDocument;
 
 namespace GACKO.Services.Expense
 {
     public class ExpenseService : IExpenseService
     {
         private readonly IExpenseRepository _expenseRepository;
+        private readonly ISalesDocumentRepository _salesDocumentRepository;
 
-        public ExpenseService(IExpenseRepository expenseRepository)
+        public ExpenseService(IExpenseRepository expenseRepository, ISalesDocumentRepository salesDocumentRepository)
         {
             _expenseRepository = expenseRepository;
+            _salesDocumentRepository = salesDocumentRepository;
         }
 
-        public Task<int> Create(ExpenseForm form)
+        public async Task<int> Create(ExpenseForm form)
         {
-            return _expenseRepository.Create(form);
+            return await _expenseRepository.Create(form);
         }
 
-        public Task<ExpenseModel> Get(int id)
+        public async Task<ExpenseModel> Get(int id)
         {
-            return _expenseRepository.Get(id);
+            return await _expenseRepository.Get(id);
         }
-        public Task<IList<ExpenseModel>> GetAll(int virtualAccountId)
+        public async Task<IList<ExpenseModel>> GetAll(int virtualAccountId)
         {
-            return _expenseRepository.GetAll(virtualAccountId);
+            var expenses = await _expenseRepository.GetAll(virtualAccountId);
+            foreach (var expenseModel in expenses)
+            {
+                expenseModel.SalesDocuments = await _salesDocumentRepository.GetAll();
+            }
+            return ;
         }
-        public Task<int> Update(ExpenseForm form)
+        public async Task<int> Update(ExpenseForm form)
         {
-            return _expenseRepository.Update(form);
+            return await _expenseRepository.Update(form);
         }
 
-        public Task<int> Delete(int id)
+        public async Task<int> Delete(int id)
         {
-            return _expenseRepository.Delete(id);
+            return await _expenseRepository.Delete(id);
         }
     }
 }

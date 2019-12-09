@@ -1,21 +1,15 @@
-﻿using System;
-using GACKO.Controllers;
+﻿using GACKO.Controllers;
 using GACKO.DB.DaoModels;
-using GACKO.Services.VirtualAccount;
-using GACKO.Shared.Models.Expense;
-using GACKO.Shared.Models.ExpenseCategory;
-using GACKO.Shared.Models.VirtualAccount;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using GACKO.Services.Expense;
 using GACKO.Services.SalesDocument;
+using GACKO.Services.VirtualAccount;
 using GACKO.Shared.Models.SalesDocument;
-using GACKO.Shared.Models.Subscription;
+using GACKO.Shared.Models.VirtualAccount;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace GACKO.Areas.VirtualAccount.Controllers
 {
@@ -27,8 +21,8 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         private readonly IExpenseService _expenseService;
         private readonly IVirtualAccountService _virtualAccountService;
 
-        public SalesDocumentController(UserManager<DaoUser> userManager, 
-            ISalesDocumentService salesDocumentService, 
+        public SalesDocumentController(UserManager<DaoUser> userManager,
+            ISalesDocumentService salesDocumentService,
             IExpenseService expenseService,
             IVirtualAccountService virtualAccountService)
         {
@@ -39,8 +33,8 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload([FromForm] IFormFile fileForm, [FromForm]int expenseId)
-        { 
+        public async Task<IActionResult> Upload([FromForm] IFormFile fileForm, [FromForm] int expenseId)
+        {
             var expense = await _expenseService.Get(expenseId);
             if (fileForm.Length > 0)
             {
@@ -63,7 +57,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             return View("Index", new VirtualAccountViewModel()
             {
                 SelectedVirtualAccount = virtualAcc,
-                VirtualAccounts = await _virtualAccountService.GetAll(virtualAcc.BankAccountId);
+                VirtualAccounts = await _virtualAccountService.GetAll(virtualAcc.BankAccountId)
             });
         }
     }
