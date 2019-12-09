@@ -1,0 +1,23 @@
+﻿@using GACKO.Shared.Models.Expense
+@model List<ExpenseModel>
+
+<div id="demo">
+    <div class="shadow-z-1">
+        <table id="table" class="table table-hover table-mc-light-blue">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Expense Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var expense in Model)
+                {
+                    @Html.Partial("_ExpenseListElement", expense)
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

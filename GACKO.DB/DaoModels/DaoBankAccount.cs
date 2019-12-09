@@ -14,4 +14,3 @@ namespace GACKO.DB.DaoModels
         public virtual DaoUser User { get; set; }
 }
 }
-2
