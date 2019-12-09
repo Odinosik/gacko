@@ -1,5 +1,6 @@
 ﻿using GACKO.Repositories.Subscription;
 using GACKO.Shared.Models.Subscription;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GACKO.Services.Subscription
@@ -21,6 +22,10 @@ namespace GACKO.Services.Subscription
         public Task<SubscriptionModel> Get(int id)
         {
             return _subscriptionRepository.Get(id);
+        }
+        public Task<IList<SubscriptionModel>> GetAll(int virtualAccountId)
+        {
+            return _subscriptionRepository.GetAll(virtualAccountId);
         }
 
         public Task<int> Update(SubscriptionForm form)

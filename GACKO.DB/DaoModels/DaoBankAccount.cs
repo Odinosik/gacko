@@ -9,6 +9,7 @@ namespace GACKO.DB.DaoModels
         public string Iban { get; set; }
         public double Balance { get; set; }
         public int UserId { get; set; }
+        public bool IsActive { get; set; }
         [ForeignKey("UserId")]
         public virtual DaoUser User { get; set; }
 }
