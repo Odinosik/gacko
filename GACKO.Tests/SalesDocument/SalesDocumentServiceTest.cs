@@ -26,7 +26,6 @@ namespace GACKO.Tests.SalesDocument
             var form = new SalesDocumentForm()
             {
                 Name = "Test",
-                FilePath = "",
                 ExpenseId = 1
 
             };
