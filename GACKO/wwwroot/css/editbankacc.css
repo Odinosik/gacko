@@ -336,8 +336,9 @@
             .editbankacc-card.editbankacc-alt .title_bank_acc .close {
                 cursor: pointer;
                 position: absolute;
+                font: normal normal normal 14px/1 FontAwesome;
                 top: 0;
-                right: 60px;
+                right: 40px;
                 display: inline;
                 color: #ffffff;
                 font-size: 58px;
@@ -346,6 +347,29 @@
 
                 .editbankacc-card.editbankacc-alt .title_bank_acc .close:before {
                     content: '\00d7';
+                }
+
+            .editbankacc-card.editbankacc-alt .title_bank_acc .bankacc-delete {
+                cursor: pointer;
+                position: absolute;
+                font: normal normal normal 14px/1 FontAwesome;
+                top: 8px;
+                right: 80px;
+                display: inline;
+                color: #ffffff;
+                opacity: 60%;
+                font-size: 40px;
+                font-weight: 400;
+                background-color: Transparent;
+                background-repeat: no-repeat;
+                border: none;
+                cursor: pointer;
+                overflow: hidden;
+                outline: none;
+            }
+
+                .editbankacc-card.editbankacc-alt .title_bank_acc .bankacc-delete:before {
+                    content: '\f014';
                 }
 
         .editbankacc-card.editbankacc-alt .input-container input {

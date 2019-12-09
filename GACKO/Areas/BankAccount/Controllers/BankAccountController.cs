@@ -62,5 +62,12 @@ namespace GACKO.Areas.BankAccount.Controllers
             await _bankAccountService.Update(bankAccount);
             return View("Index", await _bankAccountService.GetAll());
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int bankAccId)
+        {
+            await _bankAccountService.Delete(bankAccId);
+            return View("Index", await _bankAccountService.GetAll());
+        }
     }
 }
