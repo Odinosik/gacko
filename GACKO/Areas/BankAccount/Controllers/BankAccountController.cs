@@ -26,12 +26,12 @@ namespace GACKO.Areas.BankAccount.Controllers
         {
             var bankAccs = await _bankAccountService.GetAll();
 
-            bankAccs.Add(new BankAccountModel()
-            {
-                Id = 5,
-                Iban = "23 2222 2222 2222 2222 2222 2222",
-                Balance = 2137.00,
-            });
+            //bankAccs.Add(new BankAccountModel()
+            //{
+            //    Id = 5,
+            //    Iban = "23 2222 2222 2222 2222 2222 2222",
+            //    Balance = 2137.00,
+            //});
 
             //bankAccs.Add(new BankAccountModel()
             //{
@@ -50,7 +50,24 @@ namespace GACKO.Areas.BankAccount.Controllers
             var user = await _userManager.GetUserAsync(User);
             bankAccount.UserId = user.Id;
             await _bankAccountService.Create(bankAccount);
-            return View();
+            return View("Index", await _bankAccountService.GetAll());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(BankAccountForm bankAccount)
+        {
+            System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            var user = await _userManager.GetUserAsync(User);
+            bankAccount.UserId = user.Id;
+            await _bankAccountService.Update(bankAccount);
+            return View("Index", await _bankAccountService.GetAll());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _bankAccountService.Delete(id);
+            return View("Index", await _bankAccountService.GetAll());
         }
     }
 }

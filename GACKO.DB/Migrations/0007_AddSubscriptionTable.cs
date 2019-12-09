@@ -9,15 +9,13 @@ namespace GACKO.DB.Migrations
         public override void Up()
         {
             Create.Table(TableName)
-                .WithColumn("Id").AsInt32().NotNullable().PrimaryKey()
+                .WithColumn("Id").AsInt32().Identity().PrimaryKey()
                 .WithColumn("Name").AsString().NotNullable()
                 .WithColumn("Amount").AsDouble().NotNullable()
                 .WithColumn("AddedDate").AsDateTime().NotNullable()
                 .WithColumn("ExpirationDate").AsDateTime().NotNullable()
                 .WithColumn("FrequncyMonth").AsInt32().NotNullable()
                 .WithColumn("VirtualAccountId").AsInt32().NotNullable();
-
-
 
             Create.ForeignKey().FromTable(TableName)
                 .ForeignColumn("VirtualAccountId")

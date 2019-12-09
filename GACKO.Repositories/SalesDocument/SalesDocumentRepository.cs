@@ -6,6 +6,7 @@ using GACKO.Shared.Models.SalesDocument;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,9 +53,9 @@ namespace GACKO.Repositories.SalesDocument
             return _mapper.Map<SalesDocumentModel>(await _context.SalesDocuments.FirstOrDefaultAsync(_ => _.Id == id));
         }
 
-        public async Task<IList<SalesDocumentModel>> GetAll()
+        public async Task<IList<SalesDocumentModel>> GetAll(int expenseId)
         {
-            return _mapper.Map<List<SalesDocumentModel>>(await _context.SalesDocuments.ToListAsync());
+            return _mapper.Map<List<SalesDocumentModel>>(await _context.SalesDocuments.Where(_ => _.ExpenseId == expenseId).ToListAsync());
         }
 
 

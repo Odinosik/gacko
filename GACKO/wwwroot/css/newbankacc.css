@@ -1,35 +1,31 @@
 ﻿.newbankacc-container {
-    position: absolute;
-    width: 350px;
-    margin: 0 auto 0;
+    position: relative;
+    width: 400px;
+    margin: 0 auto 0 auto;
     display: inline-block;
 }
 
     .newbankacc-container.active .newbankacc-card:first-child {
         background: #f2f2f2;
-        margin: 0 15px;
     }
 
     .newbankacc-container.active .newbankacc-card:nth-child(2) {
         background: #fafafa;
-        margin: 0 10px;
     }
 
-    .newbankacc-container.active .newbankacc-card.alt {
-        top: 20px;
-        right: 0;
+    .newbankacc-container.active .newbankacc-card.newbankacc-alt {
+        top: 10px;
+        right: -15px;
         width: 100%;
-        min-width: 100%;
         height: auto;
+        margin-left: 20px;
         border-radius: 5px;
         padding: 60px 0 40px;
         overflow: hidden;
     }
 
-        .newbankacc-container.active .newbankacc-card.alt .toggle {
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .toggle {
             position: absolute;
-            top: 40px;
-            right: -70px;
             box-shadow: none;
             -webkit-transform: scale(20);
             transform: scale(20);
@@ -38,36 +34,36 @@
             transition: transform .3s ease, -webkit-transform .3s ease;
         }
 
-            .newbankacc-container.active .newbankacc-card.alt .toggle:before {
+            .newbankacc-container.active .newbankacc-card.newbankacc-alt .toggle:before {
                 content: '';
             }
 
-        .newbankacc-container.active .newbankacc-card.alt .title_bank_acc,
-        .newbankacc-container.active .newbankacc-card.alt .input-container,
-        .newbankacc-container.active .newbankacc-card.alt .button-container {
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .title_bank_acc,
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .input-container,
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .button-container {
             left: 0;
             opacity: 1;
             visibility: visible;
             transition: .3s ease;
         }
 
-        .newbankacc-container.active .newbankacc-card.alt .title_bank_acc {
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .title_bank_acc {
             transition-delay: .3s;
         }
 
-        .newbankacc-container.active .newbankacc-card.alt .input-container {
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .input-container {
             transition-delay: .4s;
         }
 
-            .newbankacc-container.active .newbankacc-card.alt .input-container:nth-child(2) {
+            .newbankacc-container.active .newbankacc-card.newbankacc-alt .input-container:nth-child(2) {
                 transition-delay: .5s;
             }
 
-            .newbankacc-container.active .newbankacc-card.alt .input-container:nth-child(3) {
+            .newbankacc-container.active .newbankacc-card.newbankacc-alt .input-container:nth-child(3) {
                 transition-delay: .6s;
             }
 
-        .newbankacc-container.active .newbankacc-card.alt .button-container {
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .button-container {
             transition-delay: .7s;
         }
 
@@ -83,6 +79,7 @@
     display: inline-block;
     margin: 16px;
     min-height: 275px;
+    width: 90%;
     /* Title */
     /* Inputs */
     /* Button */
@@ -261,7 +258,7 @@
                 color: #bababa;
             }
 
-    .newbankacc-card.alt {
+    .newbankacc-card.newbankacc-alt {
         position: absolute;
         top: 20px;
         right: -35px;
@@ -279,7 +276,7 @@
         /* Button */
     }
 
-        .newbankacc-card.alt .toggle {
+        .newbankacc-card.newbankacc-alt .toggle {
             position: absolute;
             background: #ed2553;
             width: 70px;
@@ -293,8 +290,8 @@
             cursor: pointer;
         }
 
-            .newbankacc-card.alt .toggle:before {
-                content: '\f040';
+            .newbankacc-card.newbankacc-alt .toggle:before {
+                content: '\f067';
                 display: inline-block;
                 font: normal normal normal 14px/1 FontAwesome;
                 font-size: inherit;
@@ -305,21 +302,21 @@
                 transform: translate(0, 0);
             }
 
-        .newbankacc-card.alt .title_bank_acc,
-        .newbankacc-card.alt .input-container,
-        .newbankacc-card.alt .button-container {
+        .newbankacc-card.newbankacc-alt .title_bank_acc,
+        .newbankacc-card.newbankacc-alt .input-container,
+        .newbankacc-card.newbankacc-alt .button-container {
             left: 100px;
             opacity: 0;
             visibility: hidden;
         }
 
-        .newbankacc-card.alt .title_bank_acc {
+        .newbankacc-card.newbankacc-alt .title_bank_acc {
             position: relative;
             border-color: #ffffff;
             color: #ffffff;
         }
 
-            .newbankacc-card.alt .title_bank_acc .close {
+            .newbankacc-card.newbankacc-alt .title_bank_acc .close {
                 cursor: pointer;
                 position: absolute;
                 top: 0;
@@ -330,49 +327,49 @@
                 font-weight: 400;
             }
 
-                .newbankacc-card.alt .title_bank_acc .close:before {
+                .newbankacc-card.newbankacc-alt .title_bank_acc .close:before {
                     content: '\00d7';
                 }
 
-        .newbankacc-card.alt .input-container input {
+        .newbankacc-card.newbankacc-alt .input-container input {
             color: #ffffff;
         }
 
-            .newbankacc-card.alt .input-container input:focus ~ label {
+            .newbankacc-card.newbankacc-alt .input-container input:focus ~ label {
                 color: #ffffff;
             }
 
-            .newbankacc-card.alt .input-container input:focus ~ .bar:before, .newbankacc-card.alt .input-container input:focus ~ .bar:after {
+            .newbankacc-card.newbankacc-alt .input-container input:focus ~ .bar:before, .newbankacc-card.newbankacc-alt .input-container input:focus ~ .bar:after {
                 background: #ffffff;
             }
 
-            .newbankacc-card.alt .input-container input:valid ~ label {
+            .newbankacc-card.newbankacc-alt .input-container input:valid ~ label {
                 color: #ffffff;
             }
 
-        .newbankacc-card.alt .input-container label {
+        .newbankacc-card.newbankacc-alt .input-container label {
             color: rgba(255, 255, 255, 0.8);
         }
 
-        .newbankacc-card.alt .input-container .bar {
+        .newbankacc-card.newbankacc-alt .input-container .bar {
             background: rgba(255, 255, 255, 0.8);
         }
 
-        .newbankacc-card.alt .button-container button {
+        .newbankacc-card.newbankacc-alt .button-container button {
             width: 100%;
             background: #ffffff;
             border-color: #ffffff;
         }
 
-            .newbankacc-card.alt .button-container button span {
+            .newbankacc-card.newbankacc-alt .button-container button span {
                 color: #ed2553;
             }
 
-            .newbankacc-card.alt .button-container button:hover {
+            .newbankacc-card.newbankacc-alt .button-container button:hover {
                 background: rgba(255, 255, 255, 0.9);
             }
 
-            .newbankacc-card.alt .button-container button:active:before, .newbankacc-card.alt .button-container button:focus:before {
+            .newbankacc-card.newbankacc-alt .button-container button:active:before, .newbankacc-card.newbankacc-alt .button-container button:focus:before {
                 display: none;
             }
 

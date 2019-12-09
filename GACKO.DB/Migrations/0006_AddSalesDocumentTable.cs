@@ -11,7 +11,7 @@ namespace GACKO.DB.Migrations
             Create.Table(TableName)
                 .WithColumn("Id").AsInt32().NotNullable().PrimaryKey()
                 .WithColumn("Name").AsString().NotNullable()
-                .WithColumn("FilePath").AsString().NotNullable()
+                .WithColumn("File").AsBinary().NotNullable()
                 .WithColumn("ExpenseId").AsInt32().NotNullable();
 
             Create.ForeignKey().FromTable(TableName)

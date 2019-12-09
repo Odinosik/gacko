@@ -8,7 +8,7 @@ namespace GACKO.Services.SalesDocument
     {
         Task<int> Create(SalesDocumentForm form);
         Task<SalesDocumentModel> Get(int id);
-        Task<IList<SalesDocumentModel>> GetAll();
+        Task<IList<SalesDocumentModel>> GetAll(int expenseId);
         Task<int> Update(SalesDocumentForm form);
         Task<int> Delete(int id);
     }

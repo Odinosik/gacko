@@ -1,103 +1,93 @@
-﻿body {
-    background: #e9e9e9;
-    color: #666666;
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
-    font-size: 14px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* Container */
-.login-container {
+﻿.editbankacc-container {
     position: relative;
-    max-width: 460px;
-    width: 100%;
-    margin: 0 auto 100px;
+    width: 400px;
+    margin: 0 auto 0 auto;
+    display: inline-block;
 }
 
-    .login-container.active .card:first-child {
+    .editbankacc-container.active .editbankacc-card:first-child {
         background: #f2f2f2;
-        margin: 0 15px;
     }
 
-    .login-container.active .card:nth-child(2) {
+    .editbankacc-container.active .editbankacc-card:nth-child(2) {
         background: #fafafa;
-        margin: 0 10px;
     }
 
-    .login-container.active .card.alt {
-        top: 20px;
-        right: 0;
+    .editbankacc-container.active .editbankacc-card.editbankacc-alt {
+        top: 10px;
+        right: -15px;
         width: 100%;
-        min-width: 100%;
         height: auto;
+        margin-left: 20px;
         border-radius: 5px;
         padding: 60px 0 40px;
         overflow: hidden;
     }
 
-        .login-container.active .card.alt .toggle {
+        .editbankacc-container.active .editbankacc-card.editbankacc-alt .toggle {
             position: absolute;
-            top: 40px;
-            right: -70px;
             box-shadow: none;
-            -webkit-transform: scale(10);
-            transform: scale(10);
+            -webkit-transform: scale(20);
+            transform: scale(20);
             transition: -webkit-transform .3s ease;
             transition: transform .3s ease;
             transition: transform .3s ease, -webkit-transform .3s ease;
         }
 
-            .login-container.active .card.alt .toggle:before {
+            .editbankacc-container.active .editbankacc-card.editbankacc-alt .toggle:before {
                 content: '';
             }
 
-        .login-container.active .card.alt .title,
-        .login-container.active .card.alt .input-container,
-        .login-container.active .card.alt .button-container {
+        .editbankacc-container.active .editbankacc-card.editbankacc-alt .title_bank_acc,
+        .editbankacc-container.active .editbankacc-card.editbankacc-alt .input-container,
+        .editbankacc-container.active .editbankacc-card.editbankacc-alt .button-container {
             left: 0;
             opacity: 1;
             visibility: visible;
             transition: .3s ease;
         }
 
-        .login-container.active .card.alt .title {
+        .editbankacc-container.active .editbankacc-card.editbankacc-alt .title_bank_acc {
             transition-delay: .3s;
         }
 
-        .login-container.active .card.alt .input-container {
+        .editbankacc-container.active .editbankacc-card.editbankacc-alt .input-container {
             transition-delay: .4s;
         }
 
-            .login-container.active .card.alt .input-container:nth-child(2) {
+            .editbankacc-container.active .editbankacc-card.editbankacc-alt .input-container:nth-child(2) {
                 transition-delay: .5s;
             }
 
-            .login-container.active .card.alt .input-container:nth-child(3) {
+            .editbankacc-container.active .editbankacc-card.editbankacc-alt .input-container:nth-child(3) {
                 transition-delay: .6s;
             }
 
-        .login-container.active .card.alt .button-container {
+        .editbankacc-container.active .editbankacc-card.editbankacc-alt .button-container {
             transition-delay: .7s;
         }
 
-/* Card */
-.card {
-    position: relative;
+/* editbankacc-card */
+.editbankacc-card {
+    position: absolute;
     background: #ffffff;
     border-radius: 5px;
-    padding: 60px 0 40px 0;
+    padding: 60px 60px 40px 60px;
     box-sizing: border-box;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: .3s ease;
+    display: inline-block;
+    margin: 16px;
+    min-height: 275px;
+    width: 90%;
     /* Title */
     /* Inputs */
     /* Button */
     /* Footer */
-    /* Alt Card */
+    /* Alt editbankacc-card */
 }
 
-    .card:first-child {
+    .editbankacc-card:first-child {
         background: #fafafa;
         height: 10px;
         border-radius: 5px 5px 0 0;
@@ -105,24 +95,41 @@
         padding: 0;
     }
 
-    .card .title {
+    .editbankacc-card .title_bank_acc {
         position: relative;
         z-index: 1;
         border-left: 5px solid #ed2553;
         margin: 0 0 35px;
         padding: 10px 0 10px 50px;
         color: #ed2553;
-        font-size: 32px;
+        font-size: 16px;
         font-weight: 600;
         text-transform: uppercase;
     }
 
-    .card .input-container {
+    .editbankacc-card .iban_bank_account {
+        position: relative;
+        z-index: 1;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    .editbankacc-card .balance_bank_account {
+        position: center;
+        z-index: 1;
+        font-size: 24px;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding: 10px;
+    }
+
+    .editbankacc-card .input-container {
         position: relative;
         margin: 0 60px 50px;
     }
 
-        .card .input-container input {
+        .editbankacc-card .input-container input {
             outline: none;
             z-index: 1;
             position: relative;
@@ -135,23 +142,23 @@
             font-weight: 400;
         }
 
-            .card .input-container input:focus ~ label {
+            .editbankacc-card .input-container input:focus ~ label {
                 color: #9d9d9d;
                 -webkit-transform: translate(-12%, -50%) scale(0.75);
                 transform: translate(-12%, -50%) scale(0.75);
             }
 
-            .card .input-container input:focus ~ .bar:before, .card .input-container input:focus ~ .bar:after {
+            .editbankacc-card .input-container input:focus ~ .bar:before, .editbankacc-card .input-container input:focus ~ .bar:after {
                 width: 50%;
             }
 
-            .card .input-container input:valid ~ label {
+            .editbankacc-card .input-container input:valid ~ label {
                 color: #9d9d9d;
                 -webkit-transform: translate(-12%, -50%) scale(0.75);
                 transform: translate(-12%, -50%) scale(0.75);
             }
 
-        .card .input-container label {
+        .editbankacc-card .input-container label {
             position: absolute;
             top: 0;
             left: 0;
@@ -162,7 +169,7 @@
             transition: 0.2s ease;
         }
 
-        .card .input-container .bar {
+        .editbankacc-card .input-container .bar {
             position: absolute;
             left: 0;
             bottom: 0;
@@ -171,7 +178,7 @@
             height: 1px;
         }
 
-            .card .input-container .bar:before, .card .input-container .bar:after {
+            .editbankacc-card .input-container .bar:before, .editbankacc-card .input-container .bar:after {
                 content: '';
                 position: absolute;
                 background: #ed2553;
@@ -180,29 +187,29 @@
                 transition: .2s ease;
             }
 
-            .card .input-container .bar:before {
+            .editbankacc-card .input-container .bar:before {
                 left: 50%;
             }
 
-            .card .input-container .bar:after {
+            .editbankacc-card .input-container .bar:after {
                 right: 50%;
             }
 
-    .card .button-container {
-        margin: 0 60px;
+    .editbankacc-card .button-container {
+        margin: 0 30px;
         text-align: center;
     }
 
-        .card .button-container button {
+        .editbankacc-card .button-container button {
             outline: 0;
             cursor: pointer;
             position: relative;
             display: inline-block;
             background: 0;
-            width: 240px;
+            width: 100px;
             border: 2px solid #e3e3e3;
-            padding: 20px 0;
-            font-size: 24px;
+            padding: 5px 0;
+            font-size: 12px;
             font-weight: 600;
             line-height: 1;
             text-transform: uppercase;
@@ -210,68 +217,68 @@
             transition: .3s ease;
         }
 
-            .card .button-container button span {
+            .editbankacc-card .button-container button span {
                 position: relative;
                 z-index: 1;
                 color: #ddd;
                 transition: .3s ease;
             }
 
-            .card .button-container button:before {
+            .editbankacc-card .button-container button:before {
                 content: '';
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 display: block;
                 background: #ed2553;
-                width: 30px;
-                height: 30px;
+                width: 15px;
+                height: 15px;
                 border-radius: 100%;
                 margin: -15px 0 0 -15px;
                 opacity: 0;
                 transition: .3s ease;
             }
 
-            .card .button-container button:hover, .card .button-container button:active, .card .button-container button:focus {
+            .editbankacc-card .button-container button:hover, .editbankacc-card .button-container button:active, .editbankacc-card .button-container button:focus {
                 border-color: #ed2553;
             }
 
-                .card .button-container button:hover span, .card .button-container button:active span, .card .button-container button:focus span {
+                .editbankacc-card .button-container button:hover span, .editbankacc-card .button-container button:active span, .editbankacc-card .button-container button:focus span {
                     color: #ed2553;
                 }
 
-                .card .button-container button:active span, .card .button-container button:focus span {
+                .editbankacc-card .button-container button:active span, .editbankacc-card .button-container button:focus span {
                     color: #ffffff;
                 }
 
-                .card .button-container button:active:before, .card .button-container button:focus:before {
+                .editbankacc-card .button-container button:active:before, .editbankacc-card .button-container button:focus:before {
                     opacity: 1;
                     -webkit-transform: scale(10);
                     transform: scale(10);
                 }
 
-    .card .login-footer {
+    .editbankacc-card .footer {
         margin: 40px 0 0;
         color: #d3d3d3;
-        font-size: 16px;
+        font-size: 24px;
         font-weight: 300;
         text-align: center;
     }
 
-        .card .login-footer a {
+        .editbankacc-card .footer a {
             color: inherit;
             text-decoration: none;
             transition: .3s ease;
         }
 
-            .card .login-footer a:hover {
+            .editbankacc-card .footer a:hover {
                 color: #bababa;
             }
 
-    .card.alt {
+    .editbankacc-card.editbankacc-alt {
         position: absolute;
-        top: 40px;
-        right: -70px;
+        top: 20px;
+        right: -35px;
         z-index: 10;
         width: 140px;
         height: 140px;
@@ -286,21 +293,21 @@
         /* Button */
     }
 
-        .card.alt .toggle {
-            position: relative;
+        .editbankacc-card.editbankacc-alt .toggle {
+            position: absolute;
             background: #ed2553;
-            width: 140px;
-            height: 140px;
+            width: 70px;
+            height: 70px;
             border-radius: 100%;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
             color: #ffffff;
-            font-size: 58px;
-            line-height: 140px;
+            font-size: 29px;
+            line-height: 70px;
             text-align: center;
             cursor: pointer;
         }
 
-            .card.alt .toggle:before {
+            .editbankacc-card.editbankacc-alt .toggle:before {
                 content: '\f040';
                 display: inline-block;
                 font: normal normal normal 14px/1 FontAwesome;
@@ -312,74 +319,98 @@
                 transform: translate(0, 0);
             }
 
-        .card.alt .title,
-        .card.alt .input-container,
-        .card.alt .button-container {
+        .editbankacc-card.editbankacc-alt .title_bank_acc,
+        .editbankacc-card.editbankacc-alt .input-container,
+        .editbankacc-card.editbankacc-alt .button-container {
             left: 100px;
             opacity: 0;
             visibility: hidden;
         }
 
-        .card.alt .title {
+        .editbankacc-card.editbankacc-alt .title_bank_acc {
             position: relative;
             border-color: #ffffff;
             color: #ffffff;
         }
 
-            .card.alt .title .close {
+            .editbankacc-card.editbankacc-alt .title_bank_acc .close {
                 cursor: pointer;
                 position: absolute;
+                font: normal normal normal 14px/1 FontAwesome;
                 top: 0;
-                right: 60px;
+                right: 40px;
                 display: inline;
                 color: #ffffff;
                 font-size: 58px;
                 font-weight: 400;
             }
 
-                .card.alt .title .close:before {
+                .editbankacc-card.editbankacc-alt .title_bank_acc .close:before {
                     content: '\00d7';
                 }
 
-        .card.alt .input-container input {
+            .editbankacc-card.editbankacc-alt .title_bank_acc .bankacc-delete {
+                cursor: pointer;
+                position: absolute;
+                font: normal normal normal 14px/1 FontAwesome;
+                top: 8px;
+                right: 80px;
+                display: inline;
+                color: #ffffff;
+                opacity: 60%;
+                font-size: 40px;
+                font-weight: 400;
+                background-color: Transparent;
+                background-repeat: no-repeat;
+                border: none;
+                cursor: pointer;
+                overflow: hidden;
+                outline: none;
+            }
+
+                .editbankacc-card.editbankacc-alt .title_bank_acc .bankacc-delete:before {
+                    content: '\f014';
+                }
+
+        .editbankacc-card.editbankacc-alt .input-container input {
             color: #ffffff;
         }
 
-            .card.alt .input-container input:focus ~ label {
+            .editbankacc-card.editbankacc-alt .input-container input:focus ~ label {
                 color: #ffffff;
             }
 
-            .card.alt .input-container input:focus ~ .bar:before, .card.alt .input-container input:focus ~ .bar:after {
+            .editbankacc-card.editbankacc-alt .input-container input:focus ~ .bar:before, .editbankacc-card.editbankacc-alt .input-container input:focus ~ .bar:after {
                 background: #ffffff;
             }
 
-            .card.alt .input-container input:valid ~ label {
+            .editbankacc-card.editbankacc-alt .input-container input:valid ~ label {
                 color: #ffffff;
             }
 
-        .card.alt .input-container label {
+        .editbankacc-card.editbankacc-alt .input-container label {
             color: rgba(255, 255, 255, 0.8);
         }
 
-        .card.alt .input-container .bar {
+        .editbankacc-card.editbankacc-alt .input-container .bar {
             background: rgba(255, 255, 255, 0.8);
         }
 
-        .card.alt .button-container button {
+        .editbankacc-card.editbankacc-alt .button-container button {
             width: 100%;
             background: #ffffff;
             border-color: #ffffff;
         }
 
-            .card.alt .button-container button span {
+            .editbankacc-card.editbankacc-alt .button-container button span {
                 color: #ed2553;
             }
 
-            .card.alt .button-container button:hover {
+            .editbankacc-card.editbankacc-alt .button-container button:hover {
                 background: rgba(255, 255, 255, 0.9);
             }
 
-            .card.alt .button-container button:active:before, .card.alt .button-container button:focus:before {
+            .editbankacc-card.editbankacc-alt .button-container button:active:before, .editbankacc-card.editbankacc-alt .button-container button:focus:before {
                 display: none;
             }
 
