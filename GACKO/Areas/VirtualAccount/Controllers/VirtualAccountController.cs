@@ -13,6 +13,7 @@ using GACKO.Services.BankAccount;
 using GACKO.Services.Subscription;
 using GACKO.Services.Expense;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace GACKO.Areas.VirtualAccount.Controllers
 {
@@ -28,7 +29,8 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         public VirtualAccountController(UserManager<DaoUser> userManager, 
             IVirtualAccountService virtualAccountService, 
             ISubscriptionService subscriptionService, 
-            IExpenseService expenseService) : base(userManager)
+            IExpenseService expenseService, 
+            IHttpContextAccessor contextAccessor) : base(userManager, contextAccessor)
         {
             _userManager = userManager;
             _virtualAccountService = virtualAccountService;
@@ -178,8 +180,6 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                 }
             });
             */
-
-            var a = _virtualAccountService.GetAll(bankAccountId).Result.FirstOrDefault();
 
             var viewModel = new VirtualAccountViewModel()
             {

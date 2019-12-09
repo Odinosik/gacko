@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using GACKO.DB.DaoModels;
 using GACKO.Shared;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace GACKO.Controllers
@@ -12,11 +13,16 @@ namespace GACKO.Controllers
     [Authorize]
     public class BaseController : Controller
     {
-        public BaseController(UserManager<DaoUser> userManager)
+        public BaseController(UserManager<DaoUser> userManager, IHttpContextAccessor contextAccessor)
         {
-            System.Security.Claims.ClaimsPrincipal currentUser = HttpContext.User;
-            var user = userManager.GetUserAsync(User).Result;
-            UserContext.UserId = user.Id;
+            if (contextAccessor.HttpContext.User != null)
+            {
+                var user = userManager.GetUserAsync(contextAccessor.HttpContext.User).Result;
+                if (user != null)
+                {
+                    UserContext.UserId = user.Id;
+                }
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

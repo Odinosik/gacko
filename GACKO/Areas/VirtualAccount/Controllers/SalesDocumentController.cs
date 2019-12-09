@@ -24,7 +24,8 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         public SalesDocumentController(UserManager<DaoUser> userManager,
             ISalesDocumentService salesDocumentService,
             IExpenseService expenseService,
-            IVirtualAccountService virtualAccountService) : base(userManager)
+            IVirtualAccountService virtualAccountService,
+            IHttpContextAccessor contextAccessor) : base(userManager, contextAccessor)
         {
             _userManager = userManager;
             _salesDocumentService = salesDocumentService;

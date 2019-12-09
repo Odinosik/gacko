@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace GACKO.Areas.User.Controllers
 {
@@ -22,7 +23,8 @@ namespace GACKO.Areas.User.Controllers
         public LoginController(UserManager<DaoUser> userManager,
             SignInManager<DaoUser> signInManager,
             IUserService usersService,
-            IMapper mapper)
+            IMapper mapper,
+            IHttpContextAccessor contextAccessor) : base(userManager, contextAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;

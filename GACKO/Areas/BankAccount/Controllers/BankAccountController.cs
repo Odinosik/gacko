@@ -5,6 +5,8 @@ using GACKO.Shared.Models.BankAccount;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using GACKO.Shared;
+using Microsoft.AspNetCore.Http;
 
 namespace GACKO.Areas.BankAccount.Controllers
 {
@@ -14,7 +16,9 @@ namespace GACKO.Areas.BankAccount.Controllers
         private readonly UserManager<DaoUser> _userManager;
         private readonly IBankAccountService _bankAccountService;
 
-        public BankAccountController(UserManager<DaoUser> userManager, IBankAccountService bankAccountService) : base(userManager)
+        public BankAccountController(UserManager<DaoUser> userManager, 
+            IBankAccountService bankAccountService,
+            IHttpContextAccessor contextAccessor) : base(userManager, contextAccessor)
         {
             _userManager = userManager;
             _bankAccountService = bankAccountService;
@@ -24,7 +28,8 @@ namespace GACKO.Areas.BankAccount.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var bankAccs = await _bankAccountService.GetAll();
+            return View("Index", await _bankAccountService.GetAll());
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(BankAccountForm bankAccount)

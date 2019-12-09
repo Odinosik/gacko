@@ -54,6 +54,8 @@ namespace GACKO
                 .AddSignInManager<SignInManager<DaoUser>>()
                 .AddEntityFrameworkStores<GackoDbContext>();
 
+            services.AddHttpContextAccessor();
+
             services.AddControllersWithViews();
 
             services.AddMvcCore(options =>
