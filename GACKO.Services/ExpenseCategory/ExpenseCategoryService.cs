@@ -1,6 +1,7 @@
 ﻿using GACKO.Repositories.ExpenseCategory;
 using GACKO.Shared.Models.ExpenseCategory;
 using GACKO.Shared.Models.Subscription;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GACKO.Services.ExpenseCategory
@@ -22,6 +23,11 @@ namespace GACKO.Services.ExpenseCategory
         public Task<ExpenseCategoryModel> Get(int id)
         {
             return _expensecategoryRepository.Get(id);
+        }
+
+        public Task<IList<ExpenseCategoryModel>> GetAll()
+        {
+            return _expensecategoryRepository.GetAll();
         }
 
         public Task<int> Update(ExpenseCategoryForm form)

@@ -52,6 +52,11 @@ namespace GACKO.Repositories.ExpenseCategory
             return _mapper.Map<ExpenseCategoryModel>(await _context.ExpenseCategories.FirstOrDefaultAsync(_ => _.Id == id));
         }
 
+        public async Task<IList<ExpenseCategoryModel>> GetAll()
+        {
+            return _mapper.Map<List<ExpenseCategoryModel>>(await _context.ExpenseCategories.ToListAsync());
+        }
+
         public async Task<int> Update(ExpenseCategoryForm form)
         {
             try
