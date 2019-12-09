@@ -7,6 +7,8 @@ using GACKO.Shared.Models.VirtualAccount;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
+using GACKO.Shared.Models.Subscription;
 
 namespace GACKO.Areas.VirtualAccount.Controllers
 {
@@ -25,15 +27,13 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         [HttpGet]
         public IActionResult Index(int bankAccountId)
         {
-
-            var virtualAccs =  _virtualAccountService.GetAll(bankAccountId).Result;
-
-            virtualAccs.Add(new VirtualAccountModel()
+            var virtualAccs = new Dictionary<int, VirtualAccountModel>();
+            virtualAccs.Add(0, new VirtualAccountModel()
             {
                 Id = 0,
                 Name = "Jedzenie",
                 Balance = 200.00,
-                Expenses = new List<ExpenseModel>() 
+                Expenses = new List<ExpenseModel>()
                 {
                     new ExpenseModel()
                     {
@@ -55,10 +55,25 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                             Name = "Jedzenie"
                         }
                     }
+                },
+                Subscriptions = new List<SubscriptionModel>()
+                {
+                    new SubscriptionModel()
+                    {
+                        Id = 0,
+                        Amount = 15.0,
+                        Name = "Disney"
+                    },
+                    new SubscriptionModel()
+                    {
+                        Id = 1,
+                        Amount = 50.0,
+                        Name = "CDA.PL"
+                    }
                 }
             });
 
-            virtualAccs.Add(new VirtualAccountModel()
+            virtualAccs.Add(1, new VirtualAccountModel()
             {
                 Id = 1,
                 Name = "Meble",
@@ -85,10 +100,25 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                             Name = "Meble"
                         }
                     }
+                },
+                Subscriptions = new List<SubscriptionModel>()
+                {
+                    new SubscriptionModel()
+                    {
+                        Id = 2,
+                        Amount = 15.0,
+                        Name = "Polsat"
+                    },
+                    new SubscriptionModel()
+                    {
+                        Id = 3,
+                        Amount = 50.0,
+                        Name = "Cartoon Network"
+                    }
                 }
             });
 
-            virtualAccs.Add(new VirtualAccountModel()
+            virtualAccs.Add(2, new VirtualAccountModel()
             {
                 Id = 2,
                 Name = "Podatki",
@@ -115,17 +145,38 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                             Name = "Podatki"
                         }
                     }
+                },
+                Subscriptions = new List<SubscriptionModel>()
+                {
+                    new SubscriptionModel()
+                    {
+                        Id = 4,
+                        Amount = 15.0,
+                        Name = "Netflix"
+                    },
+                    new SubscriptionModel()
+                    {
+                        Id = 5,
+                        Amount = 50.0,
+                        Name = "HBO"
+                    }
                 }
             });
-            return View("Index", virtualAccs);
+
+            var viewModel = new VirtualAccountViewModel()
+            {
+                SelectedVirtualAccount = virtualAccs[0],
+                VirtualAccounts = virtualAccs.Select(_ => _.Value)
+            };
+
+            return View("Index", viewModel);
         }
 
         [HttpGet]
         public IActionResult ChangeVirtualAccActive(int bankAccId, int virtualAccId)
         {
-            //var virtualAccs = _virtualAccountService.GetAll(bankAccId);
-            var virtualAccs = new List<VirtualAccountModel>();
-            virtualAccs.Add(new VirtualAccountModel()
+            var virtualAccs = new Dictionary<int, VirtualAccountModel>();
+            virtualAccs.Add(0, new VirtualAccountModel()
             {
                 Id = 0,
                 Name = "Jedzenie",
@@ -152,10 +203,25 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                             Name = "Jedzenie"
                         }
                     }
+                },
+                Subscriptions = new List<SubscriptionModel>()
+                {
+                    new SubscriptionModel()
+                    {
+                        Id = 0,
+                        Amount = 15.0,
+                        Name = "Disney"
+                    },
+                    new SubscriptionModel()
+                    {
+                        Id = 1,
+                        Amount = 50.0,
+                        Name = "CDA.PL"
+                    }
                 }
             });
 
-            virtualAccs.Add(new VirtualAccountModel()
+            virtualAccs.Add(1, new VirtualAccountModel()
             {
                 Id = 1,
                 Name = "Meble",
@@ -182,10 +248,25 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                             Name = "Meble"
                         }
                     }
+                },
+                Subscriptions = new List<SubscriptionModel>()
+                {
+                    new SubscriptionModel()
+                    {
+                        Id = 2,
+                        Amount = 15.0,
+                        Name = "Polsat"
+                    },
+                    new SubscriptionModel()
+                    {
+                        Id = 3,
+                        Amount = 50.0,
+                        Name = "Cartoon Network"
+                    }
                 }
             });
 
-            virtualAccs.Add(new VirtualAccountModel()
+            virtualAccs.Add(2, new VirtualAccountModel()
             {
                 Id = 2,
                 Name = "Podatki",
@@ -212,9 +293,31 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                             Name = "Podatki"
                         }
                     }
+                },
+                Subscriptions = new List<SubscriptionModel>()
+                {
+                    new SubscriptionModel()
+                    {
+                        Id = 4,
+                        Amount = 15.0,
+                        Name = "Netflix"
+                    },
+                    new SubscriptionModel()
+                    {
+                        Id = 5,
+                        Amount = 50.0,
+                        Name = "HBO"
+                    }
                 }
             });
-            return View("Index", virtualAccs);
+
+            var viewModel = new VirtualAccountViewModel()
+            {
+                SelectedVirtualAccount = virtualAccs[virtualAccId],
+                VirtualAccounts = virtualAccs.Select(_ => _.Value)
+            };
+
+            return View("Index", viewModel);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using GACKO.Shared.Models.BankAccount;
 using GACKO.Shared.Models.Expense;
 using System.Collections.Generic;
+using GACKO.Shared.Models.Subscription;
 
 namespace GACKO.Shared.Models.VirtualAccount
 {
@@ -14,5 +15,6 @@ namespace GACKO.Shared.Models.VirtualAccount
         public int BankAccountId { get; set; }
         public BankAccountModel BankAccount { get; set; }
         public IEnumerable<ExpenseModel> Expenses { get; set; }
+        public IEnumerable<SubscriptionModel> Subscriptions { get; set; }
     }
 }

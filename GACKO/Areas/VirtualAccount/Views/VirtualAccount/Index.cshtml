@@ -1,5 +1,6 @@
-﻿@using GACKO.Shared.Models.VirtualAccount
-@model List<VirtualAccountModel>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using GACKO.Shared.Models.VirtualAccount
+@model VirtualAccountViewModel
 @{
     Layout = "_Layout";
 }
@@ -17,17 +18,30 @@
                     Virtual Accounts
                 </p>
                 <ul class="menu-list">
-                    @foreach (var virtualAccount in Model)
+                    @foreach (var virtualAccount in Model.VirtualAccounts)
                     {
                         <li>
-                            <a @*class="is-active"*@
-                               asp-area="VirtualAccount"
-                               asp-controller="VirtualAccount"
-                               asp-action="ChangeVirtualAccActive"
-                               asp-route-bankAccId="@virtualAccount.BankAccountId"
-                               asp-route-virtualAccId="@virtualAccount.Id">
-                                @virtualAccount.Name
-                            </a>
+                            @if (virtualAccount.Id == Model.SelectedVirtualAccount.Id)
+                            {
+                                <a class="is-active"
+                                   asp-area="VirtualAccount"
+                                   asp-controller="VirtualAccount"
+                                   asp-action="ChangeVirtualAccActive"
+                                   asp-route-bankAccId="@virtualAccount.BankAccountId"
+                                   asp-route-virtualAccId="@virtualAccount.Id">
+                                    @virtualAccount.Name
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-area="VirtualAccount"
+                                   asp-controller="VirtualAccount"
+                                   asp-action="ChangeVirtualAccActive"
+                                   asp-route-bankAccId="@virtualAccount.BankAccountId"
+                                   asp-route-virtualAccId="@virtualAccount.Id">
+                                    @virtualAccount.Name
+                                </a>
+                            }
                         </li>
                     }
                 </ul>
@@ -38,7 +52,7 @@
             <div class="level">
                 <div class="level-left">
                     <div class="level-item">
-                        <div class="title">@Model.FirstOrDefault().Name  - @Model.FirstOrDefault().Balance.ToString("C0")</div>
+                        <div class="title">@Model.SelectedVirtualAccount.Name  - @Model.SelectedVirtualAccount.Balance.ToString("C0")</div>
                     </div>
                 </div>
                 <div class="level-right">
@@ -161,20 +175,20 @@
                 <div class="column is-6">
                     <div class="panel">
                         <p class="panel-heading">
-                            Expenses: Daily - $700
+                            Expenses: @Model.SelectedVirtualAccount.Expenses.Sum(_ => _.Amount).ToString("C0")
                         </p>
                         <div class="panel-block">
-                            @Html.Partial("_ExpenseList", @Model.FirstOrDefault().Expenses)
+                            @Html.Partial("_ExpenseList", @Model.SelectedVirtualAccount.Expenses)
                         </div>
                     </div>
                 </div>
                 <div class="column is-6">
                     <div class="panel">
                         <p class="panel-heading">
-                            Subscriptions: Daily - $200
+                            Subscriptions: @Model.SelectedVirtualAccount.Subscriptions.Sum(_ => _.Amount).ToString("C0")
                         </p>
                         <div class="panel-block">
-                            @Html.Partial("_ExpenseList", @Model.FirstOrDefault().Expenses)
+                            @Html.Partial("_SubscriptionList", @Model.SelectedVirtualAccount.Subscriptions)
                         </div>
                     </div>
                 </div>
