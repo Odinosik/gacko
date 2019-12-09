@@ -26,9 +26,9 @@ namespace GACKO.Services.SalesDocument
             return _salesDocumentRepository.Get(id);
         }
 
-        public Task<IList<SalesDocumentModel>> GetAll()
+        public Task<IList<SalesDocumentModel>> GetAll(int expenseId)
         {
-            return _salesDocumentRepository.GetAll();
+            return _salesDocumentRepository.GetAll(expenseId);
         }
 
         public Task<int> Update(SalesDocumentForm form)
