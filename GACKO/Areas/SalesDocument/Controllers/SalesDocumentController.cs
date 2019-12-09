@@ -20,9 +20,9 @@ namespace GACKO.Areas.SalesDocument.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int expenseId)
         {
-            var salesDocs = await _salesDocumentService.GetAll();
+            var salesDocs = await _salesDocumentService.GetAll(expenseId);
 
             salesDocs.Add(new SalesDocumentModel()
             {
