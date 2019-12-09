@@ -1,6 +1,8 @@
 ﻿@model GACKO.Shared.Models.ExpenseCategory.ExpenseCategoryForm
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
+    Layout = "_Layout";
     ViewData["Title"] = "Create";
 }
 
@@ -27,7 +29,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
