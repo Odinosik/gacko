@@ -35,7 +35,7 @@
         @using (Html.BeginForm("Index", "VirtualAccount", new { area = "VirtualAccount" }, FormMethod.Get))
         {
             <div class="input-container" style="display: none;">
-                <input id="#{label}" required="required" name="bankAccId" value="@Model.Id" />
+                <input id="#{label}" required="required" name="bankAccountId" value="@Model.Id" />
             </div>
             <div class="button-container">
                 <button><span>Go</span></button>
@@ -75,7 +75,7 @@
                 <div class="bar"></div>
             </div>
             <div class="input-container" style="display: none;">
-                <input id="#{label}" required="required" name="bankAccId" value="@Model.Id" />
+                <input id="#{label}" required="required" name="bankAccountId" value="@Model.Id" />
             </div>
             <div class="button-container">
                 <button><span>Go</span></button>
