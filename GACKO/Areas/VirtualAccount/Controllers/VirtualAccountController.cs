@@ -12,6 +12,7 @@ using GACKO.Shared.Models.Subscription;
 using GACKO.Services.BankAccount;
 using GACKO.Services.Subscription;
 using GACKO.Services.Expense;
+using System.Threading.Tasks;
 
 namespace GACKO.Areas.VirtualAccount.Controllers
 {
@@ -200,15 +201,21 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             {
                 BankAccountId = bankAccountId
             };
+
             return View("Create", bankAccountViewModel);
         }
 
         [HttpPost]
-        public IActionResult Create(VirtualAccountForm virtualAccount)
+        public async Task<IActionResult> Create(VirtualAccountForm virtualAccount)
         {
-            virtualAccount.BankAccountId = _bankAccountId;
-            _virtualAccountService.Create(virtualAccount);
-            return View("Index");
+             await _virtualAccountService.Create(virtualAccount);
+
+            var viewModel = new VirtualAccountViewModel()
+            {
+                SelectedVirtualAccount = _virtualAccountService.GetAll(virtualAccount.BankAccountId).Result.FirstOrDefault(),
+                VirtualAccounts = _virtualAccountService.GetAll(virtualAccount.BankAccountId).Result
+            };
+            return View("Index", viewModel);
         }
 
         [HttpGet]
