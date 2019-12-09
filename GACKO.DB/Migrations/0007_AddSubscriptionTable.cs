@@ -17,8 +17,6 @@ namespace GACKO.DB.Migrations
                 .WithColumn("FrequncyMonth").AsInt32().NotNullable()
                 .WithColumn("VirtualAccountId").AsInt32().NotNullable();
 
-
-
             Create.ForeignKey().FromTable(TableName)
                 .ForeignColumn("VirtualAccountId")
                 .ToTable("VirtualAccount").PrimaryColumn("Id")

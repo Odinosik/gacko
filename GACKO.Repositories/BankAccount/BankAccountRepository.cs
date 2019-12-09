@@ -40,7 +40,6 @@ namespace GACKO.Repositories.BankAccount
                 await _context.SaveChangesAsync();
                 return deletedEntry.Entity.Id;
             }
-
             catch (Exception e)
             {
                 throw new Exception("Failed to delete model.", e);
