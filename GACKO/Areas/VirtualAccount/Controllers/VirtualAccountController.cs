@@ -24,7 +24,10 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         private readonly IExpenseService _expenseService;
         public static int _bankAccountId;
 
-        public VirtualAccountController(UserManager<DaoUser> userManager, IVirtualAccountService virtualAccountService, ISubscriptionService subscriptionService, IExpenseService expenseService)
+        public VirtualAccountController(UserManager<DaoUser> userManager, 
+            IVirtualAccountService virtualAccountService, 
+            ISubscriptionService subscriptionService, 
+            IExpenseService expenseService) : base(userManager)
         {
             _userManager = userManager;
             _virtualAccountService = virtualAccountService;

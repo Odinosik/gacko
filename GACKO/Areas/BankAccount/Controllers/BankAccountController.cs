@@ -13,11 +13,13 @@ namespace GACKO.Areas.BankAccount.Controllers
     [Area("BankAccount")]
     public class BankAccountController : BaseController
     {
+        private readonly UserManager<DaoUser> _userManager;
         private readonly IBankAccountService _bankAccountService;
 
-        public BankAccountController(UserManager<DaoUser> userManager, IBankAccountService bankAccountService)
+        public BankAccountController(UserManager<DaoUser> userManager, IBankAccountService bankAccountService) : base(userManager)
         {
             _bankAccountService = bankAccountService;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -28,30 +30,8 @@ namespace GACKO.Areas.BankAccount.Controllers
         }
 
         [HttpPost]
-
-        public async Task<IActionResult> CreateBankAccount(BankAccountForm bankAcc)
-        {
-            await _bankAccountService.Create(bankAcc);
-            return View("Index");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> UpdateBankAccount(BankAccountForm bankAcc)
-        {
-            await _bankAccountService.Update(bankAcc);
-            return View("Index");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> DeActivate(BankAccountForm bankAcc)
-        {
-            await _bankAccountService.Update(bankAcc);
-            return View("Index");
-        }
-        [HttpPost]
         public async Task<IActionResult> Create(BankAccountForm bankAccount)
         {
-            bankAccount.UserId = UserContext.UserId;
             await _bankAccountService.Create(bankAccount);
             return View("Index", await _bankAccountService.GetAll());
         }
@@ -59,9 +39,6 @@ namespace GACKO.Areas.BankAccount.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(BankAccountForm bankAccount)
         {
-            System.Security.Claims.ClaimsPrincipal currentUser = this.User;
-            var user = await _userManager.GetUserAsync(User);
-            bankAccount.UserId = user.Id;
             await _bankAccountService.Update(bankAccount);
             return View("Index", await _bankAccountService.GetAll());
         }

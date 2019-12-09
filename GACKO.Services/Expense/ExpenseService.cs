@@ -24,16 +24,18 @@ namespace GACKO.Services.Expense
 
         public async Task<ExpenseModel> Get(int id)
         {
-            return await _expenseRepository.Get(id);
+            var expense = await _expenseRepository.Get(id);
+            expense.SalesDocuments = await _salesDocumentRepository.GetAll(expense.Id);
+            return expense;
         }
         public async Task<IList<ExpenseModel>> GetAll(int virtualAccountId)
         {
             var expenses = await _expenseRepository.GetAll(virtualAccountId);
             foreach (var expenseModel in expenses)
             {
-                expenseModel.SalesDocuments = await _salesDocumentRepository.GetAll();
+                expenseModel.SalesDocuments = await _salesDocumentRepository.GetAll(expenseModel.Id);
             }
-            return ;
+            return expenses;
         }
         public async Task<int> Update(ExpenseForm form)
         {

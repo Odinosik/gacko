@@ -3,6 +3,7 @@
     public class BankAccountForm
     {
         public int? Id { get; set; }
+        public string Name { get; set; }
         public string Iban { get; set; }
         public double Balance { get; set; }
         public int UserId { get; set; }

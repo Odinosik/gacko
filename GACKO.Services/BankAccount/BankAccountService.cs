@@ -17,6 +17,7 @@ namespace GACKO.Services.BankAccount
 
         public Task<int> Create(BankAccountForm form)
         {
+            form.UserId = UserContext.UserId;
             return _bankAccountRepository.Create(form);
         }
 
@@ -32,6 +33,7 @@ namespace GACKO.Services.BankAccount
 
         public Task<int> Update(BankAccountForm form)
         {
+            form.UserId = UserContext.UserId;
             return _bankAccountRepository.Update(form);
         }
 

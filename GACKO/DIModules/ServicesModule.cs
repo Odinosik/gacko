@@ -24,29 +24,28 @@ namespace GACKO.DIModules
                 .As<IUserService>()
                 .InstancePerLifetimeScope();
 
-            builder.Register(c => new BankAccountService(c.Resolve<IBankAccountRepository>()))
-                .As<IBankAccountService>()
+            builder.Register(c => new SalesDocumentService(c.Resolve<ISalesDocumentRepository>()))
+                .As<ISalesDocumentService>()
                 .InstancePerLifetimeScope();
 
-            builder.Register(c => new VirtualAccountService(c.Resolve<IVirtualAccountRepository>()))
-                .As<IVirtualAccountService>()
+            builder.Register(c => new ExpenseCategoryService(c.Resolve<IExpenseCategoryRepository>()))
+                .As<IExpenseCategoryService>()
+                .InstancePerLifetimeScope();
+
+            builder.Register(c => new ExpenseService(c.Resolve<IExpenseRepository>(), c.Resolve<ISalesDocumentRepository>()))
+                .As<IExpenseService>()
                 .InstancePerLifetimeScope();
 
             builder.Register(c => new SubscriptionService(c.Resolve<ISubscriptionRepository>()))
-               .As<ISubscriptionService>()
-               .InstancePerLifetimeScope();
+                .As<ISubscriptionService>()
+                .InstancePerLifetimeScope();
 
-            builder.Register(c => new ExpenseCategoryService(c.Resolve<IExpenseCategoryRepository>()))
-               .As<IExpenseCategoryService>()
-               .InstancePerLifetimeScope();
+            builder.Register(c => new VirtualAccountService(c.Resolve<IVirtualAccountRepository>(), c.Resolve<IExpenseService>()))
+                .As<IVirtualAccountService>()
+                .InstancePerLifetimeScope();
 
-            builder.Register(c => new ExpenseService(c.Resolve<IExpenseRepository>()))
-               .As<IExpenseService>()
-               .InstancePerLifetimeScope();
-
-            builder.Register(c => new SalesDocumentService(c.Resolve<ISalesDocumentRepository>()))
-               .As<ISalesDocumentService>()
-               .InstancePerLifetimeScope();
+            builder.Register(c => new BankAccountService(c.Resolve<IBankAccountRepository>()))
+                .As<IBankAccountService>();
         }
     }
 }
