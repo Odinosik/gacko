@@ -5,32 +5,25 @@
     <td data-title="Name">@Model.Name</td>
     <td data-title="Amount">@Model.Amount</td>
     <td data-title="Expense Category">@Model.ExpenseCategory.Name</td>
-
+    <td data-title="Expense Category">@Model.ExpenseDate</td>
+    <td data-title="Sales Document">No</td>
 </tr>
 
 <tr class="expand">
     <td colspan="5">
         <div class="expand">
-            <p>
-                Imię
-                <br />Drugie imię
-                <br />Nazwisko
-                <br />Nazwisko Rodowe
-                <br />Miasto
-                <br />Kod pocztowy
-                <br />Ulica
-                <br />Numer domu
-            </p>
-            <p>
-
-                Adam
-                <br />-
-                <br />Nowak
-                <br />Nowak
-                <br />Gdańsk
-                <br />80-402
-                <br />ul. Grunwaldzka
-            </p>
+            @foreach (var byteArray in Model.Documents)
+            {
+                var base64 = Convert.ToBase64String(Model.byteArray);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                <img src="@imgSrc" /> <br />
+            }
+            @using (Html.BeginForm("Upload", "SalesDocument", new { area = "VirtualAccount" }, FormMethod.Post))
+            {
+                <input type="text" Name="expenseId" value="@Model.Id" />
+                <input type="file" Name="fileForm" />
+                <input type="submit" />
+            }
         </div>
     </td>
 </tr>

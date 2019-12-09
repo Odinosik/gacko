@@ -12,6 +12,7 @@ namespace GACKO.DB.Migrations
                 .WithColumn("Id").AsInt32().Identity().PrimaryKey()
                 .WithColumn("Amount").AsDouble().NotNullable()
                 .WithColumn("Name").AsString().NotNullable()
+                .WithColumn("ExpenseDate").AsDateTime().NotNullable()
                 .WithColumn("VirtualAccountId").AsInt32().NotNullable()
                 .WithColumn("ExpenseCategoryId").AsInt32().NotNullable();
 

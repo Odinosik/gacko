@@ -83,4 +83,9 @@
     </Content>
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Areas\SalesDocument\Views\SalesDocument\" />
+  </ItemGroup>
+
 </Project>

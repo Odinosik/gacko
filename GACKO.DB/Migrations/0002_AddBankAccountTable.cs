@@ -10,8 +10,10 @@ namespace GACKO.DB.Migrations
         {
             Create.Table(TableName)
                 .WithColumn("Id").AsInt32().Identity().PrimaryKey()
+                .WithColumn("Name").AsString().NotNullable().WithDefaultValue("Bank Account")
                 .WithColumn("Iban").AsString().NotNullable()
                 .WithColumn("Balance").AsDouble().NotNullable()
+                .WithColumn("IsActive").AsBoolean().NotNullable().WithDefaultValue(true)
                 .WithColumn("UserId").AsInt32().NotNullable();
 
             Create.ForeignKey().FromTable(TableName)

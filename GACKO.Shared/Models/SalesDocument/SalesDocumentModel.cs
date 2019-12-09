@@ -6,7 +6,7 @@ namespace GACKO.Shared.Models.SalesDocument
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string FilePath { get; set; }
+        public byte[] FileRawData { get; set; }
         public int ExpenseId { get; set; }
         public ExpenseModel Expense { get; set; }
     }
