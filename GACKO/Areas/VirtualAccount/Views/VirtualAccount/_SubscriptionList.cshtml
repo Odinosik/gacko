@@ -1,0 +1,23 @@
+﻿@using GACKO.Shared.Models.Subscription
+@model List<SubscriptionModel>
+
+<div id="demo">
+    <div class="shadow-z-1">
+        <table id="table" class="table table-hover table-mc-light-blue">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Expirions Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var subscription in Model)
+                {
+                    @Html.Partial("_SubscriptionListElement", subscription)
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
