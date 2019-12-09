@@ -12,6 +12,5 @@ namespace GACKO.DB.DaoModels
         public bool IsActive { get; set; }
         [ForeignKey("UserId")]
         public virtual DaoUser User { get; set; }
+    }
 }
-}
-2
