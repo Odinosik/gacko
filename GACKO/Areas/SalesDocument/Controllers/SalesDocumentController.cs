@@ -12,12 +12,10 @@ namespace GACKO.Areas.SalesDocument.Controllers
     [Area("SalesDocument")]
     public class SalesDocumentController : BaseController
     {
-        private readonly UserManager<DaoUser> _userManager;
         private readonly ISalesDocumentService _salesDocumentService;
 
-        public SalesDocumentController(UserManager<DaoUser> userManager, ISalesDocumentService salesDocumentService)
+        public SalesDocumentController(ISalesDocumentService salesDocumentService)
         {
-            _userManager = userManager;
             _salesDocumentService = salesDocumentService;
         }
 
@@ -29,7 +27,7 @@ namespace GACKO.Areas.SalesDocument.Controllers
             salesDocs.Add(new SalesDocumentModel()
             {
                 Id = 1,
-                Name = "IKEA",
+                Name = "Zabka zakupy",
                 FilePath = ""
             });
 
@@ -41,6 +39,12 @@ namespace GACKO.Areas.SalesDocument.Controllers
             });
 
             return View("Index", salesDocs);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(SalesDocumentForm salesDocument)
+        {
+            await _salesDocumentService.Create(salesDocument);
+            return View();
         }
     }
 }
