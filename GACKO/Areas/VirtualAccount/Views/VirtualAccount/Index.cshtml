@@ -1,0 +1,207 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using GACKO.Shared.Models.VirtualAccount
+@model VirtualAccountViewModel
+@{
+    Layout = "_Layout";
+}
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="~/js/expenses.js"></script>
+}
+
+<div class="section">
+    <div class="columns">
+        <aside class="column is-2">
+            <nav class="menu">
+                <p class="menu-label">
+                    Virtual Accounts
+                </p>
+                <ul class="menu-list">
+                    @foreach (var virtualAccount in Model.VirtualAccounts)
+                    {
+                        <li>
+                            @if (virtualAccount.Id == Model.SelectedVirtualAccount.Id)
+                            {
+                                <a class="is-active"
+                                   asp-area="VirtualAccount"
+                                   asp-controller="VirtualAccount"
+                                   asp-action="ChangeVirtualAccActive"
+                                   asp-route-bankAccId="@virtualAccount.BankAccountId"
+                                   asp-route-virtualAccId="@virtualAccount.Id">
+                                    @virtualAccount.Name
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-area="VirtualAccount"
+                                   asp-controller="VirtualAccount"
+                                   asp-action="ChangeVirtualAccActive"
+                                   asp-route-bankAccId="@virtualAccount.BankAccountId"
+                                   asp-route-virtualAccId="@virtualAccount.Id">
+                                    @virtualAccount.Name
+                                </a>
+                            }
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="column">
+            <div class="level">
+                <div class="level-left">
+                    <div class="level-item">
+                        <div class="title">@Model.SelectedVirtualAccount.Name  - @Model.SelectedVirtualAccount.Balance.ToString("C0")</div>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <button type="button" class="button is-small">
+                            March 8, 2017 - April 6, 2017
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="columns is-multiline">
+            <div class="column">
+                <div class="box">
+                    <div class="heading">Top Seller Total</div>
+                    <div class="title">56,950</div>
+                    <div class="level">
+                        <div class="level-item">
+                            <div class="">
+                                <div class="heading">Sales $</div>
+                                <div class="title is-5">250,000</div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <div class="">
+                                <div class="heading">Overall $</div>
+                                <div class="title is-5">750,000</div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <div class="">
+                                <div class="heading">Sales %</div>
+                                <div class="title is-5">25%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="box">
+                    <div class="heading">Revenue / Expenses</div>
+                    <div class="title">55% / 45%</div>
+                    <div class="level">
+                        <div class="level-item">
+                            <div class="">
+                                <div class="heading">Rev Prod $</div>
+                                <div class="title is-5">30%</div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <div class="">
+                                <div class="heading">Rev Serv $</div>
+                                <div class="title is-5">25%</div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <div class="">
+                                <div class="heading">Exp %</div>
+                                <div class="title is-5">45%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="box">
+                    <div class="heading">Feedback Activity</div>
+                    <div class="title">78% &uarr;</div>
+                    <div class="level">
+                        <div class="level-item">
+                            <div class="">
+                                <div class="heading">Positive</div>
+                                <div class="title is-5">1560</div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <div class="">
+                                <div class="heading">Negative</div>
+                                <div class="title is-5">368</div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <div class="">
+                                <div class="heading">Pos/Neg %</div>
+                                <div class="title is-5">77% / 23%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="box">
+                    <div class="heading">Orders / Returns</div>
+                    <div class="title">75% / 25%</div>
+                    <div class="level">
+                        <div class="level-item">
+                            <div class="">
+                                <div class="heading">Orders $</div>
+                                <div class="title is-5">425,000</div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <div class="">
+                                <div class="heading">Returns $</div>
+                                <div class="title is-5">106,250</div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <div class="">
+                                <div class="heading">Success %</div>
+                                <div class="title is-5">+ 28,5%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+            <div class="columns">
+                <div class="column">
+                    <div class="panel">
+                        <p class="panel-heading">
+                            Expenses: @{
+                                var expSum = Model.SelectedVirtualAccount.Expenses != null ? Model.SelectedVirtualAccount.Expenses.Sum(_ => _.Amount).ToString("C0") : (0.00).ToString("C0");
+                                Html.ValueFor(model => expSum);
+                            }
+                        </p>
+                        <div class="panel-block">
+                            @Html.Partial("_ExpenseList", @Model.SelectedVirtualAccount.Expenses)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <div class="panel">
+                        <p class="panel-heading">
+                            Subscriptions:
+                            @{
+                                var subSum = Model.SelectedVirtualAccount.Subscriptions != null ? Model.SelectedVirtualAccount.Subscriptions.Sum(_ => _.Amount).ToString("C0") : (0.00).ToString("C0");
+                                Html.ValueFor(model => subSum);
+                            }
+                        </p>
+                        <div class="panel-block">
+                            @Html.Partial("_SubscriptionList", @Model.SelectedVirtualAccount.Subscriptions)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

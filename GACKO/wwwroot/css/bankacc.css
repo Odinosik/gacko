@@ -1,0 +1,121 @@
+﻿/* horizontal-container */
+.horizontal-container {
+    position: relative;
+    width: 80%;
+    margin: 0 auto 0;
+    display: inline-block;
+}
+
+    .horizontal-container.active .bankacc-card {
+        background: #fafafa;
+        margin: 0 10px;
+    }
+
+/* bankacc-card */
+.bankacc-card {
+    /*position: relative;*/
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 60px 60px 40px 60px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: .3s ease;
+    display: inline-block;
+    margin: 16px;
+    /* Title */
+    /* Inputs */
+    /* Button */
+    /* Footer */
+    /* Alt bankacc-card */
+}
+
+    .bankacc-card .title_bank_acc {
+        position: relative;
+        z-index: 1;
+        border-left: 5px solid #ed2553;
+        margin: 0 0 35px;
+        padding: 10px 0 10px 50px;
+        color: #ed2553;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .bankacc-card .iban_bank_account {
+        position: relative;
+        z-index: 1;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    .bankacc-card .balance_bank_account {
+        position: center;
+        z-index: 1;
+        font-size: 24px;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding: 10px;
+    }
+
+    .bankacc-card .button-container {
+        margin: 0 30px;
+        text-align: center;
+    }
+
+        .bankacc-card .button-container button {
+            outline: 0;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            background: 0;
+            width: 100px;
+            border: 2px solid #e3e3e3;
+            padding: 5px 0;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: .3s ease;
+        }
+
+            .bankacc-card .button-container button span {
+                position: relative;
+                z-index: 1;
+                color: #ddd;
+                transition: .3s ease;
+            }
+
+            .bankacc-card .button-container button:before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                display: block;
+                background: #ed2553;
+                width: 15px;
+                height: 15px;
+                border-radius: 100%;
+                margin: -15px 0 0 -15px;
+                opacity: 0;
+                transition: .3s ease;
+            }
+
+            .bankacc-card .button-container button:hover, .bankacc-card .button-container button:active, .bankacc-card .button-container button:focus {
+                border-color: #ed2553;
+            }
+
+                .bankacc-card .button-container button:hover span, .bankacc-card .button-container button:active span, .bankacc-card .button-container button:focus span {
+                    color: #ed2553;
+                }
+
+                .bankacc-card .button-container button:active span, .bankacc-card .button-container button:focus span {
+                    color: #ffffff;
+                }
+
+                .bankacc-card .button-container button:active:before, .bankacc-card .button-container button:focus:before {
+                    opacity: 1;
+                    -webkit-transform: scale(10);
+                    transform: scale(10);
+                }

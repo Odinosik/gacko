@@ -1,0 +1,389 @@
+﻿.newbankacc-container {
+    position: relative;
+    width: 400px;
+    margin: 0 auto 0 auto;
+    display: inline-block;
+}
+
+    .newbankacc-container.active .newbankacc-card:first-child {
+        background: #f2f2f2;
+    }
+
+    .newbankacc-container.active .newbankacc-card:nth-child(2) {
+        background: #fafafa;
+    }
+
+    .newbankacc-container.active .newbankacc-card.newbankacc-alt {
+        top: 10px;
+        right: -15px;
+        width: 100%;
+        height: auto;
+        margin-left: 20px;
+        border-radius: 5px;
+        padding: 60px 0 40px;
+        overflow: hidden;
+    }
+
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .toggle {
+            position: absolute;
+            box-shadow: none;
+            -webkit-transform: scale(20);
+            transform: scale(20);
+            transition: -webkit-transform .3s ease;
+            transition: transform .3s ease;
+            transition: transform .3s ease, -webkit-transform .3s ease;
+        }
+
+            .newbankacc-container.active .newbankacc-card.newbankacc-alt .toggle:before {
+                content: '';
+            }
+
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .title_bank_acc,
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .input-container,
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .button-container {
+            left: 0;
+            opacity: 1;
+            visibility: visible;
+            transition: .3s ease;
+        }
+
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .title_bank_acc {
+            transition-delay: .3s;
+        }
+
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .input-container {
+            transition-delay: .4s;
+        }
+
+            .newbankacc-container.active .newbankacc-card.newbankacc-alt .input-container:nth-child(2) {
+                transition-delay: .5s;
+            }
+
+            .newbankacc-container.active .newbankacc-card.newbankacc-alt .input-container:nth-child(3) {
+                transition-delay: .6s;
+            }
+
+        .newbankacc-container.active .newbankacc-card.newbankacc-alt .button-container {
+            transition-delay: .7s;
+        }
+
+/* newbankacc-card */
+.newbankacc-card {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 60px 60px 40px 60px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: .3s ease;
+    display: inline-block;
+    margin: 16px;
+    min-height: 275px;
+    width: 90%;
+    /* Title */
+    /* Inputs */
+    /* Button */
+    /* Footer */
+    /* Alt newbankacc-card */
+}
+
+    .newbankacc-card:first-child {
+        background: #fafafa;
+        height: 10px;
+        border-radius: 5px 5px 0 0;
+        margin: 0 10px;
+        padding: 0;
+    }
+
+    .newbankacc-card .title_bank_acc {
+        position: relative;
+        z-index: 1;
+        border-left: 5px solid #ed2553;
+        margin: 0 0 35px;
+        padding: 10px 0 10px 50px;
+        color: #ed2553;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .newbankacc-card .input-container {
+        position: relative;
+        margin: 0 60px 50px;
+    }
+
+        .newbankacc-card .input-container input {
+            outline: none;
+            z-index: 1;
+            position: relative;
+            background: none;
+            width: 100%;
+            height: 60px;
+            border: 0;
+            color: #212121;
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+            .newbankacc-card .input-container input:focus ~ label {
+                color: #9d9d9d;
+                -webkit-transform: translate(-12%, -50%) scale(0.75);
+                transform: translate(-12%, -50%) scale(0.75);
+            }
+
+            .newbankacc-card .input-container input:focus ~ .bar:before, .newbankacc-card .input-container input:focus ~ .bar:after {
+                width: 50%;
+            }
+
+            .newbankacc-card .input-container input:valid ~ label {
+                color: #9d9d9d;
+                -webkit-transform: translate(-12%, -50%) scale(0.75);
+                transform: translate(-12%, -50%) scale(0.75);
+            }
+
+        .newbankacc-card .input-container label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #757575;
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 60px;
+            transition: 0.2s ease;
+        }
+
+        .newbankacc-card .input-container .bar {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background: #757575;
+            width: 100%;
+            height: 1px;
+        }
+
+            .newbankacc-card .input-container .bar:before, .newbankacc-card .input-container .bar:after {
+                content: '';
+                position: absolute;
+                background: #ed2553;
+                width: 0;
+                height: 2px;
+                transition: .2s ease;
+            }
+
+            .newbankacc-card .input-container .bar:before {
+                left: 50%;
+            }
+
+            .newbankacc-card .input-container .bar:after {
+                right: 50%;
+            }
+
+    .newbankacc-card .button-container {
+        margin: 0 60px;
+        text-align: center;
+    }
+
+        .newbankacc-card .button-container button {
+            outline: 0;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            background: 0;
+            width: 240px;
+            border: 2px solid #e3e3e3;
+            padding: 20px 0;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: .3s ease;
+        }
+
+            .newbankacc-card .button-container button span {
+                position: relative;
+                z-index: 1;
+                color: #ddd;
+                transition: .3s ease;
+            }
+
+            .newbankacc-card .button-container button:before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                display: block;
+                background: #ed2553;
+                width: 30px;
+                height: 30px;
+                border-radius: 100%;
+                margin: -15px 0 0 -15px;
+                opacity: 0;
+                transition: .3s ease;
+            }
+
+            .newbankacc-card .button-container button:hover, .newbankacc-card .button-container button:active, .newbankacc-card .button-container button:focus {
+                border-color: #ed2553;
+            }
+
+                .newbankacc-card .button-container button:hover span, .newbankacc-card .button-container button:active span, .newbankacc-card .button-container button:focus span {
+                    color: #ed2553;
+                }
+
+                .newbankacc-card .button-container button:active span, .newbankacc-card .button-container button:focus span {
+                    color: #ffffff;
+                }
+
+                .newbankacc-card .button-container button:active:before, .newbankacc-card .button-container button:focus:before {
+                    opacity: 1;
+                    -webkit-transform: scale(10);
+                    transform: scale(10);
+                }
+
+    .newbankacc-card .footer {
+        margin: 40px 0 0;
+        color: #d3d3d3;
+        font-size: 24px;
+        font-weight: 300;
+        text-align: center;
+    }
+
+        .newbankacc-card .footer a {
+            color: inherit;
+            text-decoration: none;
+            transition: .3s ease;
+        }
+
+            .newbankacc-card .footer a:hover {
+                color: #bababa;
+            }
+
+    .newbankacc-card.newbankacc-alt {
+        position: absolute;
+        top: 20px;
+        right: -35px;
+        z-index: 10;
+        width: 140px;
+        height: 140px;
+        background: none;
+        border-radius: 100%;
+        box-shadow: none;
+        padding: 0;
+        transition: .3s ease;
+        /* Toggle */
+        /* Title */
+        /* Input */
+        /* Button */
+    }
+
+        .newbankacc-card.newbankacc-alt .toggle {
+            position: absolute;
+            background: #ed2553;
+            width: 70px;
+            height: 70px;
+            border-radius: 100%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            color: #ffffff;
+            font-size: 29px;
+            line-height: 70px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+            .newbankacc-card.newbankacc-alt .toggle:before {
+                content: '\f067';
+                display: inline-block;
+                font: normal normal normal 14px/1 FontAwesome;
+                font-size: inherit;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-transform: translate(0, 0);
+                transform: translate(0, 0);
+            }
+
+        .newbankacc-card.newbankacc-alt .title_bank_acc,
+        .newbankacc-card.newbankacc-alt .input-container,
+        .newbankacc-card.newbankacc-alt .button-container {
+            left: 100px;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .newbankacc-card.newbankacc-alt .title_bank_acc {
+            position: relative;
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+            .newbankacc-card.newbankacc-alt .title_bank_acc .close {
+                cursor: pointer;
+                position: absolute;
+                top: 0;
+                right: 60px;
+                display: inline;
+                color: #ffffff;
+                font-size: 58px;
+                font-weight: 400;
+            }
+
+                .newbankacc-card.newbankacc-alt .title_bank_acc .close:before {
+                    content: '\00d7';
+                }
+
+        .newbankacc-card.newbankacc-alt .input-container input {
+            color: #ffffff;
+        }
+
+            .newbankacc-card.newbankacc-alt .input-container input:focus ~ label {
+                color: #ffffff;
+            }
+
+            .newbankacc-card.newbankacc-alt .input-container input:focus ~ .bar:before, .newbankacc-card.newbankacc-alt .input-container input:focus ~ .bar:after {
+                background: #ffffff;
+            }
+
+            .newbankacc-card.newbankacc-alt .input-container input:valid ~ label {
+                color: #ffffff;
+            }
+
+        .newbankacc-card.newbankacc-alt .input-container label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .newbankacc-card.newbankacc-alt .input-container .bar {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .newbankacc-card.newbankacc-alt .button-container button {
+            width: 100%;
+            background: #ffffff;
+            border-color: #ffffff;
+        }
+
+            .newbankacc-card.newbankacc-alt .button-container button span {
+                color: #ed2553;
+            }
+
+            .newbankacc-card.newbankacc-alt .button-container button:hover {
+                background: rgba(255, 255, 255, 0.9);
+            }
+
+            .newbankacc-card.newbankacc-alt .button-container button:active:before, .newbankacc-card.newbankacc-alt .button-container button:focus:before {
+                display: none;
+            }
+
+/* Keyframes */
+@-webkit-keyframes buttonFadeInUp {
+    0% {
+        bottom: 30px;
+        opacity: 0;
+    }
+}
+
+@keyframes buttonFadeInUp {
+    0% {
+        bottom: 30px;
+        opacity: 0;
+    }
+}

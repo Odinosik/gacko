@@ -5,6 +5,8 @@ using GACKO.Shared;
 using GACKO.Shared.Models.BankAccount;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GACKO.Repositories.BankAccount
@@ -38,7 +40,6 @@ namespace GACKO.Repositories.BankAccount
                 await _context.SaveChangesAsync();
                 return deletedEntry.Entity.Id;
             }
-
             catch (Exception e)
             {
                 throw new Exception("Failed to delete model.", e);
@@ -49,6 +50,12 @@ namespace GACKO.Repositories.BankAccount
         {
             return _mapper.Map<BankAccountModel>(await _context.BankAccounts.FirstOrDefaultAsync(_ => _.Id == id));
         }
+
+        public async Task<IList<BankAccountModel>> GetAll(int id)
+        {
+            return _mapper.Map<List<BankAccountModel>>(await _context.BankAccounts.Where(_ => _.UserId == id).ToListAsync());
+        }
+
 
         public async Task<int> Update(BankAccountForm form)
         {

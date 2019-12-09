@@ -4,6 +4,7 @@ using GACKO.Shared.Models.BankAccount;
 using GACKO.Shared.Models.Expense;
 using GACKO.Shared.Models.ExpenseCategory;
 using GACKO.Shared.Models.SalesDocument;
+using GACKO.Shared.Models.Subscription;
 using GACKO.Shared.Models.User;
 using GACKO.Shared.Models.VirtualAccount;
 
@@ -24,6 +25,8 @@ namespace GACKO.Shared.AutoMapperProfiles
             CreateMap<SalesDocumentModel, DaoSalesDocument>().ReverseMap();
             CreateMap<SalesDocumentForm, DaoSalesDocument>();
             CreateMap<UserProfile, DaoUser>().ReverseMap();
+            CreateMap<SubscriptionModel, DaoSubscription>();
+            CreateMap<SubscriptionForm, DaoSubscription>();
         }
     }
 }
