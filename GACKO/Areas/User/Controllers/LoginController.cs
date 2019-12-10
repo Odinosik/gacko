@@ -74,10 +74,22 @@ namespace GACKO.Areas.User.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Register(UserLoginForm userModel)
-        {
-            //var result = _userManager.CreateAsync();
-            return null;
+        public async Task<IActionResult> Register(UserRegisterForm userModel)
+        {           
+            var user = _userManager.FindByNameAsync(userModel.UserName).Result;
+            if (user != null)
+            {
+                userModel.RegisterErrorMessage = "Username is in use";
+                return View("Login");
+            }
+            user = _userManager.FindByEmailAsync(userModel.UserName).Result;
+            if (user != null)
+            {
+                userModel.RegisterErrorMessage = "Email is in use";
+                return View("Login");
+            }
+            await _userManager.CreateAsync(_mapper.Map<DaoUser>(userModel),userModel.Password);
+            return View("Login");
         }
 
         [HttpGet]

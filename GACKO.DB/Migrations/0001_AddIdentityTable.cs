@@ -32,7 +32,7 @@ namespace GACKO.DB.Migrations
                 .WithColumn("Value").AsString().Nullable();
 
             Create.Table("AspNetUsers")
-                .WithColumn("Id").AsInt32().NotNullable().PrimaryKey("PK_AspNetUsers")
+                .WithColumn("Id").AsInt32().NotNullable().PrimaryKey("PK_AspNetUsers").Identity()
                 .WithColumn("AccessFailedCount").AsInt32().NotNullable()
                 .WithColumn("ConcurrencyStamp").AsString().Nullable()
                 .WithColumn("Email").AsString(256).Nullable()
