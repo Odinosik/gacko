@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using System.Net;
 using System.Threading.Tasks;
+using GACKO.Shared.Models.Expense;
 
 namespace GACKO.Areas.VirtualAccount.Controllers
 {
@@ -34,10 +36,14 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload([FromForm] IFormFile fileForm, [FromForm] int expenseId)
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
+        [RequestSizeLimit(100_000_000)]
+        public async Task<IActionResult> Upload([FromForm]IFormFile fileForm, [FromForm]string fileName, [FromForm]int expenseId)
         {
             var expense = await _expenseService.Get(expenseId);
-            if (fileForm.Length > 0)
+            if (fileForm != null && fileForm.Length > 0)
             {
                 using (var ms = new MemoryStream())
                 {
@@ -46,20 +52,19 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                     var salesDocument = new SalesDocumentForm()
                     {
                         ExpenseId = expenseId,
-                        Name = fileForm.Name,
+                        Name = fileName,
                         FileRawData = fileRawData
                     };
                     await _salesDocumentService.Create(salesDocument);
                 }
             }
 
-            var virtualAcc = await _virtualAccountService.Get(expense.VirtualAccountId);
-
-            return View("Index", new VirtualAccountViewModel()
+            var viewModel = new ExpenseListViewModel()
             {
-                SelectedVirtualAccount = virtualAcc,
-                VirtualAccounts = await _virtualAccountService.GetAll(virtualAcc.BankAccountId)
-            });
+                VirtualAccountId = expense.VirtualAccountId,
+                Expenses = await _expenseService.GetAll(expense.VirtualAccountId)
+            };
+            return PartialView("_ExpenseList", viewModel);
         }
     }
 }
