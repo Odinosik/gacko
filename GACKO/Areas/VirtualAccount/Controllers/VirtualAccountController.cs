@@ -194,6 +194,8 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                 };
                 return View("Create", bankAccountViewModel);
             }
+
+            viewModel.SelectedVirtualAccount.Expenses = await _expenseService.GetAll(viewModel.SelectedVirtualAccount.Id);
             return View("Index", viewModel);
         }
 

@@ -5,7 +5,7 @@
     <td data-title="Name">@Model.Name</td>
     <td data-title="Amount">@Model.Amount</td>
     <td data-title="Expense Category">@Model.ExpenseCategory?.Name</td>
-    <td data-title="Expense Category">@Model.ExpenseDate</td>
+    <td data-title="Expense Date">@Model.ExpenseDate</td>
     <td data-title="Sales Document">
         @using (Html.BeginForm("Upload", "SalesDocument", new { area = "VirtualAccount" }, FormMethod.Post))
         {

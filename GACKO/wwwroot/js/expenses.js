@@ -18,3 +18,18 @@
         });
     });
 });
+
+function addexpense() {
+    var url = "/VirtualAccount/Expense/Create";
+
+    $.post(url, {
+        VirtualAccountId: document.getElementById("addexpense-virtualaccid").value,
+        Name: document.getElementById("addexpense-name").value,
+        Amount: document.getElementById("addexpense-amount").value,
+        ExpenseCategory: document.getElementById("addexpense-category").value,
+        ExpenseDate: document.getElementById("addexpense-date").value
+    })
+        .done(function (response) {
+            $("#expense-list").html(response);
+        });
+};
