@@ -65,6 +65,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             }
 
             viewModel.SelectedVirtualAccount.Expenses = await _expenseService.GetAll(viewModel.SelectedVirtualAccount.Id);
+            viewModel.SelectedVirtualAccount.Subscriptions = await _subscriptionService.GetAll(viewModel.SelectedVirtualAccount.Id);
             return View("Index", viewModel);
         }
 

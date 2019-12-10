@@ -5,6 +5,7 @@ using GACKO.Shared.Models.Subscription;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace GACKO.Areas.VirtualAccount.Controllers
@@ -26,11 +27,16 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(SubscriptionForm subscription, int virtualAccountId)
+        public async Task<IActionResult> Create(SubscriptionForm subscription)
         {
-            subscription.VirtualAccountId = virtualAccountId;
+            subscription.AddedDate = DateTime.Now;
             await _subscriptionService.Create(subscription);
-            return View("Index", await _subscriptionService.GetAll(virtualAccountId));
+            var viewModel = new SubscriptionListViewModel()
+            {
+                VirtualAccountId = subscription.VirtualAccountId,
+                Subscriptions = await _subscriptionService.GetAll(subscription.VirtualAccountId)
+            };
+            return PartialView("_SubscriptionList", viewModel);
         }
 
         [HttpPost]
