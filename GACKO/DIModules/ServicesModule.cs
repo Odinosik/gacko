@@ -34,7 +34,7 @@ namespace GACKO.DIModules
                 .As<ISubscriptionService>()
                 .InstancePerLifetimeScope();
 
-            builder.Register(c => new VirtualAccountService(c.Resolve<IVirtualAccountRepository>(), c.Resolve<IExpenseService>()))
+            builder.Register(c => new VirtualAccountService(c.Resolve<IVirtualAccountRepository>(), c.Resolve<IExpenseService>(), c.Resolve<ISubscriptionService>()))
                 .As<IVirtualAccountService>()
                 .InstancePerLifetimeScope();
 
