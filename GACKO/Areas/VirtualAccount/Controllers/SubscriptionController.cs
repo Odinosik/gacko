@@ -1,18 +1,22 @@
-﻿using AutoMapper;
-using GACKO.Controllers;
+﻿using GACKO.Controllers;
+using GACKO.DB.DaoModels;
 using GACKO.Services.Subscription;
 using GACKO.Shared.Models.Subscription;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace GACKO.Areas.VirtualAccount.Controllers
 {
-    [Area("Subscription")]
+    [Area("VirtualAccount")]
     public class SubscriptionController : BaseController
     {
         private readonly ISubscriptionService _subscriptionService;
 
-        public SubscriptionController(ISubscriptionService subscriptionService)
+        public SubscriptionController(ISubscriptionService subscriptionService,
+            UserManager<DaoUser> userManager,
+            IHttpContextAccessor contextAccessor) : base(userManager, contextAccessor)
         {
             _subscriptionService = subscriptionService;
         }

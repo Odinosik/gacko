@@ -4,9 +4,16 @@
 <tr>
     <td data-title="Name">@Model.Name</td>
     <td data-title="Amount">@Model.Amount</td>
-    <td data-title="Expense Category">@Model.ExpenseCategory.Name</td>
+    <td data-title="Expense Category">@Model.ExpenseCategory?.Name</td>
     <td data-title="Expense Category">@Model.ExpenseDate</td>
-    <td data-title="Sales Document">No</td>
+    <td data-title="Sales Document">
+        @using (Html.BeginForm("Upload", "SalesDocument", new { area = "VirtualAccount" }, FormMethod.Post))
+        {
+            <input type="text" Name="expenseId" value="@Model.Id" hidden />
+            <input type="file" Name="fileForm" />
+            <input type="submit" />
+        }
+    </td>
 </tr>
 
 <tr class="expand">
@@ -16,14 +23,8 @@
             {
                 var base64 = Convert.ToBase64String(doc.FileRawData);
                 var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                @doc.Name <br/>
+                @doc.Name <br />
                 <img src="@imgSrc" /> <br />
-            }
-            @using (Html.BeginForm("Upload", "SalesDocument", new { area = "VirtualAccount" }, FormMethod.Post))
-            {
-                <input type="text" Name="expenseId" value="@Model.Id" />
-                <input type="file" Name="fileForm" />
-                <input type="submit" />
             }
         </div>
     </td>

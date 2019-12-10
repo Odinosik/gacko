@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GACKO.Controllers;
+﻿using GACKO.Controllers;
+using GACKO.DB.DaoModels;
 using GACKO.Services.Expense;
 using GACKO.Shared.Models.Expense;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace GACKO.Areas.VirtualAccount.Controllers
 {
-    [Area("Expense")]
+    [Area("VirtualAccount")]
     public class ExpenseController : BaseController
     {
         private readonly IExpenseService _expenseService;
-        public ExpenseController(IExpenseService expenseService)
+        public ExpenseController(IExpenseService expenseService,
+            UserManager<DaoUser> userManager,
+            IHttpContextAccessor contextAccessor) : base(userManager, contextAccessor)
         {
             _expenseService = expenseService;
         }
@@ -23,11 +25,16 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ExpenseForm expense, int virtualAccountId)
+        public async Task<IActionResult> Create(ExpenseForm expense)
         {
-            expense.VirtualAccountId = virtualAccountId;
+            expense.ExpenseCategoryId = 10000;
             await _expenseService.Create(expense);
-            return View("Index", await _expenseService.GetAll(virtualAccountId));
+            var viewModel = new ExpenseListViewModel()
+            {
+                VirtualAccountId = expense.VirtualAccountId,
+                Expenses = await _expenseService.GetAll(expense.VirtualAccountId)
+            };
+            return PartialView("_ExpenseList", viewModel);
         }
 
         [HttpPost]

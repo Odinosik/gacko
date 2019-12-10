@@ -1,5 +1,5 @@
 ﻿@using GACKO.Shared.Models.Expense
-@model List<ExpenseModel>
+@model ExpenseListViewModel
 
 <div>
     <div class="shadow-z-1">
@@ -14,26 +14,28 @@
                 </tr>
             </thead>
             <tbody>
-                @if (Model != null)
+                @if (Model.Expenses != null)
                 {
-                    foreach (var expense in Model)
+                    foreach (var expense in Model.Expenses)
                     {
                         @Html.Partial("_ExpenseListElement", expense);
                     }
                 }
                 <tr>
                     <td data-title="Name">
-                        Click to add expense
+                        Click
                     </td>
-                    <td data-title="">
+                    <td data-title="Amount">
+                        to
                     </td>
-                    <td data-title="">
+                    <td data-title="Expense Category">
+                        add
                     </td>
-                    <td data-title="">
+                    <td data-title="Expense Date">
+                        expense
                     </td>
-                    <td data-title="">
+                    <td data-title="Sales Document">
                     </td>
-                    <td data-title="">
                 </tr>
                 <tr class="expand">
                     <td colspan="10">
@@ -42,17 +44,18 @@
                                 <div class="col-md-4">
                                     @using (Html.BeginForm("Create", "Expense", new { area = "VirtualAccount" }, FormMethod.Post))
                                     {
+                                        <input type="text" required="required" name="VirtualAccountId" value="@Model.VirtualAccountId" hidden />
                                         <div class="form-group">
                                             Name: <input type="text" required="required" name="Name" />
                                         </div>
                                         <div class="form-group">
-                                            Balance: <input type="text" required="required" name="Amount" />
+                                            Amount: <input type="text" required="required" name="Amount" />
                                         </div>
                                         <div class="form-group">
-                                            Limit: <input type="text" required="required" name="ExpenseCategory" />
+                                            ExpenseCategory: <input type="text" required="required" name="ExpenseCategory" />
                                         </div>
                                         <div class="form-group">
-                                            NotificationBalance: <input type="text" required="required" name="ExpenseDate" />
+                                            ExpenseDate: <input type="date" required="required" name="ExpenseDate" />
                                         </div>
                                         <div class="form-group">
                                             <input type="submit" value="Create" class="btn btn-primary" />

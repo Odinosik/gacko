@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using GACKO.Shared.Models.Expense;
+
 namespace GACKO.Shared.Models.VirtualAccount
 {
     public class VirtualAccountViewModel
