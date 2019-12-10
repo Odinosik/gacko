@@ -46,6 +46,14 @@
                             }
                         </li>
                     }
+                    <li>
+                        <a asp-area="VirtualAccount"
+                           asp-controller="VirtualAccount"
+                           asp-action="Create"
+                           asp-route-bankAccountId="@Model.SelectedVirtualAccount.BankAccountId">
+                            Add Virtual Account
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </aside>
