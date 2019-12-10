@@ -78,7 +78,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         public async Task<IActionResult> Create(VirtualAccountForm virtualAccount)
         {
              await _virtualAccountService.Create(virtualAccount);
-
+            
             var viewModel = new VirtualAccountViewModel()
             {
                 SelectedVirtualAccount = _virtualAccountService.GetAll(virtualAccount.BankAccountId).Result.FirstOrDefault(),
