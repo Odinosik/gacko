@@ -2,6 +2,8 @@
 using GACKO.DB;
 using GACKO.DB.DaoModels;
 using GACKO.Shared;
+using GACKO.Shared.Enums;
+using GACKO.Shared.Exceptions;
 using GACKO.Shared.Models.Subscription;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -24,10 +26,17 @@ namespace GACKO.Repositories.Subscription
 
         public async Task<int> Create(SubscriptionForm form)
         {
-            var newEntity = _mapper.Map<DaoSubscription>(form);
-            var createdEntry = _context.Subscriptions.Add(newEntity);
-            await _context.SaveChangesAsync();
-            return createdEntry.Entity.Id;
+            try
+            {
+                var newEntity = _mapper.Map<DaoSubscription>(form);
+                var createdEntry = _context.Subscriptions.Add(newEntity);
+                await _context.SaveChangesAsync();
+                return createdEntry.Entity.Id;
+            }
+            catch (Exception e)
+            {
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Create);
+            }
         }
         public async Task<int> Delete(int id)
         {
@@ -40,19 +49,32 @@ namespace GACKO.Repositories.Subscription
                 await _context.SaveChangesAsync();
                 return deletedEntry.Entity.Id;
             }
-
             catch (Exception e)
             {
-                throw new Exception("Failed to delete model.", e);
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Delete);
             }
         }
         public async Task<SubscriptionModel> Get(int id)
         {
-            return _mapper.Map<SubscriptionModel>(await _context.Subscriptions.FirstOrDefaultAsync(_ => _.Id == id));
+            try
+            {
+                return _mapper.Map<SubscriptionModel>(await _context.Subscriptions.FirstOrDefaultAsync(_ => _.Id == id));
+            }
+            catch (Exception e)
+            {
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+            }
         }
         public async Task<IList<SubscriptionModel>> GetAll(int virtualAccountId)
         {
-            return _mapper.Map<List<SubscriptionModel>>(await _context.Subscriptions.Where(_ => _.VirtualAccountId == virtualAccountId).ToListAsync());
+            try
+            {
+                return _mapper.Map<List<SubscriptionModel>>(await _context.Subscriptions.Where(_ => _.VirtualAccountId == virtualAccountId).ToListAsync());
+            }
+            catch (Exception e)
+            {
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+            }
         }
         public async Task<int> Update(SubscriptionForm form)
         {
@@ -67,10 +89,9 @@ namespace GACKO.Repositories.Subscription
 
                 return updated.Id;
             }
-
             catch (Exception e)
             {
-                throw new Exception("Failed to update model.", e);
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Update);
             }
         }
     }

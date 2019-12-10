@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace GACKO.Controllers
 {
-    //[AllowAnonymous]
+    [GackoExceptionFilter]
     [Authorize]
     public class BaseController : Controller
     {
