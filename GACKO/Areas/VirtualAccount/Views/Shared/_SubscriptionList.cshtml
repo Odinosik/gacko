@@ -1,31 +1,29 @@
 ﻿@using GACKO.Shared.Models.Subscription
-@model List<SubscriptionModel>
+@model SubscriptionListViewModel
 
 <div>
     <div class="shadow-z-1">
-        <table id="table" class="table table-hover table-mc-light-blue">
+        <table id="subscription-list" class="table table-hover table-mc-light-blue">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Amount</th>
                     <th>Expirions Date</th>
+                    <th>Added Date</th>
+                    <th>Added Date</th>
                 </tr>
             </thead>
             <tbody>
-                @if (Model != null)
+                @if (Model.Subscriptions != null)
                 {
-                    foreach (var subscription in Model)
+                    foreach (var subscription in Model.Subscriptions)
                     {
                         @Html.Partial("_SubscriptionListElement", subscription);
                     }
                 }
                 <tr>
                     <td data-title="Name">
-                        Click to add expense
-                    </td>
-                    <td data-title="">
-                    </td>
-                    <td data-title="">
+                        Click to add subscription
                     </td>
                 </tr>
                 <tr class="expand">
@@ -33,24 +31,25 @@
                         <div class="expand">
                             <div class="row">
                                 <div class="col-md-4">
-                                    @using (Html.BeginForm("Create", "Subscription", new { area = "VirtualAccount" }, FormMethod.Post))
-                                    {
-                                        <div class="form-group">
-                                            Name: <input type="text" required="required" name="Name" />
-                                        </div>
-                                        <div class="form-group">
-                                            Balance: <input type="text" required="required" name="Amount" />
-                                        </div>
-                                        <div class="form-group">
-                                            Limit: <input type="text" required="required" name="ExpenseCategory" />
-                                        </div>
-                                        <div class="form-group">
-                                            NotificationBalance: <input type="text" required="required" name="ExpenseDate" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="submit" value="Create" class="btn btn-primary" />
-                                        </div>
-                                    }
+                                    @*@using (Html.BeginForm("Create", "Subscription", new { area = "VirtualAccount" }, FormMethod.Post))
+        {*@
+                                    <input id="addsubscription-virtualaccid" type="text" required="required" name="VirtualAccountId" value="@Model.VirtualAccountId" hidden />
+                                    <div class="form-group">
+                                        Name: <input id="addsubscription-name" type="text" required="required" name="Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        Amount: <input id="addsubscription-amount" type="text" required="required" name="Amount" />
+                                    </div>
+                                    <div class="form-group">
+                                        ExpirationDate: <input id="addsubscription-expirationdate" type="date" required="required" name="ExpirationDate" />
+                                    </div>
+                                    <div class="form-group">
+                                        FrequncyMonth: <input id="addsubscription-frequncymonth" type="text" required="required" name="FrequncyMonth" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" onclick="addsubscription()" value="Create" class="btn btn-primary" />
+                                    </div>
+                                    @*}*@
                                 </div>
                             </div>
                         </div>

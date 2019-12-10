@@ -25,7 +25,7 @@ namespace GACKO.Shared.AutoMapperProfiles
             CreateMap<SalesDocumentModel, DaoSalesDocument>().ReverseMap();
             CreateMap<SalesDocumentForm, DaoSalesDocument>();
             CreateMap<UserProfile, DaoUser>().ReverseMap();
-            CreateMap<SubscriptionModel, DaoSubscription>();
+            CreateMap<SubscriptionModel, DaoSubscription>().ReverseMap();
             CreateMap<SubscriptionForm, DaoSubscription>();
         }
     }
