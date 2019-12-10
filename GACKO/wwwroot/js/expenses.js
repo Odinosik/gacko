@@ -54,3 +54,18 @@ function uploadfile(id) {
         }
     });
 };
+
+function addsubscription() {
+    var url = "/VirtualAccount/Subscription/Create";
+
+    $.post(url, {
+        VirtualAccountId: document.getElementById("addsubscription-virtualaccid").value,
+        Name: document.getElementById("addsubscription-name").value,
+        Amount: document.getElementById("addsubscription-amount").value,
+        ExpirationDate: document.getElementById("addsubscription-expirationdate").value,
+        FrequncyMonth: document.getElementById("addsubscription-frequncymonth").value
+    })
+        .done(function (response) {
+            $("#subscription-list").html(response);
+        });
+};

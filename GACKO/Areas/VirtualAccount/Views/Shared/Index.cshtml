@@ -1,6 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using GACKO.Shared.Models.Expense
 @using GACKO.Shared.Models.VirtualAccount
+@using GACKO.Shared.Models.Subscription
 @model VirtualAccountViewModel
 @{
     Layout = "_Layout";
@@ -205,7 +206,14 @@
                             }
                         </p>
                         <div class="panel-block">
-                            @Html.Partial("_SubscriptionList", @Model.SelectedVirtualAccount.Subscriptions)
+                            @{
+                                var subscriptionViewModel = new SubscriptionListViewModel()
+                                {
+                                    VirtualAccountId = Model.SelectedVirtualAccount.Id,
+                                    Subscriptions = Model.SelectedVirtualAccount.Subscriptions
+                                };
+                            }
+                            @Html.Partial("_SubscriptionList", @subscriptionViewModel)
                         </div>
                     </div>
                 </div>
