@@ -39,7 +39,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(int bankAccountId)
+        public async Task<IActionResult> Index(int bankAccountId)
         {
             _bankAccountId = bankAccountId;
             /*
@@ -180,11 +180,11 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                 }
             });
             */
-
+            var virtualAccs = await _virtualAccountService.GetAll(bankAccountId);
             var viewModel = new VirtualAccountViewModel()
             {
-                SelectedVirtualAccount = _virtualAccountService.GetAll(bankAccountId).Result.FirstOrDefault(),
-                VirtualAccounts = _virtualAccountService.GetAll(bankAccountId).Result
+                SelectedVirtualAccount = virtualAccs.FirstOrDefault(),
+                VirtualAccounts = virtualAccs
             };
             if (viewModel.SelectedVirtualAccount == null )
             {
@@ -194,6 +194,8 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                 };
                 return View("Create", bankAccountViewModel);
             }
+
+            viewModel.SelectedVirtualAccount.Expenses = await _expenseService.GetAll(viewModel.SelectedVirtualAccount.Id);
             return View("Index", viewModel);
         }
 
