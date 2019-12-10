@@ -1,0 +1,126 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using GACKO.Shared.Models.Expense
+@using GACKO.Shared.Models.VirtualAccount
+@using GACKO.Shared.Models.Subscription
+@model VirtualAccountViewModel
+@{
+    Layout = "_Layout";
+}
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="~/js/expenses.js"></script>
+}
+
+<div class="section">
+    <div class="columns">
+        <aside class="column is-2">
+            <nav class="menu">
+                <p class="menu-label">
+                    Virtual Accounts
+                </p>
+                <ul class="menu-list">
+                    @foreach (var virtualAccount in Model.VirtualAccounts)
+                    {
+                        <li>
+                            @if (virtualAccount.Id == Model.SelectedVirtualAccount.Id)
+                            {
+                                <a class="is-active"
+                                   asp-area="VirtualAccount"
+                                   asp-controller="VirtualAccount"
+                                   asp-action="ChangeVirtualAccActive"
+                                   asp-route-bankAccId="@virtualAccount.BankAccountId"
+                                   asp-route-virtualAccId="@virtualAccount.Id">
+                                    @virtualAccount.Name
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-area="VirtualAccount"
+                                   asp-controller="VirtualAccount"
+                                   asp-action="ChangeVirtualAccActive"
+                                   asp-route-bankAccId="@virtualAccount.BankAccountId"
+                                   asp-route-virtualAccId="@virtualAccount.Id">
+                                    @virtualAccount.Name
+                                </a>
+                            }
+                        </li>
+                    }
+                    <li>
+                        <a asp-area="VirtualAccount"
+                           asp-controller="VirtualAccount"
+                           asp-action="Create"
+                           asp-route-bankAccountId="@Model.SelectedVirtualAccount.BankAccountId">
+                            Add Virtual Account
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="column">
+            <div class="level">
+                <div class="level-left">
+                    <div class="level-item">
+                        <div class="title">@Model.SelectedVirtualAccount.Name  - @Model.SelectedVirtualAccount.Balance.ToString("C0")</div>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <button type="button" class="button is-small">
+                            March 8, 2017 - April 6, 2017
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="column">
+                    <div class="panel">
+                        <p class="panel-heading">
+                            Expenses: @{
+                                var expSum = Model.SelectedVirtualAccount.Expenses != null ? Model.SelectedVirtualAccount.Expenses.Sum(_ => _.Amount).ToString("C0") : (0.00).ToString("C0");
+                                Html.ValueFor(model => expSum);
+                            }
+                        </p>
+                        <div class="panel-block">
+                            @{
+                                var expenseListViewModel = new ExpenseListViewModel()
+                                {
+                                    VirtualAccountId = Model.SelectedVirtualAccount.Id,
+                                    Expenses = Model.SelectedVirtualAccount.Expenses
+                                };
+                            }
+                            @Html.Partial("_ExpenseList", @expenseListViewModel)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <div class="panel">
+                        <p class="panel-heading">
+                            Subscriptions:
+                            @{
+                                var subSum = Model.SelectedVirtualAccount.Subscriptions != null ? Model.SelectedVirtualAccount.Subscriptions.Sum(_ => _.Amount).ToString("C0") : (0.00).ToString("C0");
+                                Html.ValueFor(model => subSum);
+                            }
+                        </p>
+                        <div class="panel-block">
+                            @{
+                                var subscriptionViewModel = new SubscriptionListViewModel()
+                                {
+                                    VirtualAccountId = Model.SelectedVirtualAccount.Id,
+                                    Subscriptions = Model.SelectedVirtualAccount.Subscriptions
+                                };
+                            }
+                            @Html.Partial("_SubscriptionList", @subscriptionViewModel)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+@Html.Partial("_ErrorModal", Model.Error)

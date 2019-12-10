@@ -1,9 +1,9 @@
 ﻿@using GACKO.Shared.Models.Expense
-@model List<ExpenseModel>
+@model ExpenseListViewModel
 
 <div>
     <div class="shadow-z-1">
-        <table id="table" class="table table-hover table-mc-light-blue">
+        <table id="expense-list" class="table table-hover table-mc-light-blue">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -14,50 +14,42 @@
                 </tr>
             </thead>
             <tbody>
-                @if (Model != null)
+                @if (Model.Expenses != null)
                 {
-                    foreach (var expense in Model)
+                    foreach (var expense in Model.Expenses)
                     {
                         @Html.Partial("_ExpenseListElement", expense);
                     }
                 }
                 <tr>
-                    <td data-title="Name">
+                    <td colspan="10">
                         Click to add expense
                     </td>
-                    <td data-title="">
-                    </td>
-                    <td data-title="">
-                    </td>
-                    <td data-title="">
-                    </td>
-                    <td data-title="">
-                    </td>
-                    <td data-title="">
                 </tr>
                 <tr class="expand">
                     <td colspan="10">
                         <div class="expand">
                             <div class="row">
                                 <div class="col-md-4">
-                                    @using (Html.BeginForm("Create", "Expense", new { area = "VirtualAccount" }, FormMethod.Post))
-                                    {
+                                    @*@using (Html.BeginForm("Create", "Expense", new { area = "VirtualAccount" }, FormMethod.Post))
+                                    {*@
+                                        <input id="addexpense-virtualaccid" type="text" required="required" name="VirtualAccountId" value="@Model.VirtualAccountId" hidden />
                                         <div class="form-group">
-                                            Name: <input type="text" required="required" name="Name" />
+                                            Name: <input id="addexpense-name" type="text" required="required" name="Name" />
                                         </div>
                                         <div class="form-group">
-                                            Balance: <input type="text" required="required" name="Amount" />
+                                            Amount: <input id="addexpense-amount" type="text" required="required" name="Amount" />
                                         </div>
                                         <div class="form-group">
-                                            Limit: <input type="text" required="required" name="ExpenseCategory" />
+                                            ExpenseCategory: <input id="addexpense-category" type="text" required="required" name="ExpenseCategory" />
                                         </div>
                                         <div class="form-group">
-                                            NotificationBalance: <input type="text" required="required" name="ExpenseDate" />
+                                            ExpenseDate: <input id="addexpense-date" type="date" required="required" name="ExpenseDate" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="submit" value="Create" class="btn btn-primary" />
+                                            <input type="submit" onclick="addexpense()" value="Create" class="btn btn-primary" />
                                         </div>
-                                    }
+                                    @*}*@
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,5 @@
-﻿using GACKO.Controllers;
+﻿using System;
+using GACKO.Controllers;
 using GACKO.DB.DaoModels;
 using GACKO.Services.VirtualAccount;
 using GACKO.Shared.Models.Expense;
@@ -8,28 +9,29 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using GACKO.Shared.Models.Subscription;
 using GACKO.Services.BankAccount;
 using GACKO.Services.Subscription;
 using GACKO.Services.Expense;
 using System.Threading.Tasks;
+using GACKO.Shared.Models.BankAccount;
 using Microsoft.AspNetCore.Http;
 
 namespace GACKO.Areas.VirtualAccount.Controllers
 {
     [Area("VirtualAccount")]
-    public class VirtualAccountController : BaseController
+    public class VirtualAccountController : GackoBaseController
     {
         private readonly UserManager<DaoUser> _userManager;
         private readonly IVirtualAccountService _virtualAccountService;
         private readonly ISubscriptionService _subscriptionService;
         private readonly IExpenseService _expenseService;
-        public static int _bankAccountId;
 
-        public VirtualAccountController(UserManager<DaoUser> userManager, 
-            IVirtualAccountService virtualAccountService, 
-            ISubscriptionService subscriptionService, 
-            IExpenseService expenseService, 
+        public VirtualAccountController(UserManager<DaoUser> userManager,
+            IVirtualAccountService virtualAccountService,
+            ISubscriptionService subscriptionService,
+            IExpenseService expenseService,
             IHttpContextAccessor contextAccessor) : base(userManager, contextAccessor)
         {
             _userManager = userManager;
@@ -38,166 +40,49 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             _expenseService = expenseService;
         }
 
+        /// <summary>
+        /// Bank Account's Virtual Account Main Page
+        /// </summary>
+        /// <param name="bankAccountId"></param>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult Index(int bankAccountId)
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Index(int bankAccountId)
         {
-            _bankAccountId = bankAccountId;
-            /*
-            var virtualAccs = new Dictionary<int, VirtualAccountModel>();
-            
-            virtualAccs.Add(0, new VirtualAccountModel()
+            var viewModel = new VirtualAccountViewModel() { VirtualAccounts = new List<VirtualAccountModel>() };
+            try
             {
-                Id = 0,
-                Name = "Jedzenie",
-                Balance = 200.00,
-                Expenses = new List<ExpenseModel>()
+                var virtualAccs = await _virtualAccountService.GetAll(bankAccountId);
+                var virtualAcc = virtualAccs.FirstOrDefault();
+                if (virtualAcc == null)
                 {
-                    new ExpenseModel()
+                    var bankAccountViewModel = new VirtualAccountForm()
                     {
-                        Id = 0,
-                        Amount = 100.0,
-                        Name = "chleb",
-                        ExpenseCategory = new ExpenseCategoryModel()
-                        {
-                            Name = "Jedzenie"
-                        }
-                    },
-                    new ExpenseModel()
-                    {
-                        Id = 1,
-                        Amount = 100.0,
-                        Name = "zupa",
-                        ExpenseCategory = new ExpenseCategoryModel()
-                        {
-                            Name = "Jedzenie"
-                        }
-                    }
-                },
-                Subscriptions = new List<SubscriptionModel>()
-                {
-                    new SubscriptionModel()
-                    {
-                        Id = 0,
-                        Amount = 15.0,
-                        Name = "Disney"
-                    },
-                    new SubscriptionModel()
-                    {
-                        Id = 1,
-                        Amount = 50.0,
-                        Name = "CDA.PL"
-                    }
+                        BankAccountId = bankAccountId
+                    };
+                    return View("Create", bankAccountViewModel);
                 }
-            });
-
-            virtualAccs.Add(1, new VirtualAccountModel()
+                viewModel.SelectedVirtualAccount = await _virtualAccountService.Get(virtualAcc.Id);
+                viewModel.VirtualAccounts = virtualAccs;
+            }
+            catch (Exception e)
             {
-                Id = 1,
-                Name = "Meble",
-                Balance = 1000.00,
-                Expenses = new List<ExpenseModel>()
-                {
-                    new ExpenseModel()
-                    {
-                        Id = 2,
-                        Amount = 100.0,
-                        Name = "krzeslo",
-                        ExpenseCategory = new ExpenseCategoryModel()
-                        {
-                            Name = "Meble"
-                        }
-                    },
-                    new ExpenseModel()
-                    {
-                        Id = 3,
-                        Amount = 100.0,
-                        Name = "fotel",
-                        ExpenseCategory = new ExpenseCategoryModel()
-                        {
-                            Name = "Meble"
-                        }
-                    }
-                },
-                Subscriptions = new List<SubscriptionModel>()
-                {
-                    new SubscriptionModel()
-                    {
-                        Id = 2,
-                        Amount = 15.0,
-                        Name = "Polsat"
-                    },
-                    new SubscriptionModel()
-                    {
-                        Id = 3,
-                        Amount = 50.0,
-                        Name = "Cartoon Network"
-                    }
-                }
-            });
-
-            virtualAccs.Add(2, new VirtualAccountModel()
-            {
-                Id = 2,
-                Name = "Podatki",
-                Balance = 20000.00,
-                Expenses = new List<ExpenseModel>()
-                {
-                    new ExpenseModel()
-                    {
-                        Id = 4,
-                        Amount = 100.0,
-                        Name = "PIT",
-                        ExpenseCategory = new ExpenseCategoryModel()
-                        {
-                            Name = "Podatki"
-                        }
-                    },
-                    new ExpenseModel()
-                    {
-                        Id = 5,
-                        Amount = 100.0,
-                        Name = "VAT",
-                        ExpenseCategory = new ExpenseCategoryModel()
-                        {
-                            Name = "Podatki"
-                        }
-                    }
-                },
-                Subscriptions = new List<SubscriptionModel>()
-                {
-                    new SubscriptionModel()
-                    {
-                        Id = 4,
-                        Amount = 15.0,
-                        Name = "Netflix"
-                    },
-                    new SubscriptionModel()
-                    {
-                        Id = 5,
-                        Amount = 50.0,
-                        Name = "HBO"
-                    }
-                }
-            });
-            */
-
-            var viewModel = new VirtualAccountViewModel()
-            {
-                SelectedVirtualAccount = _virtualAccountService.GetAll(bankAccountId).Result.FirstOrDefault(),
-                VirtualAccounts = _virtualAccountService.GetAll(bankAccountId).Result
-            };
-            if (viewModel.SelectedVirtualAccount == null )
-            {
-                var bankAccountViewModel = new VirtualAccountForm()
-                {
-                    BankAccountId = bankAccountId
-                };
-                return View("Create", bankAccountViewModel);
+                viewModel.Error = new Shared.Models.GackoError(e);
             }
             return View("Index", viewModel);
         }
 
+        /// <summary>
+        /// Create firt Virtual Account in Bank Account
+        /// </summary>
+        /// <param name="bankAccountId"></param>
+        /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
         public IActionResult Create(int bankAccountId)
         {
             var bankAccountViewModel = new VirtualAccountForm()
@@ -208,166 +93,59 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             return View("Create", bankAccountViewModel);
         }
 
+        /// <summary>
+        /// Create new Virtual Account
+        /// </summary>
+        /// <param name="virtualAccount"></param>
+        /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> Create(VirtualAccountForm virtualAccount)
         {
-             await _virtualAccountService.Create(virtualAccount);
-
-            var viewModel = new VirtualAccountViewModel()
+            var viewModel = new VirtualAccountViewModel() { VirtualAccounts = new List<VirtualAccountModel>() };
+            try
             {
-                SelectedVirtualAccount = _virtualAccountService.GetAll(virtualAccount.BankAccountId).Result.FirstOrDefault(),
-                VirtualAccounts = _virtualAccountService.GetAll(virtualAccount.BankAccountId).Result
-            };
+                await _virtualAccountService.Create(virtualAccount);
+                var virtualAccs = await _virtualAccountService.GetAll(virtualAccount.BankAccountId);
+                var virtualAcc = virtualAccs.FirstOrDefault();
+                if (virtualAcc == null)
+                {
+                    return RedirectToAction("Index", "BankAccount", new { area = "BankAccount" });
+                }
+                viewModel.SelectedVirtualAccount = await _virtualAccountService.Get(virtualAcc.Id);
+                viewModel.VirtualAccounts = virtualAccs;
+            }
+            catch (Exception e)
+            {
+                viewModel.Error = new Shared.Models.GackoError(e);
+            }
             return View("Index", viewModel);
         }
 
+        /// <summary>
+        /// Change active Virtual Account
+        /// </summary>
+        /// <param name="bankAccId"></param>
+        /// <param name="virtualAccId"></param>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult ChangeVirtualAccActive(int bankAccId, int virtualAccId)
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> ChangeVirtualAccActive(int bankAccId, int virtualAccId)
         {
-
-            /*
-            var virtualAccs = new Dictionary<int, VirtualAccountModel>();
-            virtualAccs.Add(0, new VirtualAccountModel()
+            var viewModel = new VirtualAccountViewModel() { VirtualAccounts = new List<VirtualAccountModel>() };
+            try
             {
-                Id = 0,
-                Name = "Jedzenie",
-                Balance = 200.00,
-                Expenses = new List<ExpenseModel>()
-                {
-                    new ExpenseModel()
-                    {
-                        Id = 0,
-                        Amount = 100.0,
-                        Name = "chleb",
-                        ExpenseCategory = new ExpenseCategoryModel()
-                        {
-                            Name = "Jedzenie"
-                        }
-                    },
-                    new ExpenseModel()
-                    {
-                        Id = 1,
-                        Amount = 100.0,
-                        Name = "zupa",
-                        ExpenseCategory = new ExpenseCategoryModel()
-                        {
-                            Name = "Jedzenie"
-                        }
-                    }
-                },
-                Subscriptions = new List<SubscriptionModel>()
-                {
-                    new SubscriptionModel()
-                    {
-                        Id = 0,
-                        Amount = 15.0,
-                        Name = "Disney"
-                    },
-                    new SubscriptionModel()
-                    {
-                        Id = 1,
-                        Amount = 50.0,
-                        Name = "CDA.PL"
-                    }
-                }
-            });
-
-            virtualAccs.Add(1, new VirtualAccountModel()
+                viewModel.SelectedVirtualAccount = await _virtualAccountService.Get(virtualAccId);
+                viewModel.VirtualAccounts = await _virtualAccountService.GetAll(bankAccId);
+            }
+            catch (Exception e)
             {
-                Id = 1,
-                Name = "Meble",
-                Balance = 1000.00,
-                Expenses = new List<ExpenseModel>()
-                {
-                    new ExpenseModel()
-                    {
-                        Id = 2,
-                        Amount = 100.0,
-                        Name = "krzeslo",
-                        ExpenseCategory = new ExpenseCategoryModel()
-                        {
-                            Name = "Meble"
-                        }
-                    },
-                    new ExpenseModel()
-                    {
-                        Id = 3,
-                        Amount = 100.0,
-                        Name = "fotel",
-                        ExpenseCategory = new ExpenseCategoryModel()
-                        {
-                            Name = "Meble"
-                        }
-                    }
-                },
-                Subscriptions = new List<SubscriptionModel>()
-                {
-                    new SubscriptionModel()
-                    {
-                        Id = 2,
-                        Amount = 15.0,
-                        Name = "Polsat"
-                    },
-                    new SubscriptionModel()
-                    {
-                        Id = 3,
-                        Amount = 50.0,
-                        Name = "Cartoon Network"
-                    }
-                }
-            });
-
-            virtualAccs.Add(2, new VirtualAccountModel()
-            {
-                Id = 2,
-                Name = "Podatki",
-                Balance = 20000.00,
-                Expenses = new List<ExpenseModel>()
-                {
-                    new ExpenseModel()
-                    {
-                        Id = 4,
-                        Amount = 100.0,
-                        Name = "PIT",
-                        ExpenseCategory = new ExpenseCategoryModel()
-                        {
-                            Name = "Podatki"
-                        }
-                    },
-                    new ExpenseModel()
-                    {
-                        Id = 5,
-                        Amount = 100.0,
-                        Name = "VAT",
-                        ExpenseCategory = new ExpenseCategoryModel()
-                        {
-                            Name = "Podatki"
-                        }
-                    }
-                },
-                Subscriptions = new List<SubscriptionModel>()
-                {
-                    new SubscriptionModel()
-                    {
-                        Id = 4,
-                        Amount = 15.0,
-                        Name = "Netflix"
-                    },
-                    new SubscriptionModel()
-                    {
-                        Id = 5,
-                        Amount = 50.0,
-                        Name = "HBO"
-                    }
-                }
-            });
-            */
-            var viewModel = new VirtualAccountViewModel()
-            {
-                SelectedVirtualAccount = _virtualAccountService.Get(virtualAccId).Result,
-                VirtualAccounts = _virtualAccountService.GetAll(bankAccId).Result
-            };
-
+                viewModel.Error = new Shared.Models.GackoError(e);
+            }
             return View("Index", viewModel);
         }
     }

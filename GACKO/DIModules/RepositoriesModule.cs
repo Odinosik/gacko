@@ -5,7 +5,6 @@ using GACKO.Repositories.Expense;
 using GACKO.Repositories.ExpenseCategory;
 using GACKO.Repositories.SalesDocument;
 using GACKO.Repositories.Subscription;
-using GACKO.Repositories.User;
 using GACKO.Repositories.VirtualAccount;
 using GACKO.Shared;
 
@@ -15,10 +14,6 @@ namespace GACKO.DIModules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => new UserRepository(c.Resolve<IMapper>()))
-                .As<IUserRepository>()
-                .InstancePerLifetimeScope();
-
             builder.Register(c => new BankAccountRepository(c.Resolve<IMapper>(), c.Resolve<IDbContextOptionsFactory>()))
                 .As<IBankAccountRepository>()
                 .InstancePerLifetimeScope();

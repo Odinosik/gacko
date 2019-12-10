@@ -13,7 +13,7 @@ namespace GACKO.Shared.Models.VirtualAccount
         public double Limit { get; set; }
         public double NotificationBalance { get; set; }
         public int BankAccountId { get; set; }
-        public BankAccountModel BankAccount { get; set; }
+        public BankAccountModel BankAccountView { get; set; }
         public IEnumerable<ExpenseModel> Expenses { get; set; }
         public IEnumerable<SubscriptionModel> Subscriptions { get; set; }
     }
