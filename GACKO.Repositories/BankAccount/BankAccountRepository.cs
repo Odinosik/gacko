@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GACKO.Shared.Enums;
+using GACKO.Shared.Exceptions;
 
 namespace GACKO.Repositories.BankAccount
 {
@@ -23,10 +25,17 @@ namespace GACKO.Repositories.BankAccount
 
         public async Task<int> Create(BankAccountForm form)
         {
-            var newEntity = _mapper.Map<DaoBankAccount>(form);
-            var createdEntry = _context.BankAccounts.Add(newEntity);
-            await _context.SaveChangesAsync();
-            return createdEntry.Entity.Id;
+            try
+            {
+                var newEntity = _mapper.Map<DaoBankAccount>(form);
+                var createdEntry = _context.BankAccounts.Add(newEntity);
+                await _context.SaveChangesAsync();
+                return createdEntry.Entity.Id;
+            }
+            catch (Exception e)
+            {
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Create);
+            }
         }
 
         public async Task<int> Delete(int id)
@@ -42,18 +51,32 @@ namespace GACKO.Repositories.BankAccount
             }
             catch (Exception e)
             {
-                throw new Exception("Failed to delete model.", e);
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Delete);
             }
         }
 
         public async Task<BankAccountModel> Get(int id)
         {
-            return _mapper.Map<BankAccountModel>(await _context.BankAccounts.FirstOrDefaultAsync(_ => _.Id == id));
+            try
+            {
+                return _mapper.Map<BankAccountModel>(await _context.BankAccounts.FirstOrDefaultAsync(_ => _.Id == id));
+            }
+            catch (Exception e)
+            {
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+            }
         }
 
         public async Task<IList<BankAccountModel>> GetAll(int id)
         {
-            return _mapper.Map<List<BankAccountModel>>(await _context.BankAccounts.Where(_ => _.UserId == id).ToListAsync());
+            try
+            {
+                return _mapper.Map<List<BankAccountModel>>(await _context.BankAccounts.Where(_ => _.UserId == id).ToListAsync());
+            }
+            catch (Exception e)
+            {
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+            }
         }
 
 
@@ -70,10 +93,9 @@ namespace GACKO.Repositories.BankAccount
 
                 return updated.Id;
             }
-
             catch (Exception e)
             {
-                throw new Exception("Failed to update model.", e);
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Update);
             }
         }
     }

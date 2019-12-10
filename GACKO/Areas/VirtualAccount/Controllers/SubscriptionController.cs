@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace GACKO.Areas.VirtualAccount.Controllers
 {
     [Area("VirtualAccount")]
-    public class SubscriptionController : BaseController
+    public class SubscriptionController : GackoBaseController
     {
         private readonly ISubscriptionService _subscriptionService;
 

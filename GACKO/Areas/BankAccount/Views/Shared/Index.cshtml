@@ -1,5 +1,6 @@
 ﻿@using GACKO.Shared.Models.BankAccount
-@model IEnumerable<BankAccountModel>
+@using Newtonsoft.Json
+@model BankAccountListViewModel
 @{
     Layout = "_Layout";
 }
@@ -11,10 +12,12 @@
 }
 
 <div class="horizontal-container">
-    @foreach (var bankAcc in Model)
+    @foreach (var bankAcc in Model.BankAccounts)
     {
         @Html.Partial("_BankAccountCard", bankAcc)
     }
 
     @Html.Partial("_NewBankAccountCard")
 </div>
+
+@Html.Partial("_ErrorModal", Model.Error)

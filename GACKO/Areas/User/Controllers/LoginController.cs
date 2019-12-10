@@ -1,48 +1,54 @@
-﻿using AutoMapper;
-using GACKO.Controllers;
+﻿using GACKO.Controllers;
 using GACKO.DB.DaoModels;
-using GACKO.Services.User;
 using GACKO.Shared;
 using GACKO.Shared.Models.User;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace GACKO.Areas.User.Controllers
 {
     [Area("User")]
-    public class LoginController : BaseController
+    public class LoginController : GackoBaseController
     {
         private readonly UserManager<DaoUser> _userManager = null;
         private readonly SignInManager<DaoUser> _signInManager = null;
-        private readonly IUserService _usersService = null;
-        private readonly IMapper _mapper;
 
         public LoginController(UserManager<DaoUser> userManager,
             SignInManager<DaoUser> signInManager,
-            IUserService usersService,
-            IMapper mapper,
             IHttpContextAccessor contextAccessor) : base(userManager, contextAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _usersService = usersService;
-            _mapper = mapper;
         }
 
 
-        //
-        // GET: /Login/
+        /// <summary>
+        /// Login Main Page
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         [AllowAnonymous]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> Index()
         {
             return View("Login");
         }
 
+        /// <summary>
+        /// Login user
+        /// </summary>
+        /// <param name="userModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> Authorize(UserLoginForm userModel)
         {
 
@@ -57,7 +63,7 @@ namespace GACKO.Areas.User.Controllers
                            userModel.Password, false, false);
             if (result.Succeeded)
             {
-                UserContext.UserId =  user.Id;
+                UserContext.UserId = user.Id;
                 return RedirectToAction("Index", "BankAccount", new { area = "BankAccount" });
             }
             if (result.IsLockedOut)
@@ -72,15 +78,29 @@ namespace GACKO.Areas.User.Controllers
             }
         }
 
+        /// <summary>
+        /// Register user
+        /// </summary>
+        /// <param name="userModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> Register(UserLoginForm userModel)
         {
             //var result = _userManager.CreateAsync();
             return null;
         }
 
+        /// <summary>
+        /// Logout user
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

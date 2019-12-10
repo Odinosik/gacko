@@ -13,11 +13,13 @@
     <link rel="stylesheet" href="~/css/expenses.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/bulma.css" />
+    <link rel="stylesheet" href="~/css/modal.css" />
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container" style="width:512px">
+            <div class="container" style="width:700px">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GACKO</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +34,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="BankAccount" asp-controller="BankAccount" asp-action="Index">BankAccount</a>
+                            <a class="nav-link text-dark" asp-area="BankAccount" asp-controller="BankAccount" asp-action="Index">Bank Accounts</a>
                         </li>
                         <li class="nav-item">
                             @{
@@ -65,6 +67,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/errormodal.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

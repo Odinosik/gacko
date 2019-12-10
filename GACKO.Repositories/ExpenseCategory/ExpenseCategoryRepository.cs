@@ -2,11 +2,11 @@
 using GACKO.DB;
 using GACKO.DB.DaoModels;
 using GACKO.Shared;
+using GACKO.Shared.Enums;
+using GACKO.Shared.Exceptions;
 using GACKO.Shared.Models.ExpenseCategory;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GACKO.Repositories.ExpenseCategory
@@ -23,10 +23,17 @@ namespace GACKO.Repositories.ExpenseCategory
 
         public async Task<int> Create(ExpenseCategoryForm form)
         {
-            var newEntity = _mapper.Map<DaoExpenseCategory>(form);
-            var createdEntry = _context.ExpenseCategories.Add(newEntity);
-            await _context.SaveChangesAsync();
-            return createdEntry.Entity.Id;
+            try
+            {
+                var newEntity = _mapper.Map<DaoExpenseCategory>(form);
+                var createdEntry = _context.ExpenseCategories.Add(newEntity);
+                await _context.SaveChangesAsync();
+                return createdEntry.Entity.Id;
+            }
+            catch (Exception e)
+            {
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Create);
+            }
         }
 
         public async Task<int> Delete(int id)
@@ -40,16 +47,22 @@ namespace GACKO.Repositories.ExpenseCategory
                 await _context.SaveChangesAsync();
                 return deletedEntry.Entity.Id;
             }
-
             catch (Exception e)
             {
-                throw new Exception("Failed to delete model.", e);
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Delete);
             }
         }
 
         public async Task<ExpenseCategoryModel> Get(int id)
         {
-            return _mapper.Map<ExpenseCategoryModel>(await _context.ExpenseCategories.FirstOrDefaultAsync(_ => _.Id == id));
+            try
+            {
+                return _mapper.Map<ExpenseCategoryModel>(await _context.ExpenseCategories.FirstOrDefaultAsync(_ => _.Id == id));
+            }
+            catch (Exception e)
+            {
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+            }
         }
 
         public async Task<int> Update(ExpenseCategoryForm form)
@@ -65,10 +78,9 @@ namespace GACKO.Repositories.ExpenseCategory
 
                 return updated.Id;
             }
-
             catch (Exception e)
             {
-                throw new Exception("Failed to update model.", e);
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Update);
             }
         }
     }
