@@ -2,7 +2,7 @@
 @using GACKO.Shared.Models.Expense
 @using GACKO.Shared.Models.VirtualAccount
 @using GACKO.Shared.Models.Subscription
-@model VirtualAccountViewViewModel
+@model VirtualAccountViewModel
 @{
     Layout = "_Layout";
 }
@@ -46,6 +46,14 @@
                             }
                         </li>
                     }
+                    <li>
+                        <a asp-area="VirtualAccount"
+                           asp-controller="VirtualAccount"
+                           asp-action="Create"
+                           asp-route-bankAccountId="@Model.SelectedVirtualAccount.BankAccountId">
+                            Add Virtual Account
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </aside>
@@ -77,7 +85,7 @@
                         </p>
                         <div class="panel-block">
                             @{
-                                var expenseListViewModel = new ExpenseListViewViewModel()
+                                var expenseListViewModel = new ExpenseListViewModel()
                                 {
                                     VirtualAccountId = Model.SelectedVirtualAccount.Id,
                                     Expenses = Model.SelectedVirtualAccount.Expenses

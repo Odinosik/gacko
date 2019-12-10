@@ -51,14 +51,12 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> Index(int bankAccountId)
         {
-            var viewModel = new VirtualAccountViewViewModel();
+            var viewModel = new VirtualAccountViewModel() { VirtualAccounts = new List<VirtualAccountModel>() };
             try
             {
                 var virtualAccs = await _virtualAccountService.GetAll(bankAccountId);
-                viewModel.SelectedVirtualAccount = virtualAccs.FirstOrDefault();
-                viewModel.VirtualAccounts = virtualAccs;
-
-                if (viewModel.SelectedVirtualAccount == null)
+                var virtualAcc = virtualAccs.FirstOrDefault();
+                if (virtualAcc == null)
                 {
                     var bankAccountViewModel = new VirtualAccountForm()
                     {
@@ -66,8 +64,8 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                     };
                     return View("Create", bankAccountViewModel);
                 }
-                viewModel.SelectedVirtualAccount.Expenses = await _expenseService.GetAll(viewModel.SelectedVirtualAccount.Id);
-                viewModel.SelectedVirtualAccount.Subscriptions = await _subscriptionService.GetAll(viewModel.SelectedVirtualAccount.Id);
+                viewModel.SelectedVirtualAccount = await _virtualAccountService.Get(virtualAcc.Id);
+                viewModel.VirtualAccounts = virtualAccs;
             }
             catch (Exception e)
             {
@@ -106,13 +104,23 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> Create(VirtualAccountForm virtualAccount)
         {
-            await _virtualAccountService.Create(virtualAccount);
-
-            var viewModel = new VirtualAccountViewViewModel()
+            var viewModel = new VirtualAccountViewModel() { VirtualAccounts = new List<VirtualAccountModel>() };
+            try
             {
-                SelectedVirtualAccount = _virtualAccountService.GetAll(virtualAccount.BankAccountId).Result.FirstOrDefault(),
-                VirtualAccounts = _virtualAccountService.GetAll(virtualAccount.BankAccountId).Result
-            };
+                await _virtualAccountService.Create(virtualAccount);
+                var virtualAccs = await _virtualAccountService.GetAll(virtualAccount.BankAccountId);
+                var virtualAcc = virtualAccs.FirstOrDefault();
+                if (virtualAcc == null)
+                {
+                    return RedirectToAction("Index", "BankAccount", new { area = "BankAccount" });
+                }
+                viewModel.SelectedVirtualAccount = await _virtualAccountService.Get(virtualAcc.Id);
+                viewModel.VirtualAccounts = virtualAccs;
+            }
+            catch (Exception e)
+            {
+                viewModel.Error = new Shared.Models.GackoError(e);
+            }
             return View("Index", viewModel);
         }
 
@@ -126,13 +134,18 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
-        public IActionResult ChangeVirtualAccActive(int bankAccId, int virtualAccId)
+        public async Task<IActionResult> ChangeVirtualAccActive(int bankAccId, int virtualAccId)
         {
-            var viewModel = new VirtualAccountViewViewModel()
+            var viewModel = new VirtualAccountViewModel() { VirtualAccounts = new List<VirtualAccountModel>() };
+            try
             {
-                SelectedVirtualAccount = _virtualAccountService.Get(virtualAccId).Result,
-                VirtualAccounts = _virtualAccountService.GetAll(bankAccId).Result
-            };
+                viewModel.SelectedVirtualAccount = await _virtualAccountService.Get(virtualAccId);
+                viewModel.VirtualAccounts = await _virtualAccountService.GetAll(bankAccId);
+            }
+            catch (Exception e)
+            {
+                viewModel.Error = new Shared.Models.GackoError(e);
+            }
             return View("Index", viewModel);
         }
     }

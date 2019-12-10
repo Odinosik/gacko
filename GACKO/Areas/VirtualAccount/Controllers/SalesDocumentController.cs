@@ -66,7 +66,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                 }
             }
 
-            var viewModel = new ExpenseListViewViewModel()
+            var viewModel = new ExpenseListViewModel()
             {
                 VirtualAccountId = expense.VirtualAccountId,
                 Expenses = await _expenseService.GetAll(expense.VirtualAccountId)

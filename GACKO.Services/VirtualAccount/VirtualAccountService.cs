@@ -3,6 +3,7 @@ using GACKO.Shared.Models.VirtualAccount;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GACKO.Services.Expense;
+using GACKO.Services.Subscription;
 
 namespace GACKO.Services.VirtualAccount
 {
@@ -10,11 +11,15 @@ namespace GACKO.Services.VirtualAccount
     {
         private readonly IVirtualAccountRepository _virtualAccountRepository;
         private readonly IExpenseService _expenseService;
+        private readonly ISubscriptionService _subscriptionService;
 
-        public VirtualAccountService(IVirtualAccountRepository virtualAccountRepository, IExpenseService expenseService)
+        public VirtualAccountService(IVirtualAccountRepository virtualAccountRepository, 
+            IExpenseService expenseService,
+            ISubscriptionService subscriptionService)
         {
             _virtualAccountRepository = virtualAccountRepository;
             _expenseService = expenseService;
+            _subscriptionService = subscriptionService;
         }
 
         public async Task<int> Create(VirtualAccountForm form)
@@ -26,6 +31,7 @@ namespace GACKO.Services.VirtualAccount
         {
             var virtualAcc = await _virtualAccountRepository.Get(id);
             virtualAcc.Expenses = await _expenseService.GetAll(virtualAcc.Id);
+            virtualAcc.Subscriptions = await _subscriptionService.GetAll(virtualAcc.Id);
             return virtualAcc;
         }
         public async Task<IList<VirtualAccountModel>> GetAll(int bankAccountId)
