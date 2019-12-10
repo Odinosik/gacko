@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace GACKO.Areas.VirtualAccount.Controllers
 {
     [Area("VirtualAccount")]
-    public class ExpenseController : BaseController
+    public class ExpenseController : GackoBaseController
     {
         private readonly IExpenseService _expenseService;
         public ExpenseController(IExpenseService expenseService,
@@ -34,7 +34,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         {
             expense.ExpenseCategoryId = 10000;
             await _expenseService.Create(expense);
-            var viewModel = new ExpenseListViewModel()
+            var viewModel = new ExpenseListViewViewModel()
             {
                 VirtualAccountId = expense.VirtualAccountId,
                 Expenses = await _expenseService.GetAll(expense.VirtualAccountId)
@@ -54,7 +54,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         public async Task<IActionResult> Update(ExpenseForm expense)
         {
             await _expenseService.Update(expense);
-            var viewModel = new ExpenseListViewModel()
+            var viewModel = new ExpenseListViewViewModel()
             {
                 VirtualAccountId = expense.VirtualAccountId,
                 Expenses = await _expenseService.GetAll(expense.VirtualAccountId)
@@ -75,7 +75,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         {
             var expense = await _expenseService.Get(id);
             await _expenseService.Delete(id);
-            var viewModel = new ExpenseListViewModel()
+            var viewModel = new ExpenseListViewViewModel()
             {
                 VirtualAccountId = expense.VirtualAccountId,
                 Expenses = await _expenseService.GetAll(expense.VirtualAccountId)

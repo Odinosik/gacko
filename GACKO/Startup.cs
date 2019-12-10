@@ -1,6 +1,5 @@
 using Autofac;
 using FluentMigrator.Runner;
-using GACKO;
 using GACKO.DB;
 using GACKO.DB.DaoModels;
 using GACKO.DB.Migrations;
@@ -61,7 +60,6 @@ namespace GACKO
             services.AddMvcCore(options =>
             {
                 options.EnableEndpointRouting = false;
-                options.Filters.Add(new GackoExceptionFilter());
             });
 
             services.Configure<IdentityOptions>(options =>

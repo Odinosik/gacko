@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Metadata.Ecma335;
 using GACKO.Shared.Enums;
 
 namespace GACKO.Shared.Exceptions
@@ -6,7 +7,7 @@ namespace GACKO.Shared.Exceptions
     public class RepositoryException : Exception
     {
         private readonly string _message;
-        public override string Message { get; }
+        public override string Message => _message;
         public int StatusCode { get; set; }
 
         public RepositoryException(string modelName, eRepositoryExceptionType exceptionType, int statusCode = 500)

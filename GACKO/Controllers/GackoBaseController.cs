@@ -9,11 +9,11 @@ using Microsoft.AspNetCore.Identity;
 
 namespace GACKO.Controllers
 {
-    [GackoExceptionFilter]
+    //[GackoExceptionFilter]
     [Authorize]
-    public class BaseController : Controller
+    public class GackoBaseController : Controller
     {
-        public BaseController(UserManager<DaoUser> userManager, IHttpContextAccessor contextAccessor)
+        public GackoBaseController(UserManager<DaoUser> userManager, IHttpContextAccessor contextAccessor)
         {
             if (contextAccessor.HttpContext.User != null)
             {

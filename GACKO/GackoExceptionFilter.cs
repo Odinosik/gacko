@@ -64,31 +64,30 @@ namespace GACKO
             base.OnException(context);
         }
     }
-}
 
-
-public class GackoError
-{
-    public string message { get; set; }
-    public bool isError { get; set; }
-    public string detail { get; set; }
-    public IList<ValidationFailure> errors { get; set; }
-
-    public GackoError(string message)
+    public class GackoError
     {
-        this.message = message;
-        isError = true;
-    }
+        public string message { get; set; }
+        public bool isError { get; set; }
+        public string detail { get; set; }
+        public IList<ValidationFailure> errors { get; set; }
 
-    public GackoError(ModelStateDictionary modelState)
-    {
-        this.isError = true;
-        if (modelState != null && modelState.Any(m => m.Value.Errors.Count > 0))
+        public GackoError(string message)
         {
-            message = "Please correct the specified errors and try again.";
-            //errors = modelState.SelectMany(m => m.Value.Errors).ToDictionary(m => m.Key, m=> m.ErrorMessage);
-            //errors = modelState.SelectMany(m => m.Value.Errors.Select( me => new KeyValuePair<string,string>( m.Key,me.ErrorMessage) ));
-            //errors = modelState.SelectMany(m => m.Value.Errors.Select(me => new ModelError { FieldName = m.Key, ErrorMessage = me.ErrorMessage }));
+            this.message = message;
+            isError = true;
+        }
+
+        public GackoError(ModelStateDictionary modelState)
+        {
+            this.isError = true;
+            if (modelState != null && modelState.Any(m => m.Value.Errors.Count > 0))
+            {
+                message = "Please correct the specified errors and try again.";
+                //errors = modelState.SelectMany(m => m.Value.Errors).ToDictionary(m => m.Key, m=> m.ErrorMessage);
+                //errors = modelState.SelectMany(m => m.Value.Errors.Select( me => new KeyValuePair<string,string>( m.Key,me.ErrorMessage) ));
+                //errors = modelState.SelectMany(m => m.Value.Errors.Select(me => new ModelError { FieldName = m.Key, ErrorMessage = me.ErrorMessage }));
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace GACKO.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : GackoBaseController
     {
         public HomeController(UserManager<DaoUser> userManager, IHttpContextAccessor contextAccessor) : base(userManager, contextAccessor)
         {
@@ -25,7 +25,6 @@ namespace GACKO.Controllers
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
         public IActionResult Index()
         {
-            throw new Exception();
             return View("Index");
         }
 

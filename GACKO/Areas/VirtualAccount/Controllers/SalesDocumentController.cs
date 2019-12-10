@@ -16,7 +16,7 @@ using GACKO.Shared.Models.Expense;
 namespace GACKO.Areas.VirtualAccount.Controllers
 {
     [Area("VirtualAccount")]
-    public class SalesDocumentController : BaseController
+    public class SalesDocumentController : GackoBaseController
     {
         private readonly UserManager<DaoUser> _userManager;
         private readonly ISalesDocumentService _salesDocumentService;
@@ -66,7 +66,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                 }
             }
 
-            var viewModel = new ExpenseListViewModel()
+            var viewModel = new ExpenseListViewViewModel()
             {
                 VirtualAccountId = expense.VirtualAccountId,
                 Expenses = await _expenseService.GetAll(expense.VirtualAccountId)

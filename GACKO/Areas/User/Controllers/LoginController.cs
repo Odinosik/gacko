@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace GACKO.Areas.User.Controllers
 {
     [Area("User")]
-    public class LoginController : BaseController
+    public class LoginController : GackoBaseController
     {
         private readonly UserManager<DaoUser> _userManager = null;
         private readonly SignInManager<DaoUser> _signInManager = null;
