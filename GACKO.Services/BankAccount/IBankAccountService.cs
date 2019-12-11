@@ -13,7 +13,7 @@ namespace GACKO.Services.BankAccount
         /// <returns></returns>
         Task<int> Create(BankAccountForm form);
         /// <summary>
-        /// Get BankAccount by Id
+        /// Get BankAccountView by Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -24,13 +24,13 @@ namespace GACKO.Services.BankAccount
         /// <returns></returns>
         Task<IList<BankAccountModel>> GetAll();
         /// <summary>
-        /// Update BankAccount
+        /// Update BankAccountView
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
         Task<int> Update(BankAccountForm form);
         /// <summary>
-        /// Delete BankAccount
+        /// Delete BankAccountView
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

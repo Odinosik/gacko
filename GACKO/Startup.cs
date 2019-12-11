@@ -1,6 +1,5 @@
 using Autofac;
 using FluentMigrator.Runner;
-using GACKO;
 using GACKO.DB;
 using GACKO.DB.DaoModels;
 using GACKO.DB.Migrations;

@@ -22,7 +22,7 @@
                     }
                 }
                 <tr>
-                    <td data-title="Name">
+                    <td colspan="10">
                         Click to add subscription
                     </td>
                 </tr>
@@ -32,7 +32,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     @*@using (Html.BeginForm("Create", "Subscription", new { area = "VirtualAccount" }, FormMethod.Post))
-        {*@
+                                        {*@
                                     <input id="addsubscription-virtualaccid" type="text" required="required" name="VirtualAccountId" value="@Model.VirtualAccountId" hidden />
                                     <div class="form-group">
                                         Name: <input id="addsubscription-name" type="text" required="required" name="Name" />
