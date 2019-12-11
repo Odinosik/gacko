@@ -6,6 +6,9 @@ using System.Text;
 
 namespace GACKO.Shared.Models.User
 {
+    /// <summary>
+    /// User Register Form
+    /// </summary>
     public class UserRegisterForm
     {
         [DisplayName("Imie")]

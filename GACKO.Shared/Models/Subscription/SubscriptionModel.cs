@@ -3,6 +3,9 @@ using System;
 
 namespace GACKO.Shared.Models.Subscription
 {
+    /// <summary>
+    /// Subscription Model representing database entity
+    /// </summary>
     public class SubscriptionModel
     {
         public int Id { get; set; }

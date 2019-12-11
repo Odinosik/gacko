@@ -2,6 +2,9 @@
 
 namespace GACKO.Shared.Models.VirtualAccount
 {
+    /// <summary>
+    /// Create and Update Virtual Account Form
+    /// </summary>
     public class VirtualAccountForm
     {
         public int? Id { get; set; }

@@ -5,6 +5,9 @@ using GACKO.Shared.Models.Subscription;
 
 namespace GACKO.Shared.Models.VirtualAccount
 {
+    /// <summary>
+    /// Virtual Account Model representing database entity
+    /// </summary>
     public class VirtualAccountModel
     {
         public int Id { get; set; }

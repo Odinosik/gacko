@@ -2,6 +2,9 @@
 
 namespace GACKO.DB.DaoModels
 {
+    /// <summary>
+    /// ExpenseCategory Table Data Access Object 
+    /// </summary>
     [Table("ExpenseCategory")]
     public class DaoExpenseCategory
     {

@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GACKO.DB.DaoModels
 {
+    /// <summary>
+    /// Expense Table Data Access Object 
+    /// </summary>
     [Table("Expense")]
     public class DaoExpense
     {

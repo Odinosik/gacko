@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GACKO.DB.DaoModels
 {
+    /// <summary>
+    /// Subscription Table Data Access Object 
+    /// </summary>
     [Table("Subscription")]
     public class DaoSubscription
     {

@@ -2,6 +2,9 @@
 
 namespace GACKO.DB.DaoModels
 {
+    /// <summary>
+    /// BankAccount Table Data Access Object 
+    /// </summary>
     [Table("BankAccount")]
     public class DaoBankAccount
     {
