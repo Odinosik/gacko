@@ -33,5 +33,11 @@ namespace GACKO.Shared.Models
             this.ValidationErrors = validationErrors;
             this.IsException = false;
         }
+
+        public GackoError(string message)
+        {
+            this.ExceptionMessage = message;
+            this.IsException = false;
+        }
     }
 }

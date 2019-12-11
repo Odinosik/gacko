@@ -41,8 +41,8 @@
             top: 40px;
             right: -70px;
             box-shadow: none;
-            -webkit-transform: scale(10);
-            transform: scale(10);
+            -webkit-transform: scale(20);
+            transform: scale(20);
             transition: -webkit-transform .3s ease;
             transition: transform .3s ease;
             transition: transform .3s ease, -webkit-transform .3s ease;
@@ -246,8 +246,8 @@
 
                 .card .button-container button:active:before, .card .button-container button:focus:before {
                     opacity: 1;
-                    -webkit-transform: scale(10);
-                    transform: scale(10);
+                    -webkit-transform: scale(20);
+                    transform: scale(20);
                 }
 
     .card .login-footer {

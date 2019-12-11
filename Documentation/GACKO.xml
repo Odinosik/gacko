@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GACKO</name>
+    </assembly>
+    <members>
+        <member name="M:GACKO.Areas.BankAccount.Controllers.BankAccountController.Index">
+            <summary>
+            Bank Account Main Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.BankAccount.Controllers.BankAccountController.Create(GACKO.Shared.Models.BankAccount.BankAccountForm)">
+            <summary>
+            Create Bank Account
+            </summary>
+            <param name="bankAccount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.BankAccount.Controllers.BankAccountController.Update(GACKO.Shared.Models.BankAccount.BankAccountForm)">
+            <summary>
+            Update Bank Account
+            </summary>
+            <param name="bankAccount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.BankAccount.Controllers.BankAccountController.Delete(System.Int32)">
+            <summary>
+            Delete Bank Account
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.User.Controllers.LoginController.Index">
+            <summary>
+            Login Main Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.User.Controllers.LoginController.Authorize(GACKO.Shared.Models.User.UserLoginForm)">
+            <summary>
+            Login user
+            </summary>
+            <param name="userModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.User.Controllers.LoginController.Register(GACKO.Shared.Models.User.UserRegisterForm)">
+            <summary>
+            Register user
+            </summary>
+            <param name="userModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.User.Controllers.LoginController.Logout">
+            <summary>
+            Logout user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.VirtualAccount.Controllers.ExpenseController.Create(GACKO.Shared.Models.Expense.ExpenseForm)">
+            <summary>
+            Create Virtual Account's Expense
+            </summary>
+            <param name="expense"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.VirtualAccount.Controllers.ExpenseController.Update(GACKO.Shared.Models.Expense.ExpenseForm)">
+            <summary>
+            Update Virtual Account's Expense
+            </summary>
+            <param name="expense"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.VirtualAccount.Controllers.ExpenseController.Delete(System.Int32)">
+            <summary>
+            Delete Virtual Account's Expense
+            </summary>
+            <param name=""></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.VirtualAccount.Controllers.SalesDocumentController.Upload(Microsoft.AspNetCore.Http.IFormFile,System.String,System.Int32)">
+            <summary>
+            Upload Expense's Sales Document
+            </summary>
+            <param name="fileForm"></param>
+            <param name="fileName"></param>
+            <param name="expenseId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.VirtualAccount.Controllers.VirtualAccountController.Index(System.Int32)">
+            <summary>
+            Bank Account's Virtual Account Main Page
+            </summary>
+            <param name="bankAccountId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.VirtualAccount.Controllers.VirtualAccountController.Create(System.Int32)">
+            <summary>
+            Create firt Virtual Account in Bank Account
+            </summary>
+            <param name="bankAccountId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.VirtualAccount.Controllers.VirtualAccountController.Create(GACKO.Shared.Models.VirtualAccount.VirtualAccountForm)">
+            <summary>
+            Create new Virtual Account
+            </summary>
+            <param name="virtualAccount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Areas.VirtualAccount.Controllers.VirtualAccountController.ChangeVirtualAccActive(System.Int32,System.Int32)">
+            <summary>
+            Change active Virtual Account
+            </summary>
+            <param name="bankAccId"></param>
+            <param name="virtualAccId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Controllers.HomeController.Index">
+            <summary>
+            Main Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Controllers.HomeController.Privacy">
+            <summary>
+            Privacy
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -63,7 +63,7 @@
         padding: 0 30px;
     }
 
-    .gackomodal .button {
+    .gackomodal .button.bttnerror {
         position: absolute;
         height: 40px;
         bottom: 0;
@@ -78,8 +78,27 @@
         transition: background .3s ease-in-out;
     }
 
-        .gackomodal .button:hover {
+        .gackomodal .button.bttnerror:hover {
             background: #EC3434;
+        }
+
+    .gackomodal .button.bttnsuccess {
+        position: absolute;
+        height: 40px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #32CD32;
+        color: #fff;
+        line-height: 40px;
+        font-size: 14px;
+        font-weight: 400;
+        cursor: pointer;
+        transition: background .3s ease-in-out;
+    }
+
+        .gackomodal .button.bttnsuccess:hover {
+            background: #228B22;
         }
 
 @-webkit-keyframes show-modal {

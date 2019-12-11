@@ -1,4 +1,9 @@
-﻿$('.button').bind('click',
+﻿$('.bttnerror').bind('click',
     function () {
-        $('.gackomodal').addClass('hide');
+        $('.gackoerrormodal').addClass('hide');
+    });
+
+$('.bttnsuccess').bind('click',
+    function () {
+        $('.gackosuccessmodal').addClass('hide');
     });
