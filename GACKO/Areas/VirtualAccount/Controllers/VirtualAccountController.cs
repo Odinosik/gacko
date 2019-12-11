@@ -154,5 +154,34 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             }
             return View("Index", viewModel);
         }
+        /// <summary>
+        /// Update Virtual Account
+        /// </summary>
+        /// <param name="bankAccId"></param>
+        /// <param name="virtualAccount"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Update(int bankAccId, VirtualAccountForm virtualAccount)
+        {
+            var viewModel = new VirtualAccountViewModel() { VirtualAccounts = new List<VirtualAccountModel>() };
+            try
+            {
+                await _virtualAccountService.Update(virtualAccount);
+                if (virtualAccount.Id != null)
+                {
+                    int virtualAccountId = (int) virtualAccount.Id;
+                    viewModel.SelectedVirtualAccount = await _virtualAccountService.Get(virtualAccountId);
+                }
+                viewModel.VirtualAccounts = await _virtualAccountService.GetAll(bankAccId);
+            }
+            catch (Exception e)
+            {
+                viewModel.Error = new Shared.Models.GackoError(e);
+            }
+            return View("Index", viewModel);
+        }
     }
 }
