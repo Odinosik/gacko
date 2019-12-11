@@ -39,7 +39,8 @@ namespace GACKO.DIModules
                 .InstancePerLifetimeScope();
 
             builder.Register(c => new BankAccountService(c.Resolve<IBankAccountRepository>()))
-                .As<IBankAccountService>();
+                .As<IBankAccountService>()
+                .InstancePerLifetimeScope();
         }
     }
 }

@@ -7,6 +7,10 @@
     <StartupObject />
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\FG\repos\GACKO_MVC\Documentation\GACKO.DB.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="FluentMigrator" Version="3.2.1" />
     <PackageReference Include="FluentMigrator.Runner.Postgres" Version="3.2.1" />

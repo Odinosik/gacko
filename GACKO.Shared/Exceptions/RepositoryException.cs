@@ -4,11 +4,20 @@ using GACKO.Shared.Enums;
 
 namespace GACKO.Shared.Exceptions
 {
+    /// <summary>
+    /// Exception thrown from repositories while accessing database
+    /// </summary>
     public class RepositoryException : Exception
     {
         private readonly string _message;
+        /// <summary>
+        /// Exception Message
+        /// </summary>
         public override string Message => _message;
-        public int StatusCode { get; set; }
+        /// <summary>
+        /// HTML Status Code associated with the exception
+        /// </summary>
+        public int StatusCode { get; }
 
         public RepositoryException(string modelName, eRepositoryExceptionType exceptionType, int statusCode = 500)
         {
