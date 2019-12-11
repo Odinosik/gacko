@@ -15,31 +15,31 @@ namespace GACKO.Services.BankAccount
             _bankAccountRepository = bankAccountRepository;
         }
 
-        public Task<int> Create(BankAccountForm form)
+        public async Task<int> Create(BankAccountForm form)
         {
             form.UserId = UserContext.UserId;
-            return _bankAccountRepository.Create(form);
+            return await _bankAccountRepository.Create(form);
         }
 
-        public Task<BankAccountModel> Get(int id)
+        public async Task<BankAccountModel> Get(int id)
         {
-            return _bankAccountRepository.Get(id);
+            return await _bankAccountRepository.Get(id);
         }
 
-        public Task<IList<BankAccountModel>> GetAll()
+        public async Task<IList<BankAccountModel>> GetAll()
         {
-            return _bankAccountRepository.GetAll(UserContext.UserId);
+            return await _bankAccountRepository.GetAll(UserContext.UserId);
         }
 
-        public Task<int> Update(BankAccountForm form)
+        public async Task<int> Update(BankAccountForm form)
         {
             form.UserId = UserContext.UserId;
-            return _bankAccountRepository.Update(form);
+            return await _bankAccountRepository.Update(form);
         }
 
-        public Task<int> Delete(int id)
+        public async Task<int> Delete(int id)
         {
-            return _bankAccountRepository.Delete(id);
+            return await _bankAccountRepository.Delete(id);
         }
     }
 }
