@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using GACKO.Controllers;
 using GACKO.DB.DaoModels;
 using GACKO.Shared;
@@ -9,23 +10,23 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Threading.Tasks;
+using GACKO.Services.User;
 
 namespace GACKO.Areas.User.Controllers
 {
     [Area("User")]
     public class LoginController : GackoBaseController
     {
-        private readonly UserManager<DaoUser> _userManager = null;
-        private readonly SignInManager<DaoUser> _signInManager = null;
-        private IMapper _mapper;
+        private readonly SignInManager<DaoUser> _signInManager;
+        private readonly IUserService _userService;
 
         public LoginController(UserManager<DaoUser> userManager,
             SignInManager<DaoUser> signInManager,
-            IHttpContextAccessor contextAccessor, IMapper mapper) : base(userManager, contextAccessor)
+            IHttpContextAccessor contextAccessor,
+            IUserService userService) : base(userManager, contextAccessor)
         {
-            _userManager = userManager;
             _signInManager = signInManager;
-            _mapper = mapper;
+            _userService = userService;
         }
 
 
@@ -54,30 +55,14 @@ namespace GACKO.Areas.User.Controllers
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> Authorize(UserLoginForm userModel)
         {
-
-            var user = _userManager.FindByNameAsync(userModel.Username).Result ?? _userManager.FindByEmailAsync(userModel.Username).Result;
-            if (user == null)
+            var viewModel = await _userService.LoginUser(userModel);
+            if(viewModel.IsSuccess)
             {
-                userModel.LoginErrorMessage = "Wrong username or password.";
-                return View("Login", userModel);
-            }
-
-            var result = await _signInManager.PasswordSignInAsync(userModel.Username,
-                           userModel.Password, false, false);
-            if (result.Succeeded)
-            {
-                UserContext.UserId = user.Id;
                 return RedirectToAction("Index", "BankAccount", new { area = "BankAccount" });
-            }
-            if (result.IsLockedOut)
-            {
-                userModel.LoginErrorMessage = "User account locked out.";
-                return View("Login", userModel);
             }
             else
             {
-                userModel.LoginErrorMessage = "Wrong username or password.";
-                return View("Login", userModel);
+                return View("Login", viewModel);
             }
         }
 
@@ -88,24 +73,9 @@ namespace GACKO.Areas.User.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Register(UserRegisterForm userModel, string password)
+        public async Task<IActionResult> Register(UserRegisterForm userModel)
         {
-            var user = _userManager.FindByNameAsync(userModel.UserName).Result;
-            if (user != null)
-            {
-                userModel.RegisterErrorMessage = "Username is in use";
-                return View("Login");
-            }
-            user = _userManager.FindByEmailAsync(userModel.UserName).Result;
-            if (user != null)
-            {
-                userModel.RegisterErrorMessage = "Email is in use";
-                return View("Login");
-            }
-            var registerUser = _mapper.Map<DaoUser>(userModel);
-            await _userManager.CreateAsync(registerUser, userModel.Password);
-            var Checkuser = _userManager.FindByNameAsync(userModel.UserName).Result;
-            return View("Login");
+            return View("Login", await _userService.RegisterUser(userModel));
         }
 
         /// <summary>

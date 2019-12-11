@@ -32,23 +32,23 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     @*@using (Html.BeginForm("Create", "Expense", new { area = "VirtualAccount" }, FormMethod.Post))
-                                    {*@
-                                        <input id="addexpense-virtualaccid" type="text" required="required" name="VirtualAccountId" value="@Model.VirtualAccountId" hidden />
-                                        <div class="form-group">
-                                            Name: <input id="addexpense-name" type="text" required="required" name="Name" />
-                                        </div>
-                                        <div class="form-group">
-                                            Amount: <input id="addexpense-amount" type="text" required="required" name="Amount" />
-                                        </div>
-                                        <div class="form-group">
-                                            ExpenseCategory: <input id="addexpense-category" type="text" required="required" name="ExpenseCategory" />
-                                        </div>
-                                        <div class="form-group">
-                                            ExpenseDate: <input id="addexpense-date" type="date" required="required" name="ExpenseDate" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="submit" onclick="addexpense()" value="Create" class="btn btn-primary" />
-                                        </div>
+                                        {*@
+                                    <input id="addexpense-virtualaccid" type="text" required="required" name="VirtualAccountId" value="@Model.VirtualAccountId" hidden />
+                                    <div class="form-group">
+                                        Name: <input id="addexpense-name" type="text" required="required" name="Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        Amount: <input id="addexpense-amount" type="text" required="required" name="Amount" />
+                                    </div>
+                                    <div class="form-group">
+                                        ExpenseCategory: <input id="addexpense-category" type="text" required="required" name="ExpenseCategory" />
+                                    </div>
+                                    <div class="form-group">
+                                        ExpenseDate: <input id="addexpense-date" type="date" required="required" name="ExpenseDate" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" onclick="addexpense()" value="Create" class="btn btn-primary" />
+                                    </div>
                                     @*}*@
                                 </div>
                             </div>
@@ -60,3 +60,4 @@
     </div>
 </div>
 
+@Html.Partial("_ErrorModal", Model?.Error)

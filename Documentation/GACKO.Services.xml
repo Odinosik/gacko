@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GACKO.Services</name>
+    </assembly>
+    <members>
+        <member name="M:GACKO.Services.BankAccount.IBankAccountService.Create(GACKO.Shared.Models.BankAccount.BankAccountForm)">
+            <summary>
+            Create new Bankaccount
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.BankAccount.IBankAccountService.Get(System.Int32)">
+            <summary>
+            Get BankAccountView by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.BankAccount.IBankAccountService.GetAll">
+            <summary>
+            Get All BankAccounts 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.BankAccount.IBankAccountService.Update(GACKO.Shared.Models.BankAccount.BankAccountForm)">
+            <summary>
+            Update BankAccountView
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.BankAccount.IBankAccountService.Delete(System.Int32)">
+            <summary>
+            Delete BankAccountView
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.ExpenseCategory.IExpenseCategoryService.Create(GACKO.Shared.Models.ExpenseCategory.ExpenseCategoryForm)">
+            <summary>
+            Create new ExpenseCategory
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.ExpenseCategory.IExpenseCategoryService.Get(System.Int32)">
+            <summary>
+            Get ExpenseCategory by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.ExpenseCategory.IExpenseCategoryService.Update(GACKO.Shared.Models.ExpenseCategory.ExpenseCategoryForm)">
+            <summary>
+            Update ExpenseCategory
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.ExpenseCategory.IExpenseCategoryService.Delete(System.Int32)">
+            <summary>
+            Delete ExpenseCategory by id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.Expense.IExpenseService.Create(GACKO.Shared.Models.Expense.ExpenseForm)">
+            <summary>
+            Create new Expense
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.Expense.IExpenseService.Get(System.Int32)">
+            <summary>
+            Get Expense by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.Expense.IExpenseService.GetAll(System.Int32)">
+            <summary>
+            Get All Expense by VirtualAccountId
+            </summary>
+            <param name="virtualAccountId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.Expense.IExpenseService.Update(GACKO.Shared.Models.Expense.ExpenseForm)">
+            <summary>
+            Update Expense
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.Expense.IExpenseService.Delete(System.Int32)">
+            <summary>
+            Delete Expense by id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.SalesDocument.ISalesDocumentService.Upload(Microsoft.AspNetCore.Http.IFormFile,System.String,System.Int32)">
+            <summary>
+            Upload File to Database
+            </summary>
+            <param name="fileForm"></param>
+            <param name="fileName"></param>
+            <param name="expenseId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.Subscription.ISubscriptionService.Create(GACKO.Shared.Models.Subscription.SubscriptionForm)">
+            <summary>
+            Create new Subscription
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.Subscription.ISubscriptionService.Get(System.Int32)">
+            <summary>
+            Get Subscription by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.Subscription.ISubscriptionService.GetAll(System.Int32)">
+            <summary>
+            Get all Subscription by VirtualAccountId
+            </summary>
+            <param name="virtualAccountId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.Subscription.ISubscriptionService.Update(GACKO.Shared.Models.Subscription.SubscriptionForm)">
+            <summary>
+            Update Subscription
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.Subscription.ISubscriptionService.Delete(System.Int32)">
+            <summary>
+            Delete Subscription by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.User.IUserService.LoginUser(GACKO.Shared.Models.User.UserLoginForm)">
+            <summary>
+            Login User
+            </summary>
+            <param name="userLoginForm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.User.IUserService.RegisterUser(GACKO.Shared.Models.User.UserRegisterForm)">
+            <summary>
+            Register new User
+            </summary>
+            <param name="userRegisterForm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.VirtualAccount.IVirtualAccountService.Create(GACKO.Shared.Models.VirtualAccount.VirtualAccountForm)">
+            <summary>
+            Create new VirtualAccount
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.VirtualAccount.IVirtualAccountService.Get(System.Int32)">
+            <summary>
+            Get VirtualAccount by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.VirtualAccount.IVirtualAccountService.GetAll(System.Int32)">
+            <summary>
+            Get all VirtualAccounts by BankAccountId
+            </summary>
+            <param name="bankAccountId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.VirtualAccount.IVirtualAccountService.Update(GACKO.Shared.Models.VirtualAccount.VirtualAccountForm)">
+            <summary>
+            Update VirtualAccount
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GACKO.Services.VirtualAccount.IVirtualAccountService.Delete(System.Int32)">
+            <summary>
+            Delete VirtualAccount by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

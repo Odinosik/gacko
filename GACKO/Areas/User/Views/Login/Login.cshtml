@@ -1,4 +1,4 @@
-﻿@model GACKO.Shared.Models.User.UserLoginForm
+﻿@model GACKO.Shared.Models.User.UserViewModel
 @{
     Layout = "_Layout";
 }
@@ -12,13 +12,6 @@
     <div class="card"></div>
     <div class="card">
         <h1 class="title">Login</h1>
-        @if (!String.IsNullOrEmpty(Model?.LoginErrorMessage))
-        {
-            <div class="input-container">
-                @Html.DisplayFor(model => model.LoginErrorMessage)
-                <br />
-            </div>
-        }
         @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
         {
             <div class="input-container">
@@ -81,3 +74,6 @@
         }
     </div>
 </div>
+
+@Html.Partial("_ErrorModal", Model?.Error)
+@Html.Partial("_SuccessModal", Model?.Success)

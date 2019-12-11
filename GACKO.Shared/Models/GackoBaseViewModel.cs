@@ -9,5 +9,9 @@
         /// Error message
         /// </summary>
         public GackoError Error { get; set; }
+        /// <summary>
+        /// IsSuccess message
+        /// </summary>
+        public GackoSuccess Success { get; set; }
     }
 }

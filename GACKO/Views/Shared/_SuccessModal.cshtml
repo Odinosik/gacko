@@ -1,0 +1,11 @@
+﻿@model GACKO.Shared.Models.GackoSuccess
+
+@if (Model != null)
+{
+    <div class="gackomodal">
+        <img src="https://image.flaticon.com/icons/svg/148/148767.svg" width="44" height="38" />
+        <span class="title">Success!</span>
+        <p>@Model?.SuccessMessage</p>
+        <div class="button bttnsuccess">OK</div>
+    </div>
+}
