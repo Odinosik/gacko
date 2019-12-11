@@ -2,6 +2,8 @@
 using GACKO.DB;
 using GACKO.DB.DaoModels;
 using GACKO.Shared;
+using GACKO.Shared.Enums;
+using GACKO.Shared.Exceptions;
 using GACKO.Shared.Models.Expense;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -23,10 +25,17 @@ namespace GACKO.Repositories.Expense
 
         public async Task<int> Create(ExpenseForm form)
         {
-            var newEntity = _mapper.Map<DaoExpense>(form);
-            var createdEntry = _context.Expenses.Add(newEntity);
-            await _context.SaveChangesAsync();
-            return createdEntry.Entity.Id;
+            try
+            {
+                var newEntity = _mapper.Map<DaoExpense>(form);
+                var createdEntry = _context.Expenses.Add(newEntity);
+                await _context.SaveChangesAsync();
+                return createdEntry.Entity.Id;
+            }
+            catch (Exception e)
+            {
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Create);
+            }
         }
 
         public async Task<int> Delete(int id)
@@ -40,21 +49,34 @@ namespace GACKO.Repositories.Expense
                 await _context.SaveChangesAsync();
                 return deletedEntry.Entity.Id;
             }
-
             catch (Exception e)
             {
-                throw new Exception("Failed to delete model.", e);
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Delete);
             }
         }
 
         public async Task<ExpenseModel> Get(int id)
         {
-            return _mapper.Map<ExpenseModel>(await _context.Expenses.FirstOrDefaultAsync(_ => _.Id == id));
+            try
+            {
+                return _mapper.Map<ExpenseModel>(await _context.Expenses.FirstOrDefaultAsync(_ => _.Id == id));
+            }
+            catch (Exception e)
+            {
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+            }
         }
 
         public async Task<IList<ExpenseModel>> GetAll(int virtualAccountId)
         {
-            return _mapper.Map<List<ExpenseModel>>(await _context.Expenses.Where(_ => _.VirtualAccountId == virtualAccountId).ToListAsync());
+            try
+            {
+                return _mapper.Map<List<ExpenseModel>>(await _context.Expenses.Where(_ => _.VirtualAccountId == virtualAccountId).ToListAsync());
+            }
+            catch (Exception e)
+            {
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+            }
         }
 
         public async Task<int> Update(ExpenseForm form)
@@ -70,10 +92,9 @@ namespace GACKO.Repositories.Expense
 
                 return updated.Id;
             }
-
             catch (Exception e)
             {
-                throw new Exception("Failed to update model.", e);
+                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Update);
             }
         }
     }

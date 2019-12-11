@@ -16,7 +16,7 @@ using GACKO.Shared.Models.Expense;
 namespace GACKO.Areas.VirtualAccount.Controllers
 {
     [Area("VirtualAccount")]
-    public class SalesDocumentController : BaseController
+    public class SalesDocumentController : GackoBaseController
     {
         private readonly UserManager<DaoUser> _userManager;
         private readonly ISalesDocumentService _salesDocumentService;
@@ -35,6 +35,13 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             _virtualAccountService = virtualAccountService;
         }
 
+        /// <summary>
+        /// Upload Expense's Sales Document
+        /// </summary>
+        /// <param name="fileForm"></param>
+        /// <param name="fileName"></param>
+        /// <param name="expenseId"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]

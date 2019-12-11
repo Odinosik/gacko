@@ -8,7 +8,6 @@ namespace GACKO.Shared.Models.User
 {
     public class UserRegisterForm
     {
-        public int Id { get; set; }
         [DisplayName("Imie")]
         [Required(ErrorMessage = "To pole jest wymagane.")]
         public string FirstName { get; set; }
