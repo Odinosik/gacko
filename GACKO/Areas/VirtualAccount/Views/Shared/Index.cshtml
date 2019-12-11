@@ -62,7 +62,7 @@
             <div class="level">
                 <div class="level-left">
                     <div class="level-item">
-                        <div class="title">@Model.SelectedVirtualAccount.Name  - @Model.SelectedVirtualAccount.Balance.ToString("C0")</div>
+                        <div class="title">@Model.SelectedVirtualAccount.Name  - @Model.SelectedVirtualAccount.Balance.ToString("C0")  Expenses <p style="color:#ff0000; display:inline", > -@((Model.expSum + Model.subSum).ToString("C0"))</p> Balance: @((@Model.SelectedVirtualAccount.Balance - (Model.expSum + Model.subSum)).ToString("C0")) </div>
                     </div>
                 </div>
                 <div class="level-right">
@@ -185,10 +185,7 @@
                 <div class="column">
                     <div class="panel">
                         <p class="panel-heading">
-                            Expenses: @{
-                                var expSum = Model.SelectedVirtualAccount.Expenses != null ? Model.SelectedVirtualAccount.Expenses.Sum(_ => _.Amount).ToString("C0") : (0.00).ToString("C0");
-                                Html.ValueFor(model => expSum);
-                            }
+                            Expenses: @Model.expSum.ToString("C0")
                         </p>
                         <div class="panel-block">
                             @{
@@ -207,11 +204,7 @@
                 <div class="column">
                     <div class="panel">
                         <p class="panel-heading">
-                            Subscriptions:
-                            @{
-                                var subSum = Model.SelectedVirtualAccount.Subscriptions != null ? Model.SelectedVirtualAccount.Subscriptions.Sum(_ => _.Amount).ToString("C0") : (0.00).ToString("C0");
-                                Html.ValueFor(model => subSum);
-                            }
+                            Subscriptions: @Model.subSum.ToString("C0")
                         </p>
                         <div class="panel-block">
                             @{

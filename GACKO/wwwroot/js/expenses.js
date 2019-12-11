@@ -30,7 +30,7 @@ function addexpense() {
         ExpenseDate: document.getElementById("addexpense-date").value
     })
         .done(function (response) {
-            $("#expense-list").html(response);
+            location.reload();
         });
 };
 
@@ -66,6 +66,6 @@ function addsubscription() {
         FrequncyMonth: document.getElementById("addsubscription-frequncymonth").value
     })
         .done(function (response) {
-            $("#subscription-list").html(response);
+            location.reload();
         });
 };
