@@ -6,7 +6,7 @@ using GACKO.Shared.Models.Subscription;
 namespace GACKO.Shared.Models.VirtualAccount
 {
     /// <summary>
-    /// Virtual Account Model representing database entity
+    /// Virtual Account Model representing database entity DaoVirtualAccount
     /// </summary>
     public class VirtualAccountModel
     {

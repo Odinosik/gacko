@@ -4,7 +4,7 @@ using System;
 namespace GACKO.Shared.Models.Subscription
 {
     /// <summary>
-    /// Subscription Model representing database entity
+    /// Subscription Model representing database entity DaoSubscription
     /// </summary>
     public class SubscriptionModel
     {

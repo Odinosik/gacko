@@ -3,7 +3,7 @@
 namespace GACKO.Shared.Models.BankAccount
 {
     /// <summary>
-    /// Bank Account Model representing database entity
+    /// Bank Account Model representing database entity DaoBankAccount
     /// </summary>
     public class BankAccountModel
     {
