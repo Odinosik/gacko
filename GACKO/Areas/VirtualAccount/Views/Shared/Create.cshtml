@@ -9,29 +9,26 @@
 
 <h4>VirtualAccountForm</h4>
 <hr />
-<div class="row">
     <div class="col-md-4">
         @using (Html.BeginForm("Create", "VirtualAccount", new { area = "VirtualAccount" }, FormMethod.Post))
         {
             <div class="form-group">
-                Name: <input type="text" required="required" name="Name" />
+                Name: <input id="numform" class="form-control" type="text" required="required" name="Name" />
             </div>
             <div class="form-group">
-                Balance: <input type="text" required="required" name="Balance" />
+                Balance: <input id="numform" class="form-control" type="text" required="required" name="Balance" />
             </div>
             <div class="form-group">
-                Limit: <input type="text" required="required" name="Limit" />
+                Limit: <input  id="numform" class="form-control" type="text" required="required" name="Limit" />
             </div>
             <div class="form-group">
-                NotificationBalance: <input type="text" required="required" name="NotificationBalance" />
+                NotificationBalance: <input id="numform" class="form-control" type="text" required="required" name="NotificationBalance" />
             </div>
             <div class="form-group">
-               <input type="hidden" value="@Model.BankAccountId" required="required" name="BankAccountId"/>
+                <input class="form-control" id="numform" type="hidden" value="@Model.BankAccountId" required="required" name="BankAccountId" />
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" id="numform" value="Create" class="btn btn-primary" />
             </div>
         }
     </div>
-</div>
-
