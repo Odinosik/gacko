@@ -41,7 +41,7 @@ namespace GACKO.Services.SalesDocument
                             Name = fileName,
                             FileRawData = fileRawData
                         };
-                        await this.Create(salesDocument);
+                        await _salesDocumentRepository.Create(salesDocument);
                     }
                 }
 

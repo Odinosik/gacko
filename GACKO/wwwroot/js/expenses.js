@@ -37,22 +37,28 @@ function addexpense() {
 function uploadfile(id) {
     var url = "/VirtualAccount/SalesDocument/Upload";
     var request = new FormData();
-    request.append("fileForm", $(`#uploaddoc-fileform-${id}`).prop('files')[0]);
-    request.append("expenseId", document.getElementById(`uploaddoc-expenseid-${id}`).value);
-    request.append("fileName", document.getElementById(`uploaddoc-filename-${id}`).value);
-    $.ajax({
-        url: url,
-        type: "POST",
-        data: request,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            $("#expense-list").html(response);
-            $("table tr td")
-                .find("div")
-                .hide();
-        }
-    });
+    if ($(`#uploaddoc-fileform-${id}`).prop('files')[0] != null &&
+        document.getElementById(`uploaddoc-expenseid-${id}`).value !== null &&
+        document.getElementById(`uploaddoc-expenseid-${id}`).value !== "" &&
+        document.getElementById(`uploaddoc-filename-${id}`).value !== null &&
+        document.getElementById(`uploaddoc-filename-${id}`).value !== "") {
+        request.append("fileForm", $(`#uploaddoc-fileform-${id}`).prop('files')[0]);
+        request.append("expenseId", document.getElementById(`uploaddoc-expenseid-${id}`).value);
+        request.append("fileName", document.getElementById(`uploaddoc-filename-${id}`).value);
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: request,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                $("#expense-list").html(response);
+                $("table tr td")
+                    .find("div")
+                    .hide();
+            }
+        });
+    }
 };
 
 function addsubscription() {

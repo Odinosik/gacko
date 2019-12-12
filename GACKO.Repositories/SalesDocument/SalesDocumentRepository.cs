@@ -34,7 +34,7 @@ namespace GACKO.Repositories.SalesDocument
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Create);
+                throw new RepositoryException(typeof(DaoSalesDocument).Name, eRepositoryExceptionType.Create);
             }
         }
 
@@ -51,7 +51,7 @@ namespace GACKO.Repositories.SalesDocument
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Delete);
+                throw new RepositoryException(typeof(DaoSalesDocument).Name, eRepositoryExceptionType.Delete);
             }
         }
 
@@ -63,7 +63,7 @@ namespace GACKO.Repositories.SalesDocument
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+                throw new RepositoryException(typeof(DaoSalesDocument).Name, eRepositoryExceptionType.Get);
             }
         }
 
@@ -75,7 +75,7 @@ namespace GACKO.Repositories.SalesDocument
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+                throw new RepositoryException(typeof(DaoSalesDocument).Name, eRepositoryExceptionType.Get);
             }
         }
 
@@ -95,7 +95,7 @@ namespace GACKO.Repositories.SalesDocument
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Update);
+                throw new RepositoryException(typeof(DaoSalesDocument).Name, eRepositoryExceptionType.Update);
             }
         }
     }
