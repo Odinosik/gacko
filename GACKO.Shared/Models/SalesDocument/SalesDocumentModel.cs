@@ -2,6 +2,9 @@
 
 namespace GACKO.Shared.Models.SalesDocument
 {
+    /// <summary>
+    /// Sales Document Model representing database entity DaoSalesDocument
+    /// </summary>
     public class SalesDocumentModel
     {
         public int Id { get; set; }

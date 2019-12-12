@@ -6,6 +6,9 @@ using GACKO.Shared.Models.VirtualAccount;
 
 namespace GACKO.Shared.Models.Expense
 {
+    /// <summary>
+    /// Expense Model representing database entity DaoExpense
+    /// </summary>
     public class ExpenseModel
     {
         public int Id { get; set; }
