@@ -81,7 +81,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
         }
 
         /// <summary>
-        /// Create firt Virtual Account in Bank Account
+        /// Create first Virtual Account in Bank Account
         /// </summary>
         /// <param name="bankAccountId"></param>
         /// <returns></returns>
@@ -127,7 +127,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             {
                 viewModel.Error = new Shared.Models.GackoError(e);
             }
-            return RedirectToAction("Index", "VirtualAccount", new { bankAccountId = virtualAccount.BankAccountId,  area = "VirtualAccount" });
+            return RedirectToAction("Index", "VirtualAccount", new { bankAccountId = virtualAccount.BankAccountId, area = "VirtualAccount" });
             return View("Index", viewModel);
         }
 
@@ -154,6 +154,70 @@ namespace GACKO.Areas.VirtualAccount.Controllers
                 viewModel.Error = new Shared.Models.GackoError(e);
             }
             return View("Index", viewModel);
+        }
+        /// <summary>
+        /// Updates by get
+        /// </summary>
+        /// <param name="bankAccountId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
+        public IActionResult Update(int bankAccountId, int virtualAccountId)
+        {
+            var bankAccountViewModel = new VirtualAccountForm()
+            {
+                Id = virtualAccountId,
+                BankAccountId = bankAccountId
+            };
+
+            return View("Update", bankAccountViewModel);
+        }
+        /// <summary>
+        /// Update Virtual Account
+        /// </summary>
+        /// <param name="virtualAccount"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Update(VirtualAccountForm virtualAccount)
+        {
+            var viewModel = new VirtualAccountViewModel() { VirtualAccounts = new List<VirtualAccountModel>() };
+            try
+            {
+                await _virtualAccountService.Update(virtualAccount);
+                if (virtualAccount.Id != null)
+                {
+                    int virtualAccountId = (int)virtualAccount.Id;
+                    viewModel.SelectedVirtualAccount = await _virtualAccountService.Get(virtualAccountId);
+                }
+                viewModel.VirtualAccounts = await _virtualAccountService.GetAll(virtualAccount.BankAccountId);
+            }
+            catch (Exception e)
+            {
+                viewModel.Error = new Shared.Models.GackoError(e);
+            }
+            return RedirectToAction("Index", "VirtualAccount", new { bankAccountId = virtualAccount.BankAccountId, area = "VirtualAccount" });
+        }
+        [HttpGet]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Delete(int virtualAccountId)
+        {
+            var bankId = _virtualAccountService.Get(virtualAccountId).Result.BankAccountId;
+            try
+            {
+                await _virtualAccountService.Delete(virtualAccountId);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            return RedirectToAction("Index", "VirtualAccount", new { bankAccountId = bankId, area = "VirtualAccount" });
         }
     }
 }

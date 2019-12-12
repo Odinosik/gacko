@@ -32,20 +32,21 @@
                                    asp-route-bankAccId="@virtualAccount.BankAccountId"
                                    asp-route-virtualAccId="@virtualAccount.Id">
                                     @virtualAccount.Name
-                                </a>
-                            }
-                            else
-                            {
-                                <a asp-area="VirtualAccount"
-                                   asp-controller="VirtualAccount"
-                                   asp-action="ChangeVirtualAccActive"
-                                   asp-route-bankAccId="@virtualAccount.BankAccountId"
-                                   asp-route-virtualAccId="@virtualAccount.Id">
-                                    @virtualAccount.Name
-                                </a>
-                            }
-                        </li>
-                    }
+                                </a>                          
+                            
+                        }
+                        else
+                        {
+                            <a asp-area="VirtualAccount"
+                               asp-controller="VirtualAccount"
+                               asp-action="ChangeVirtualAccActive"
+                               asp-route-bankAccId="@virtualAccount.BankAccountId"
+                               asp-route-virtualAccId="@virtualAccount.Id">
+                                @virtualAccount.Name
+                            </a>
+                        }
+                            </li>
+                        }
                     <li>
                         <a asp-area="VirtualAccount"
                            asp-controller="VirtualAccount"
@@ -62,8 +63,23 @@
             <div class="level">
                 <div class="level-left">
                     <div class="level-item">
-                        <div class="title">@Model.SelectedVirtualAccount.Name  - @Model.SelectedVirtualAccount.Balance.ToString("C0")  Expenses <p style="color:#ff0000; display:inline", > -@((Model.expSum + Model.subSum).ToString("C0"))</p> Balance: @((@Model.SelectedVirtualAccount.Balance - (Model.expSum + Model.subSum)).ToString("C0")) </div>
+                        <div class="title">@Model.SelectedVirtualAccount.Name  - @Model.SelectedVirtualAccount.Balance.ToString("C0")  Expenses <p style="color:#ff0000; display:inline" ,> -@((Model.expSum + Model.subSum).ToString("C0"))</p> Balance: @((@Model.SelectedVirtualAccount.Balance - (Model.expSum + Model.subSum)).ToString("C0")) </div>
                     </div>
+                    <a class="btn btn-outline-success" asp-area="VirtualAccount"
+                       asp-controller="VirtualAccount"
+                       asp-action="Update"
+                       asp-route-bankAccountId="@Model.SelectedVirtualAccount.BankAccountId"
+                       asp-route-virtualAccountId="@Model.SelectedVirtualAccount.Id">
+                        Update
+                    </a>
+                    &nbsp;
+                    <a class="btn btn-outline-dark" asp-area="VirtualAccount"
+                                asp-controller="VirtualAccount"
+                                asp-action="Delete"
+                                asp-route-virtualAccountId="@Model.SelectedVirtualAccount.Id">
+                        X
+                        </a>
+                    
                 </div>
                 <div class="level-right">
                     <div class="level-item">
