@@ -2,6 +2,9 @@
 
 namespace GACKO.DB.DaoModels
 {
+    /// <summary>
+    /// VirtualAccount Table Data Access Object 
+    /// </summary>
     [Table("VirtualAccount")]
     public class DaoVirtualAccount
     {

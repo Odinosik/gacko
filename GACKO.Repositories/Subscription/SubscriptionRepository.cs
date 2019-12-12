@@ -35,7 +35,7 @@ namespace GACKO.Repositories.Subscription
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Create);
+                throw new RepositoryException(typeof(DaoSubscription).Name, eRepositoryExceptionType.Create);
             }
         }
         public async Task<int> Delete(int id)
@@ -51,7 +51,7 @@ namespace GACKO.Repositories.Subscription
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Delete);
+                throw new RepositoryException(typeof(DaoSubscription).Name, eRepositoryExceptionType.Delete);
             }
         }
         public async Task<SubscriptionModel> Get(int id)
@@ -62,7 +62,7 @@ namespace GACKO.Repositories.Subscription
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+                throw new RepositoryException(typeof(DaoSubscription).Name, eRepositoryExceptionType.Get);
             }
         }
         public async Task<IList<SubscriptionModel>> GetAll(int virtualAccountId)
@@ -73,7 +73,7 @@ namespace GACKO.Repositories.Subscription
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+                throw new RepositoryException(typeof(DaoSubscription).Name, eRepositoryExceptionType.Get);
             }
         }
         public async Task<int> Update(SubscriptionForm form)
@@ -91,7 +91,7 @@ namespace GACKO.Repositories.Subscription
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Update);
+                throw new RepositoryException(typeof(DaoSubscription).Name, eRepositoryExceptionType.Update);
             }
         }
     }

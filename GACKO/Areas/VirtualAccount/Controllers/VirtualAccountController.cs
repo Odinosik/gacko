@@ -71,6 +71,12 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             {
                 viewModel.Error = new Shared.Models.GackoError(e);
             }
+
+            viewModel.SelectedVirtualAccount.Expenses = await _expenseService.GetAll(viewModel.SelectedVirtualAccount.Id);
+            viewModel.expSum = viewModel.SelectedVirtualAccount.Expenses != null ? viewModel.SelectedVirtualAccount.Expenses.Sum(_ => _.Amount) : (0.00);
+            viewModel.SelectedVirtualAccount.Subscriptions = await _subscriptionService.GetAll(viewModel.SelectedVirtualAccount.Id);
+            viewModel.subSum = viewModel.SelectedVirtualAccount.Subscriptions != null ? viewModel.SelectedVirtualAccount.Subscriptions.Sum(_ => _.Amount) : (0.00);
+
             return View("Index", viewModel);
         }
 
@@ -121,6 +127,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             {
                 viewModel.Error = new Shared.Models.GackoError(e);
             }
+            return RedirectToAction("Index", "VirtualAccount", new { bankAccountId = virtualAccount.BankAccountId,  area = "VirtualAccount" });
             return View("Index", viewModel);
         }
 

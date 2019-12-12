@@ -6,6 +6,9 @@ using System.Text;
 
 namespace GACKO.Shared.Models.User
 {
+    /// <summary>
+    /// User Login Form
+    /// </summary>
     public class UserLoginForm
     {
         public int Id { get; set; }

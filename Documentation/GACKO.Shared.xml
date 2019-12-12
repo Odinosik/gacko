@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GACKO.Shared</name>
+    </assembly>
+    <members>
+        <member name="T:GACKO.Shared.Enums.eRepositoryExceptionType">
+            <summary>
+            Repository Actions handled by RepositoryException
+            </summary>
+        </member>
+        <member name="F:GACKO.Shared.Enums.eRepositoryExceptionType.Create">
+            <summary>
+            Exception occured during creation of an database entity
+            </summary>
+        </member>
+        <member name="F:GACKO.Shared.Enums.eRepositoryExceptionType.Update">
+            <summary>
+            Exception occured during updating of an database entity
+            </summary>
+        </member>
+        <member name="F:GACKO.Shared.Enums.eRepositoryExceptionType.Get">
+            <summary>
+            Exception occured during retrieving of an database entity
+            </summary>
+        </member>
+        <member name="F:GACKO.Shared.Enums.eRepositoryExceptionType.Delete">
+            <summary>
+            Exception occured during deleting of an database entity
+            </summary>
+        </member>
+        <member name="T:GACKO.Shared.Exceptions.RepositoryException">
+            <summary>
+            Exception thrown from repositories while accessing database
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Exceptions.RepositoryException.Message">
+            <summary>
+            Exception Message
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Exceptions.RepositoryException.StatusCode">
+            <summary>
+            HTML Status Code associated with the exception
+            </summary>
+        </member>
+        <member name="T:GACKO.Shared.Exceptions.ServiceException">
+            <summary>
+            Exception thrown from services while performing business logic activities
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Exceptions.ServiceException.Message">
+            <summary>
+            Exception Message
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Exceptions.ServiceException.StatusCode">
+            <summary>
+            HTML Status Code associated with the exception
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Exceptions.ServiceException.ServiceName">
+            <summary>
+            Service name the exception was thrown from
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Exceptions.ServiceException.Errors">
+            <summary>
+            Fluent Validation Errors
+            </summary>
+        </member>
+        <member name="T:GACKO.Shared.Models.BankAccount.BankAccountForm">
+            <summary>
+            Create and Update Bank Account Form
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.BankAccount.BankAccountForm.Id">
+            <summary>
+            Bank Account ID
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.BankAccount.BankAccountForm.Name">
+            <summary>
+            Bank Account Name
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.BankAccount.BankAccountForm.Iban">
+            <summary>
+            International Bank Account Number
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.BankAccount.BankAccountForm.Balance">
+            <summary>
+            Bank Account Balance
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.BankAccount.BankAccountForm.IsActive">
+            <summary>
+            Flag indicating whether the Bank Account is active
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.BankAccount.BankAccountForm.UserId">
+            <summary>
+            ID of an User of whom the Bank Account is
+            </summary>
+        </member>
+        <member name="T:GACKO.Shared.Models.BankAccount.BankAccountListViewModel">
+            <summary>
+            Bank Account View Model
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.BankAccount.BankAccountListViewModel.BankAccounts">
+            <summary>
+            List of Bank Accounts
+            </summary>
+        </member>
+        <member name="T:GACKO.Shared.Models.BankAccount.BankAccountModel">
+            <summary>
+            Bank Account Model
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.BankAccount.BankAccountModel.Id">
+            <summary>
+            Bank Account ID
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.BankAccount.BankAccountModel.Name">
+            <summary>
+            Bank Account Name
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.BankAccount.BankAccountModel.Iban">
+            <summary>
+            International Bank Account Number
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.BankAccount.BankAccountModel.Balance">
+            <summary>
+            Bank Account Balance
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.BankAccount.BankAccountModel.IsActive">
+            <summary>
+            Flag indicating whether the Bank Account is active
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.BankAccount.BankAccountModel.UserId">
+            <summary>
+            ID of an User of whom the Bank Account is
+            </summary>
+        </member>
+        <member name="T:GACKO.Shared.Models.GackoBaseViewModel">
+            <summary>
+            Base View Model
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.GackoBaseViewModel.Error">
+            <summary>
+            Error message
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.GackoBaseViewModel.Success">
+            <summary>
+            IsSuccess message
+            </summary>
+        </member>
+        <member name="T:GACKO.Shared.Models.GackoError">
+            <summary>
+            Class packing errors and exceptions to a reusable form
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.GackoError.ExceptionMessage">
+            <summary>
+            Exception Message
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.GackoError.IsException">
+            <summary>
+            Flag indicating whether the Error is an Exception
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.GackoError.ValidationErrors">
+            <summary>
+            Fluent Validation Errors
+            </summary>
+        </member>
+        <member name="T:GACKO.Shared.Models.GackoSuccess">
+            <summary>
+            Class packing success messages to a reusable form
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.Models.GackoSuccess.SuccessMessage">
+            <summary>
+            IsSuccess Message
+            </summary>
+        </member>
+        <member name="T:GACKO.Shared.UserContext">
+            <summary>
+            User Context containing ID of currently signed-in user
+            </summary>
+        </member>
+        <member name="P:GACKO.Shared.UserContext.UserId">
+            <summary>
+            Currently signed-in user ID
+            </summary>
+        </member>
+        <member name="T:GACKO.Shared.Validators.BankAccountFormValidator">
+            <summary>
+            Bank Account Form validator
+            </summary>
+        </member>
+    </members>
+</doc>

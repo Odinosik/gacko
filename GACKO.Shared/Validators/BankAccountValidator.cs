@@ -6,9 +6,12 @@ using System.Text;
 
 namespace GACKO.Shared.Validators
 {
-    public class BankAccountValidator : AbstractValidator<BankAccountForm>
+    /// <summary>
+    /// Bank Account Form validator
+    /// </summary>
+    public class BankAccountFormValidator : AbstractValidator<BankAccountForm>
     {
-        public BankAccountValidator()
+        public BankAccountFormValidator()
         {
             RuleFor(x => x.Iban).NotEmpty().Length(30);
         }

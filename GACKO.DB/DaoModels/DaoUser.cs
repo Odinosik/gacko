@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GACKO.DB.DaoModels
 {
+    /// <summary>
+    /// AspNetUsers Table Data Access Object 
+    /// </summary>
     [Table("AspNetUsers")]
     public class DaoUser : IdentityUser<int>
     {

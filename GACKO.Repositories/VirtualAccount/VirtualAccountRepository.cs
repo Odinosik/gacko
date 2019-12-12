@@ -34,7 +34,7 @@ namespace GACKO.Repositories.VirtualAccount
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Create);
+                throw new RepositoryException(typeof(DaoVirtualAccount).Name, eRepositoryExceptionType.Create);
             }
         }
 
@@ -51,7 +51,7 @@ namespace GACKO.Repositories.VirtualAccount
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Delete);
+                throw new RepositoryException(typeof(DaoVirtualAccount).Name, eRepositoryExceptionType.Delete);
             }
         }
 
@@ -63,7 +63,7 @@ namespace GACKO.Repositories.VirtualAccount
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+                throw new RepositoryException(typeof(DaoVirtualAccount).Name, eRepositoryExceptionType.Get);
             }
         }
 
@@ -75,7 +75,7 @@ namespace GACKO.Repositories.VirtualAccount
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+                throw new RepositoryException(typeof(DaoVirtualAccount).Name, eRepositoryExceptionType.Get);
             }
         }
 
@@ -94,7 +94,7 @@ namespace GACKO.Repositories.VirtualAccount
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Update);
+                throw new RepositoryException(typeof(DaoVirtualAccount).Name, eRepositoryExceptionType.Update);
             }
         }
     }

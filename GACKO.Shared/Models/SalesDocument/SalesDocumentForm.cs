@@ -2,6 +2,9 @@
 
 namespace GACKO.Shared.Models.SalesDocument
 {
+    /// <summary>
+    /// Upload Sales Document  Form
+    /// </summary>
     public class SalesDocumentForm
     {
         public string Name { get; set; }

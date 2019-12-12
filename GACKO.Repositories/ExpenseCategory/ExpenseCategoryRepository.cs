@@ -32,7 +32,7 @@ namespace GACKO.Repositories.ExpenseCategory
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Create);
+                throw new RepositoryException(typeof(DaoExpenseCategory).Name, eRepositoryExceptionType.Create);
             }
         }
 
@@ -49,7 +49,7 @@ namespace GACKO.Repositories.ExpenseCategory
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Delete);
+                throw new RepositoryException(typeof(DaoExpenseCategory).Name, eRepositoryExceptionType.Delete);
             }
         }
 
@@ -61,7 +61,7 @@ namespace GACKO.Repositories.ExpenseCategory
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+                throw new RepositoryException(typeof(DaoExpenseCategory).Name, eRepositoryExceptionType.Get);
             }
         }
 
@@ -80,7 +80,7 @@ namespace GACKO.Repositories.ExpenseCategory
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Update);
+                throw new RepositoryException(typeof(DaoExpenseCategory).Name, eRepositoryExceptionType.Update);
             }
         }
     }
