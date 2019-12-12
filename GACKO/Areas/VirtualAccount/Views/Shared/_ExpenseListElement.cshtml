@@ -17,6 +17,13 @@
         @*</form>*@
         @*}*@
     </td>
+    <td>
+        @*using (Html.BeginForm("Delete", "Subscription", new { area = "VirtualAccount" }, FormMethod.Post))
+        {*@
+        <input type="hidden" id="deleteexpense-id" value="@Model.Id" name="id" />
+        <input type="submit" value="X" onclick="deleteexpense()" class="btn btn-primary" />
+        @*}*@
+    </td>
 </tr>
 
 <tr class="expand">

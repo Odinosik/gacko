@@ -69,3 +69,25 @@ function addsubscription() {
             location.reload();
         });
 };
+
+function deletesubscription() {
+    var url = "/VirtualAccount/Subscription/Delete";
+
+    $.post(url, {
+        id: document.getElementById("deletesubscription-id").value
+    })
+        .done(function (response) {
+            location.reload();
+        });
+};
+
+function deleteexpense() {
+    var url = "/VirtualAccount/Expense/Delete";
+
+    $.post(url, {
+        id: document.getElementById("deleteexpense-id").value
+    })
+        .done(function (response) {
+            location.reload();
+        });
+};
