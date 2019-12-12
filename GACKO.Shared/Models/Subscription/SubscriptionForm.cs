@@ -2,6 +2,9 @@
 
 namespace GACKO.Shared.Models.Subscription
 {
+    /// <summary>
+    /// Create and Update Subscription Form
+    /// </summary>
     public class SubscriptionForm
     {
         public string Name { get; set; }

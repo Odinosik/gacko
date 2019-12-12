@@ -2,6 +2,9 @@
 
 namespace GACKO.Shared.Models.Expense
 {
+    /// <summary>
+    /// Create and Update Expense Form
+    /// </summary>
     public class ExpenseForm
     {
         public double Amount { get; set; }

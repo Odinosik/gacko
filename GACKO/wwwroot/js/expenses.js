@@ -37,22 +37,28 @@ function addexpense() {
 function uploadfile(id) {
     var url = "/VirtualAccount/SalesDocument/Upload";
     var request = new FormData();
-    request.append("fileForm", $(`#uploaddoc-fileform-${id}`).prop('files')[0]);
-    request.append("expenseId", document.getElementById(`uploaddoc-expenseid-${id}`).value);
-    request.append("fileName", document.getElementById(`uploaddoc-filename-${id}`).value);
-    $.ajax({
-        url: url,
-        type: "POST",
-        data: request,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            $("#expense-list").html(response);
-            $("table tr td")
-                .find("div")
-                .hide();
-        }
-    });
+    if ($(`#uploaddoc-fileform-${id}`).prop('files')[0] != null &&
+        document.getElementById(`uploaddoc-expenseid-${id}`).value !== null &&
+        document.getElementById(`uploaddoc-expenseid-${id}`).value !== "" &&
+        document.getElementById(`uploaddoc-filename-${id}`).value !== null &&
+        document.getElementById(`uploaddoc-filename-${id}`).value !== "") {
+        request.append("fileForm", $(`#uploaddoc-fileform-${id}`).prop('files')[0]);
+        request.append("expenseId", document.getElementById(`uploaddoc-expenseid-${id}`).value);
+        request.append("fileName", document.getElementById(`uploaddoc-filename-${id}`).value);
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: request,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                $("#expense-list").html(response);
+                $("table tr td")
+                    .find("div")
+                    .hide();
+            }
+        });
+    }
 };
 
 function addsubscription() {
@@ -64,6 +70,28 @@ function addsubscription() {
         Amount: document.getElementById("addsubscription-amount").value,
         ExpirationDate: document.getElementById("addsubscription-expirationdate").value,
         FrequncyMonth: document.getElementById("addsubscription-frequncymonth").value
+    })
+        .done(function (response) {
+            location.reload();
+        });
+};
+
+function deletesubscription() {
+    var url = "/VirtualAccount/Subscription/Delete";
+
+    $.post(url, {
+        id: document.getElementById("deletesubscription-id").value
+    })
+        .done(function (response) {
+            location.reload();
+        });
+};
+
+function deleteexpense() {
+    var url = "/VirtualAccount/Expense/Delete";
+
+    $.post(url, {
+        id: document.getElementById("deleteexpense-id").value
     })
         .done(function (response) {
             location.reload();

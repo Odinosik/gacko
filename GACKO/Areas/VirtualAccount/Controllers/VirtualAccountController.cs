@@ -127,6 +127,7 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             {
                 viewModel.Error = new Shared.Models.GackoError(e);
             }
+            return RedirectToAction("Index", "VirtualAccount", new { bankAccountId = virtualAccount.BankAccountId,  area = "VirtualAccount" });
             return View("Index", viewModel);
         }
 

@@ -9,12 +9,17 @@
     <td data-title="Sales Document">
         @*@using (Html.BeginForm("Upload", "SalesDocument", new { area = "VirtualAccount", enctype = "multipart/form-data" }, FormMethod.Post))
             {*@
-        @*<form action="SalesDocument/Upload" enctype="multipart/form-data" method="post">*@
-        <input id="@($"uploaddoc-expenseid-{Model.Id}")" type="text" Name="expenseId" value="@Model.Id" hidden />
-        <input id="@($"uploaddoc-filename-{Model.Id}")" type="text" Name="fileName" />
-        <input id="@($"uploaddoc-fileform-{Model.Id}")" type="file" Name="fileForm" />
+        <input id="@($"uploaddoc-expenseid-{Model.Id}")" type="text" Name="expenseId" value="@Model.Id" hidden required="required" />
+        <input id="@($"uploaddoc-filename-{Model.Id}")" type="text" Name="fileName" required="required" />
+        <input id="@($"uploaddoc-fileform-{Model.Id}")" type="file" Name="fileForm" required="required" />
         <input type="submit" value="Upload" onclick="uploadfile(@Model.Id)" />
-        @*</form>*@
+        @*}*@
+    </td>
+    <td>
+        @*using (Html.BeginForm("Delete", "Subscription", new { area = "VirtualAccount" }, FormMethod.Post))
+            {*@
+        <input type="hidden" id="deleteexpense-id" value="@Model.Id" name="id" />
+        <input type="submit" value="X" onclick="deleteexpense()" class="btn btn-primary" />
         @*}*@
     </td>
 </tr>

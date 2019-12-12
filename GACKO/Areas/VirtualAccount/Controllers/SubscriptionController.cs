@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace GACKO.Areas.VirtualAccount.Controllers
@@ -47,11 +48,21 @@ namespace GACKO.Areas.VirtualAccount.Controllers
             return View("Index", await _subscriptionService.GetAll(virtualAccountId));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Delete(int id, int virtualAccountId)
+        [HttpPost]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Delete(int id)
         {
+
+            var subscription = await _subscriptionService.Get(id);
             await _subscriptionService.Delete(id);
-            return View("Index", await _subscriptionService.GetAll(virtualAccountId));
+            var viewModel = new SubscriptionListViewModel()
+            {
+                VirtualAccountId = subscription.VirtualAccountId,
+                Subscriptions = await _subscriptionService.GetAll(subscription.VirtualAccountId)
+            };
+            return PartialView("_SubscriptionList", viewModel);
         }
     }
 }

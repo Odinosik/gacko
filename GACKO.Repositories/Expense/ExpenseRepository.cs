@@ -34,7 +34,7 @@ namespace GACKO.Repositories.Expense
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Create);
+                throw new RepositoryException(typeof(DaoExpense).Name, eRepositoryExceptionType.Create);
             }
         }
 
@@ -51,7 +51,7 @@ namespace GACKO.Repositories.Expense
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Delete);
+                throw new RepositoryException(typeof(DaoExpense).Name, eRepositoryExceptionType.Delete);
             }
         }
 
@@ -63,7 +63,7 @@ namespace GACKO.Repositories.Expense
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+                throw new RepositoryException(typeof(DaoExpense).Name, eRepositoryExceptionType.Get);
             }
         }
 
@@ -71,11 +71,14 @@ namespace GACKO.Repositories.Expense
         {
             try
             {
-                return _mapper.Map<List<ExpenseModel>>(await _context.Expenses.Where(_ => _.VirtualAccountId == virtualAccountId).ToListAsync());
+                return _mapper.Map<List<ExpenseModel>>(await _context.Expenses
+                    .Include(_ => _.SalesDocuments)
+                    .Where(_ => _.VirtualAccountId == virtualAccountId)
+                    .ToListAsync());
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Get);
+                throw new RepositoryException(typeof(DaoExpense).Name, eRepositoryExceptionType.Get);
             }
         }
 
@@ -94,7 +97,7 @@ namespace GACKO.Repositories.Expense
             }
             catch (Exception e)
             {
-                throw new RepositoryException(typeof(DaoBankAccount).Name, eRepositoryExceptionType.Update);
+                throw new RepositoryException(typeof(DaoExpense).Name, eRepositoryExceptionType.Update);
             }
         }
     }
